@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+$featuresDir = join(DIRECTORY_SEPARATOR, [dirname(__DIR__), 'features', 'backend']);
+$reportsDir  = join(DIRECTORY_SEPARATOR, [dirname(__DIR__), 'behat-reports']);
+
+shell_exec("rm -rf $reportsDir/*");
+
+$cmd = "php -d memory_limit=1024M " .
+       __DIR__ . "/behat %s --tags '~javascript' --format html --out $reportsDir/%s.html";
+
+$features = collect_files($featuresDir, 'feature');
+foreach ($features as $feature) {
+    $exec = sprintf($cmd, $feature, pathinfo($feature, PATHINFO_FILENAME));
+    echo $exec, "\n\n", shell_exec($exec), "\n\n\n\n\n";
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------
+ * HELPER FUNCTIONS
+ */
+
+function collect_files($dir, $ext)
+{
+    $features = [];
+
+    $iterator = new RecursiveIteratorIterator(
+                    new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS));
+
+    foreach ($iterator as $file) {
+        /** @var \SplFileInfo $file */
+        if (pathinfo($file, PATHINFO_EXTENSION) == $ext) {
+            $features[] = $file->getPathname();
+        }
+    }
+
+    return $features;
+}

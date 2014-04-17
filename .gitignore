@@ -24,3 +24,6 @@ bin/phpcrodm.php
 bin/jackalope
 bin/phpunit
 vendor/*
+
+.idea
+behat-reports
