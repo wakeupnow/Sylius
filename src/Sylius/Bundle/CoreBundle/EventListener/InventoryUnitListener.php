@@ -13,6 +13,7 @@ namespace Sylius\Bundle\CoreBundle\EventListener;
 
 use Sylius\Bundle\ResourceBundle\Exception\UnexpectedTypeException;
 use Sylius\Component\Core\Model\InventoryUnitInterface;
+use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
@@ -40,15 +41,15 @@ class InventoryUnitListener
 
         switch ($state) {
             case $unit::STATE_BACKORDERED:
-                $unit->setShippingState(ShipmentInterface::STATE_ONHOLD);
+                $unit->setShippingState(ShipmentState::ONHOLD);
                 break;
 
             case $unit::STATE_SOLD:
-                $unit->setShippingState(ShipmentInterface::STATE_READY);
+                $unit->setShippingState(ShipmentState::READY);
                 break;
 
             case $unit::STATE_RETURNED:
-                $unit->setShippingState(ShipmentInterface::STATE_RETURNED);
+                $unit->setShippingState(ShipmentState::RETURNED);
                 break;
 
             default:

@@ -51,7 +51,7 @@ class Payment implements PaymentInterface
      *
      * @var string
      */
-    protected $state = PaymentInterface::STATE_NEW;
+    protected $state = PaymentState::CREATED;
 
     /**
      * Credit card as a source.
@@ -188,7 +188,7 @@ class Payment implements PaymentInterface
     /**
      * {@inheritdoc}
      */
-    public function setState($state)
+    public function setState(PaymentState $state)
     {
         $this->state = $state;
 

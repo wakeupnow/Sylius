@@ -12,6 +12,7 @@
 namespace Sylius\Component\Core\Model;
 
 use Sylius\Component\Inventory\Model\InventoryUnit as BaseInventoryUnit;
+use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface as BaseShipmentInterface;
 use Sylius\Component\Shipping\Model\ShippableInterface;
 
@@ -47,9 +48,9 @@ class InventoryUnit extends BaseInventoryUnit implements InventoryUnitInterface
     /**
      * Shipping state.
      *
-     * @var string ShipmentInterface::STATE_*
+     * @var string ShipmentState::*
      */
-    protected $shippingState = ShipmentInterface::STATE_CHECKOUT;
+    protected $shippingState = ShipmentState::CHECKOUT;
 
     /**
      * Creation time.

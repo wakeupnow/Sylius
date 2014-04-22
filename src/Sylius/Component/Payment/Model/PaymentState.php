@@ -9,24 +9,24 @@
  * file that was distributed with this source code.
  */
 
-namespace Sylius\Component\Core\Model;
+namespace Sylius\Component\Payment\Model;
 
 /**
- * Default order shipping states.
+ * Class PaymentStatus
  *
- * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ * @package Sylius\Component\Payment\Model
  */
-class OrderShippingStates
+class PaymentState
 {
-    const CHECKOUT          = 'checkout';
-    const ONHOLD            = 'onhold';
-    const READY             = 'ready';
-    const BACKORDER         = 'backorder';
-    const PARTIALLY_SHIPPED = 'partially_shipped';
-    const SHIPPED           = 'shipped';
-    const RETURNED          = 'returned';
-    const CANCELLED         = 'cancelled';
-
+    const CREATED    = 'new';
+    const PENDING    = 'pending';
+    const PROCESSING = 'processing';
+    const COMPLETED  = 'completed';
+    const FAILED     = 'failed';
+    const CANCELLED  = 'cancelled';
+    const VOID       = 'void';
+    const REFUNDED   = 'refunded';
+    const UNKNOWN    = 'unknown';
 
     /**
      * Payments method identifier.

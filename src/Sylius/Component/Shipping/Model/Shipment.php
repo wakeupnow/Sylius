@@ -32,9 +32,9 @@ class Shipment implements ShipmentInterface, TimestampableInterface
     /**
      * Shipment state.
      *
-     * @var string
+     * @var ShipmentState
      */
-    protected $state = ShipmentInterface::STATE_CHECKOUT;
+    protected $state = ShipmentState::CHECKOUT;
 
     /**
      * Shipping method.
@@ -107,7 +107,7 @@ class Shipment implements ShipmentInterface, TimestampableInterface
     /**
      * {@inheritdoc}
      */
-    public function setState($state)
+    public function setState(ShipmentState $state)
     {
         $this->state = $state;
 

@@ -13,6 +13,7 @@ namespace spec\Sylius\Component\Core\Model;
 
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface;
 
 class InventoryUnitSpec extends ObjectBehavior
@@ -59,13 +60,13 @@ class InventoryUnitSpec extends ObjectBehavior
 
     function it_has_checkout_shipping_state_by_default()
     {
-        $this->getShippingState()->shouldReturn(ShipmentInterface::STATE_CHECKOUT);
+        $this->getShippingState()->shouldReturn(ShipmentState::CHECKOUT);
     }
 
     function its_shipping_state_is_mutable()
     {
-        $this->setShippingState(ShipmentInterface::STATE_SHIPPED);
-        $this->getShippingState()->shouldReturn(ShipmentInterface::STATE_SHIPPED);
+        $this->setShippingState(ShipmentState::SHIPPED);
+        $this->getShippingState()->shouldReturn(ShipmentState::SHIPPED);
     }
 
     function it_does_not_belong_to_an_order_item_by_default()

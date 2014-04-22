@@ -16,6 +16,7 @@ use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Addressing\Model\AddressInterface;
 use Sylius\Component\Cart\Model\Cart;
 use Sylius\Component\Order\Model\AdjustmentInterface;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Sylius\Component\Promotion\Model\CouponInterface;
 use Sylius\Component\Promotion\Model\PromotionInterface;
@@ -81,7 +82,7 @@ class Order extends Cart implements OrderInterface
      *
      * @var string
      */
-    protected $paymentState = PaymentInterface::STATE_NEW;
+    protected $paymentState = PaymentState::CREATED;
 
     /**
      * Order shipping state.
@@ -495,7 +496,7 @@ class Order extends Cart implements OrderInterface
         if (null !== $lastShipment = $this->getLastShipment()) {
             return (in_array(
                     $lastShipment->getState(),
-                    array(ShipmentInterface::STATE_RETURNED, ShipmentInterface::STATE_SHIPPED))
+                    array(ShipmentState::RETURNED, ShipmentState::SHIPPED))
             );
         }
 

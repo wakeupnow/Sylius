@@ -12,6 +12,7 @@
 namespace spec\Sylius\Bundle\ShippingBundle\Calculator;
 
 use PhpSpec\ObjectBehavior;
+use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 

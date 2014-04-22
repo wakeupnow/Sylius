@@ -11,6 +11,7 @@
 
 namespace Sylius\Component\Core\Model;
 
+use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface as BaseShipmentInterface;
 
 /**

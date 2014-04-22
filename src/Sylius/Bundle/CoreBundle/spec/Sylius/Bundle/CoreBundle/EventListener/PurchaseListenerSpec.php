@@ -15,6 +15,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Bundle\CoreBundle\Event\PurchaseCompleteEvent;
 use Sylius\Component\Cart\Provider\CartProviderInterface;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
@@ -51,7 +52,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_COMPLETED);
+        $payment->getState()->willReturn(PaymentState::COMPLETED);
 
         $cartProvider->abandonCart()->shouldBeCalled();
 
@@ -67,7 +68,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_COMPLETED);
+        $payment->getState()->willReturn(PaymentState::COMPLETED);
 
         $translator
             ->trans('sylius.checkout.success', array(), 'flashes')
@@ -85,7 +86,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_PENDING);
+        $payment->getState()->willReturn(PaymentState::PENDING);
 
         $cartProvider->abandonCart()->shouldBeCalled();
 
@@ -101,7 +102,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_PENDING);
+        $payment->getState()->willReturn(PaymentState::PENDING);
 
         $translator
             ->trans('sylius.checkout.processing', array(), 'flashes')
@@ -119,7 +120,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_PROCESSING);
+        $payment->getState()->willReturn(PaymentState::PROCESSING);
 
         $cartProvider->abandonCart()->shouldBeCalled();
 
@@ -135,7 +136,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_PROCESSING);
+        $payment->getState()->willReturn(PaymentState::PROCESSING);
 
         $translator
             ->trans('sylius.checkout.processing', array(), 'flashes')
@@ -153,7 +154,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_VOID);
+        $payment->getState()->willReturn(PaymentState::VOID);
 
         $cartProvider->abandonCart()->shouldNotBeCalled();
 
@@ -169,7 +170,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_VOID);
+        $payment->getState()->willReturn(PaymentState::VOID);
 
         $translator
             ->trans('sylius.checkout.canceled', array(), 'flashes')
@@ -187,7 +188,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_FAILED);
+        $payment->getState()->willReturn(PaymentState::FAILED);
 
         $cartProvider->abandonCart()->shouldNotBeCalled();
 
@@ -202,7 +203,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PurchaseCompleteEvent $event,
         PaymentInterface $payment)
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_FAILED);
+        $payment->getState()->willReturn(PaymentState::FAILED);
 
         $translator
             ->trans('sylius.checkout.failed', array(), 'flashes')
@@ -220,7 +221,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_UNKNOWN);
+        $payment->getState()->willReturn(PaymentState::UNKNOWN);
 
         $cartProvider->abandonCart()->shouldNotBeCalled();
 
@@ -236,7 +237,7 @@ class PurchaseListenerSpec extends ObjectBehavior
         PaymentInterface $payment
     )
     {
-        $payment->getState()->willReturn(PaymentInterface::STATE_UNKNOWN);
+        $payment->getState()->willReturn(PaymentState::UNKNOWN);
 
         $translator
             ->trans('sylius.checkout.unknown', array(), 'flashes')

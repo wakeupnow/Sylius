@@ -252,7 +252,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
             $order->setCurrency('EUR');
             $order->complete();
 
-            $shipmentProcessor->updateShipmentStates($order->getShipments(), ShipmentInterface::STATE_READY, ShipmentInterface::STATE_CHECKOUT);
+            $shipmentProcessor->updateShipmentStates($order->getShipments(), ShipmentState::READY, ShipmentState::CHECKOUT);
 
             $manager->persist($order);
 

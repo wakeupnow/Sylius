@@ -15,6 +15,7 @@ use Payum\Core\PaymentInterface as PayumPaymentInterface;
 use Payum\Core\Request\ModelRequestInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 
 class ExecuteSameRequestWithPaymentDetailsActionSpec extends ObjectBehavior

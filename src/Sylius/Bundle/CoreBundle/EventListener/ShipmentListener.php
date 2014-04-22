@@ -92,8 +92,8 @@ class ShipmentListener
 
         $this->shippingProcessor->updateShipmentStates(
             $order->getShipments(),
-            ShipmentInterface::STATE_CHECKOUT,
-            ShipmentInterface::STATE_ONHOLD
+            ShipmentState::CHECKOUT,
+            ShipmentState::ONHOLD
         );
     }
 

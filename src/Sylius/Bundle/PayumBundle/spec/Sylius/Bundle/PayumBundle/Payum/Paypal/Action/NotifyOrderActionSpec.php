@@ -19,6 +19,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Payment\Model\Payment;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface as PaymentModelInterface;
 use Sylius\Component\Payment\SyliusPaymentEvents;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -88,7 +89,7 @@ class NotifyOrderActionSpec extends ObjectBehavior
         $request->getModel()->willReturn($order);
         $order->getPayment()->willReturn($paymentModel);
 
-        $paymentModel->getState()->willReturn(Payment::STATE_COMPLETED);
+        $paymentModel->getState()->willReturn(PaymentState::COMPLETED);
         $paymentModel->setState(Argument::type('string'))->will(function($args) use ($paymentModel) {
             $paymentModel->getState()->willReturn($args[0]);
         });
@@ -131,7 +132,7 @@ class NotifyOrderActionSpec extends ObjectBehavior
         $request->getModel()->willReturn($order);
         $order->getPayment()->willReturn($paymentModel);
 
-        $paymentModel->getState()->willReturn(Payment::STATE_COMPLETED);
+        $paymentModel->getState()->willReturn(PaymentState::COMPLETED);
         $paymentModel->setState(Argument::type('string'))->will(function($args) use ($paymentModel) {
             $paymentModel->getState()->willReturn($args[0]);
         });

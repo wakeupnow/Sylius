@@ -13,7 +13,7 @@ namespace Sylius\Component\Core\OrderProcessing;
 
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderShippingStates;
-use Sylius\Component\Core\Model\ShipmentInterface;
+use Sylius\Component\Shipping\Model\ShipmentState;
 
 /**
  * Order state resolver.
@@ -55,12 +55,12 @@ class StateResolver implements StateResolverInterface
         $states = array_unique($states);
 
         $acceptableStates = array(
-            ShipmentInterface::STATE_CHECKOUT   => OrderShippingStates::CHECKOUT,
-            ShipmentInterface::STATE_ONHOLD     => OrderShippingStates::ONHOLD,
-            ShipmentInterface::STATE_READY      => OrderShippingStates::READY,
-            ShipmentInterface::STATE_SHIPPED    => OrderShippingStates::SHIPPED,
-            ShipmentInterface::STATE_RETURNED   => OrderShippingStates::RETURNED,
-            ShipmentInterface::STATE_CANCELLED  => OrderShippingStates::CANCELLED,
+            ShipmentState::CHECKOUT   => OrderShippingStates::CHECKOUT,
+            ShipmentState::ONHOLD     => OrderShippingStates::ONHOLD,
+            ShipmentState::READY      => OrderShippingStates::READY,
+            ShipmentState::SHIPPED    => OrderShippingStates::SHIPPED,
+            ShipmentState::RETURNED   => OrderShippingStates::RETURNED,
+            ShipmentState::CANCELLED  => OrderShippingStates::CANCELLED,
         );
 
         foreach ($acceptableStates as $shipmentState => $orderState) {

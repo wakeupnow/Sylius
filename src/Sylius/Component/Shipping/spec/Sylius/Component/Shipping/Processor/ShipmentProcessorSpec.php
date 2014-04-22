@@ -12,6 +12,7 @@
 namespace spec\Sylius\Component\Shipping\Processor;
 
 use PhpSpec\ObjectBehavior;
+use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface;
 use Sylius\Component\Shipping\Model\ShipmentItemInterface;
 
@@ -35,14 +36,14 @@ class ShipmentProcessorSpec extends ObjectBehavior
         ShipmentItemInterface $item
     )
     {
-        $shipment->getState()->shouldBeCalled()->willReturn(ShipmentInterface::STATE_READY);
-        $shipment->setState(ShipmentInterface::STATE_SHIPPED)->shouldBeCalled();
+        $shipment->getState()->shouldBeCalled()->willReturn(ShipmentState::READY);
+        $shipment->setState(ShipmentState::SHIPPED)->shouldBeCalled();
         $shipment->getItems()->shouldBeCalled()->willReturn(array($item));
 
-        $item->getShippingState()->shouldBeCalled()->willReturn(ShipmentInterface::STATE_READY);
-        $item->setShippingState(ShipmentInterface::STATE_SHIPPED)->shouldBeCalled();
+        $item->getShippingState()->shouldBeCalled()->willReturn(ShipmentState::READY);
+        $item->setShippingState(ShipmentState::SHIPPED)->shouldBeCalled();
 
-        $this->updateShipmentStates(array($shipment), ShipmentInterface::STATE_SHIPPED, ShipmentInterface::STATE_READY);
+        $this->updateShipmentStates(array($shipment), ShipmentState::SHIPPED, ShipmentState::READY);
     }
 
     function it_does_not_update_shipment_states_if_state_from_does_not_match(
@@ -50,28 +51,28 @@ class ShipmentProcessorSpec extends ObjectBehavior
         ShipmentItemInterface $item
     )
     {
-        $shipment->getState()->shouldBeCalled()->willReturn(ShipmentInterface::STATE_SHIPPED);
-        $shipment->setState(ShipmentInterface::STATE_SHIPPED)->shouldNotBeCalled();
+        $shipment->getState()->shouldBeCalled()->willReturn(ShipmentState::SHIPPED);
+        $shipment->setState(ShipmentState::SHIPPED)->shouldNotBeCalled();
 
         $item->getShippingState()->shouldNotBeCalled();
-        $item->setShippingState(ShipmentInterface::STATE_SHIPPED)->shouldNotBeCalled();
+        $item->setShippingState(ShipmentState::SHIPPED)->shouldNotBeCalled();
 
-        $this->updateShipmentStates(array($shipment), ShipmentInterface::STATE_SHIPPED, ShipmentInterface::STATE_READY);
+        $this->updateShipmentStates(array($shipment), ShipmentState::SHIPPED, ShipmentState::READY);
     }
 
     function it_updates_item_states(ShipmentItemInterface $item)
     {
-        $item->getShippingState()->shouldBeCalled()->willReturn(ShipmentInterface::STATE_READY);
-        $item->setShippingState(ShipmentInterface::STATE_SHIPPED)->shouldBeCalled();
+        $item->getShippingState()->shouldBeCalled()->willReturn(ShipmentState::READY);
+        $item->setShippingState(ShipmentState::SHIPPED)->shouldBeCalled();
 
-        $this->updateItemStates(array($item), ShipmentInterface::STATE_SHIPPED, ShipmentInterface::STATE_READY);
+        $this->updateItemStates(array($item), ShipmentState::SHIPPED, ShipmentState::READY);
     }
 
     function it_does_not_update_item_states_if_state_from_does_not_match(ShipmentItemInterface $item)
     {
-        $item->getShippingState()->shouldBeCalled()->willReturn(ShipmentInterface::STATE_SHIPPED);
-        $item->setShippingState(ShipmentInterface::STATE_SHIPPED)->shouldNotBeCalled();
+        $item->getShippingState()->shouldBeCalled()->willReturn(ShipmentState::SHIPPED);
+        $item->setShippingState(ShipmentState::SHIPPED)->shouldNotBeCalled();
 
-        $this->updateItemStates(array($item), ShipmentInterface::STATE_SHIPPED, ShipmentInterface::STATE_READY);
+        $this->updateItemStates(array($item), ShipmentState::SHIPPED, ShipmentState::READY);
     }
 }

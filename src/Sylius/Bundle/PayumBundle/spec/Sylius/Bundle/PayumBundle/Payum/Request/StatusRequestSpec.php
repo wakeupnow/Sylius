@@ -12,6 +12,7 @@
 namespace spec\Sylius\Bundle\PayumBundle\Payum\Request;
 
 use PhpSpec\ObjectBehavior;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 
 class StatusRequestSpec extends ObjectBehavior
@@ -42,7 +43,7 @@ class StatusRequestSpec extends ObjectBehavior
     {
         $this->markNew();
 
-        $this->getStatus()->shouldReturn(PaymentInterface::STATE_NEW);
+        $this->getStatus()->shouldReturn(PaymentState::CREATED);
     }
 
     function it_is_success_when_marked_as_success()
@@ -56,7 +57,7 @@ class StatusRequestSpec extends ObjectBehavior
     {
         $this->markSuccess();
 
-        $this->getStatus()->shouldReturn(PaymentInterface::STATE_COMPLETED);
+        $this->getStatus()->shouldReturn(PaymentState::COMPLETED);
     }
 
     function it_is_pending_when_marked_as_pending()
@@ -70,7 +71,7 @@ class StatusRequestSpec extends ObjectBehavior
     {
         $this->markPending();
 
-        $this->getStatus()->shouldReturn(PaymentInterface::STATE_PROCESSING);
+        $this->getStatus()->shouldReturn(PaymentState::PROCESSING);
     }
 
     function it_is_failed_when_marked_as_failed()
@@ -84,7 +85,7 @@ class StatusRequestSpec extends ObjectBehavior
     {
         $this->markFailed();
 
-        $this->getStatus()->shouldReturn(PaymentInterface::STATE_FAILED);
+        $this->getStatus()->shouldReturn(PaymentState::FAILED);
     }
 
     function it_is_canceled_when_marked_as_canceled()
@@ -98,7 +99,7 @@ class StatusRequestSpec extends ObjectBehavior
     {
         $this->markCanceled();
 
-        $this->getStatus()->shouldReturn(PaymentInterface::STATE_CANCELLED);
+        $this->getStatus()->shouldReturn(PaymentState::CANCELLED);
     }
 
     function it_is_suspended_when_marked_as_suspended()
@@ -112,7 +113,7 @@ class StatusRequestSpec extends ObjectBehavior
     {
         $this->markSuspended();
 
-        $this->getStatus()->shouldReturn(PaymentInterface::STATE_PROCESSING);
+        $this->getStatus()->shouldReturn(PaymentState::PROCESSING);
     }
 
     function it_is_expired_when_marked_as_expired()
@@ -126,7 +127,7 @@ class StatusRequestSpec extends ObjectBehavior
     {
         $this->markExpired();
 
-        $this->getStatus()->shouldReturn(PaymentInterface::STATE_FAILED);
+        $this->getStatus()->shouldReturn(PaymentState::FAILED);
     }
 
     function it_is_unknown_when_marked_as_unknown()
@@ -140,6 +141,6 @@ class StatusRequestSpec extends ObjectBehavior
     {
         $this->markUnknown();
 
-        $this->getStatus()->shouldReturn(PaymentInterface::STATE_UNKNOWN);
+        $this->getStatus()->shouldReturn(PaymentState::UNKNOWN);
     }
 }

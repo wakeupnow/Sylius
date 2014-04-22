@@ -15,6 +15,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderShippingStates;
+use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Core\Model\ShipmentInterface;
 
 /**
@@ -49,8 +50,8 @@ class StateResolverSpec extends ObjectBehavior
         $order->isBackorder()->shouldBeCalled()->willReturn(false);
         $order->getShipments()->willReturn(array($shipment1, $shipment2));
 
-        $shipment1->getState()->willReturn(ShipmentInterface::STATE_SHIPPED);
-        $shipment2->getState()->willReturn(ShipmentInterface::STATE_SHIPPED);
+        $shipment1->getState()->willReturn(ShipmentState::SHIPPED);
+        $shipment2->getState()->willReturn(ShipmentState::SHIPPED);
 
         $order->setShippingState(OrderShippingStates::SHIPPED)->shouldBeCalled();
         $this->resolveShippingState($order);
@@ -65,8 +66,8 @@ class StateResolverSpec extends ObjectBehavior
         $order->isBackorder()->shouldBeCalled()->willReturn(false);
         $order->getShipments()->willReturn(array($shipment1, $shipment2));
 
-        $shipment1->getState()->willReturn(ShipmentInterface::STATE_SHIPPED);
-        $shipment2->getState()->willReturn(ShipmentInterface::STATE_READY);
+        $shipment1->getState()->willReturn(ShipmentState::SHIPPED);
+        $shipment2->getState()->willReturn(ShipmentState::READY);
 
         $order->setShippingState(OrderShippingStates::PARTIALLY_SHIPPED)->shouldBeCalled();
         $this->resolveShippingState($order);
@@ -81,8 +82,8 @@ class StateResolverSpec extends ObjectBehavior
         $order->isBackorder()->shouldBeCalled()->willReturn(false);
         $order->getShipments()->willReturn(array($shipment1, $shipment2));
 
-        $shipment1->getState()->willReturn(ShipmentInterface::STATE_RETURNED);
-        $shipment2->getState()->willReturn(ShipmentInterface::STATE_RETURNED);
+        $shipment1->getState()->willReturn(ShipmentState::RETURNED);
+        $shipment2->getState()->willReturn(ShipmentState::RETURNED);
 
         $order->setShippingState(OrderShippingStates::RETURNED)->shouldBeCalled();
         $this->resolveShippingState($order);

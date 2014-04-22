@@ -24,6 +24,7 @@ use Sylius\Component\Cart\Provider\CartProviderInterface;
 use Sylius\Component\Core\Model\Order;
 use Sylius\Component\Core\SyliusCheckoutEvents;
 use Sylius\Component\Payment\Model\Payment;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\SyliusPaymentEvents;
 use Symfony\Bridge\Doctrine\RegistryInterface as DoctrinRegistryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -93,7 +94,7 @@ class PurchaseStepSpec extends ObjectBehavior
         EventDispatcherInterface $eventDispatcher
     ) {
         $paymentModel = new Payment();
-        $paymentModel->setState(Payment::STATE_NEW);
+        $paymentModel->setState(PaymentState::CREATED);
         $order = new Order();
         $order->setPayment($paymentModel);
 
@@ -137,7 +138,7 @@ class PurchaseStepSpec extends ObjectBehavior
         EventDispatcherInterface $eventDispatcher
     ) {
         $paymentModel = new Payment();
-        $paymentModel->setState(Payment::STATE_COMPLETED);
+        $paymentModel->setState(PaymentState::COMPLETED);
         $order = new Order();
         $order->setPayment($paymentModel);
 

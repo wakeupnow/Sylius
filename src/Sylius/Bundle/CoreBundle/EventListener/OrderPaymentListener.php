@@ -16,6 +16,7 @@ use Sylius\Bundle\ResourceBundle\Exception\UnexpectedTypeException;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\OrderProcessing\PaymentProcessorInterface;
 use Sylius\Component\Core\SyliusOrderEvents;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
@@ -108,7 +109,7 @@ class OrderPaymentListener
             );
         }
 
-        $order->getPayment()->setState(PaymentInterface::STATE_VOID);
+        $order->getPayment()->setState(PaymentState::VOID);
     }
 
     public function updateOrderOnPayment(GenericEvent $event)
@@ -128,7 +129,7 @@ class OrderPaymentListener
             throw new \Exception(sprintf('Cannot retrieve Order from Payment with id %s', $payment->getId()));
         }
 
-        if (PaymentInterface::STATE_COMPLETED === $payment->getState()) {
+        if (PaymentState::COMPLETED === $payment->getState()) {
             $this->dispatcher->dispatch(SyliusOrderEvents::PRE_PAY, new GenericEvent($order, $event->getArguments()));
             $this->dispatcher->dispatch(SyliusOrderEvents::POST_PAY, new GenericEvent($order, $event->getArguments()));
         }

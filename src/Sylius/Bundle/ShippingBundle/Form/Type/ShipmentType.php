@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\ShippingBundle\Form\Type;
 
+use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -54,12 +55,12 @@ class ShipmentType extends AbstractType
             ->add('state', 'choice', array(
                 'label'   => 'sylius.form.shipment.state',
                 'choices' => array(
-                    ShipmentInterface::STATE_CHECKOUT   => 'sylius.form.shipment.states.checkout',
-                    ShipmentInterface::STATE_PENDING    => 'sylius.form.shipment.states.pending',
-                    ShipmentInterface::STATE_READY      => 'sylius.form.shipment.states.ready',
-                    ShipmentInterface::STATE_SHIPPED    => 'sylius.form.shipment.states.shipped',
-                    ShipmentInterface::STATE_RETURNED   => 'sylius.form.shipment.states.returned',
-                    ShipmentInterface::STATE_CANCELLED  => 'sylius.form.shipment.states.cancelled',
+                    ShipmentState::CHECKOUT   => 'sylius.form.shipment.states.checkout',
+                    ShipmentState::PENDING    => 'sylius.form.shipment.states.pending',
+                    ShipmentState::READY      => 'sylius.form.shipment.states.ready',
+                    ShipmentState::SHIPPED    => 'sylius.form.shipment.states.shipped',
+                    ShipmentState::RETURNED   => 'sylius.form.shipment.states.returned',
+                    ShipmentState::CANCELLED  => 'sylius.form.shipment.states.cancelled',
                 ),
             ))
             ->add('tracking', 'text', array(

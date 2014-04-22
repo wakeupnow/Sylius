@@ -13,6 +13,7 @@ namespace spec\Sylius\Component\Payment\Model;
 
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Payment\Model\CreditCardInterface;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Sylius\Component\Payment\Model\PaymentMethodInterface;
 
@@ -89,13 +90,13 @@ class PaymentSpec extends ObjectBehavior
 
     function it_has_new_state_by_default()
     {
-        $this->getState()->shouldReturn(PaymentInterface::STATE_NEW);
+        $this->getState()->shouldReturn(PaymentState::CREATED);
     }
 
     function its_state_is_mutable()
     {
-        $this->setState(PaymentInterface::STATE_COMPLETED);
-        $this->getState()->shouldReturn(PaymentInterface::STATE_COMPLETED);
+        $this->setState(PaymentState::COMPLETED);
+        $this->getState()->shouldReturn(PaymentState::COMPLETED);
     }
 
     function it_initializes_creation_date_by_default()

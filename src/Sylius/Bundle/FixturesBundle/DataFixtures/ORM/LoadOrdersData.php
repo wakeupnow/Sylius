@@ -19,6 +19,7 @@ use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Core\SyliusCheckoutEvents;
 use Sylius\Component\Order\SyliusOrderEvents;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
@@ -130,27 +131,27 @@ class LoadOrdersData extends DataFixture
     protected function getPaymentState()
     {
         return array_rand(array_flip(array(
-            PaymentInterface::STATE_COMPLETED,
-            PaymentInterface::STATE_FAILED,
-            PaymentInterface::STATE_NEW,
-            PaymentInterface::STATE_PENDING,
-            PaymentInterface::STATE_PROCESSING,
-            PaymentInterface::STATE_UNKNOWN,
-            PaymentInterface::STATE_VOID,
-            PaymentInterface::STATE_CANCELLED,
-            PaymentInterface::STATE_REFUNDED,
+            PaymentState::COMPLETED,
+            PaymentState::FAILED,
+            PaymentState::CREATED,
+            PaymentState::PENDING,
+            PaymentState::PROCESSING,
+            PaymentState::UNKNOWN,
+            PaymentState::VOID,
+            PaymentState::CANCELLED,
+            PaymentState::REFUNDED,
         )));
     }
 
     protected function getShipmentState()
     {
         return array_rand(array_flip(array(
-            ShipmentInterface::STATE_CHECKOUT,
-            ShipmentInterface::STATE_SHIPPED,
-            ShipmentInterface::STATE_PENDING,
-            ShipmentInterface::STATE_READY,
-            ShipmentInterface::STATE_RETURNED,
-            ShipmentInterface::STATE_CANCELLED,
+            ShipmentState::CHECKOUT,
+            ShipmentState::SHIPPED,
+            ShipmentState::PENDING,
+            ShipmentState::READY,
+            ShipmentState::RETURNED,
+            ShipmentState::CANCELLED,
         )));
     }
 

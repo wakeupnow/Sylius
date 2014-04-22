@@ -13,6 +13,7 @@ namespace Sylius\Bundle\CoreBundle\EventListener;
 
 use Sylius\Bundle\CoreBundle\Event\PurchaseCompleteEvent;
 use Sylius\Component\Cart\Provider\CartProviderInterface;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -38,7 +39,7 @@ class PurchaseListener
 
     public function abandonCart(PurchaseCompleteEvent $event)
     {
-        if (in_array($event->getSubject()->getState(), array(PaymentInterface::STATE_PENDING, PaymentInterface::STATE_PROCESSING, PaymentInterface::STATE_COMPLETED))) {
+        if (in_array($event->getSubject()->getState(), array(PaymentState::PENDING, PaymentState::PROCESSING, PaymentState::COMPLETED))) {
             $this->cartProvider->abandonCart();
 
             return;
@@ -52,23 +53,23 @@ class PurchaseListener
     public function addFlash(PurchaseCompleteEvent $event)
     {
         switch ($event->getSubject()->getState()) {
-            case PaymentInterface::STATE_COMPLETED:
+            case PaymentState::COMPLETED:
                 $type = 'success';
                 $message = 'sylius.checkout.success';
                 break;
 
-            case PaymentInterface::STATE_PROCESSING:
-            case PaymentInterface::STATE_PENDING:
+            case PaymentState::PROCESSING:
+            case PaymentState::PENDING:
                 $type = 'notice';
                 $message = 'sylius.checkout.processing';
                 break;
 
-            case PaymentInterface::STATE_VOID:
+            case PaymentState::VOID:
                 $type = 'notice';
                 $message = 'sylius.checkout.canceled';
                 break;
 
-            case PaymentInterface::STATE_FAILED:
+            case PaymentState::FAILED:
                 $type = 'error';
                 $message = 'sylius.checkout.failed';
                 break;

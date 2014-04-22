@@ -20,28 +20,19 @@ use Doctrine\Common\Collections\Collection;
  */
 interface ShipmentInterface extends ShippingSubjectInterface
 {
-    // Shipment default states.
-    const STATE_CHECKOUT   = 'checkout';
-    const STATE_ONHOLD     = 'onhold';
-    const STATE_PENDING    = 'pending';
-    const STATE_READY      = 'ready';
-    const STATE_SHIPPED    = 'shipped';
-    const STATE_RETURNED   = 'returned';
-    const STATE_CANCELLED  = 'cancelled';
-
     /**
      * Get shipment state.
      *
-     * @return string
+     * @return ShipmentState
      */
     public function getState();
 
     /**
      * Define shipment state.
      *
-     * @param string $state
+     * @param ShipmentState $state
      */
-    public function setState($state);
+    public function setState(ShipmentState $state);
 
     /**
      * Get shipping method.

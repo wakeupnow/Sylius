@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\PaymentBundle\Form\Type;
 
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -64,15 +65,15 @@ class PaymentType extends AbstractType
             ->add('state', 'choice', array(
                 'label'   => 'sylius.form.payment.state',
                 'choices' => array(
-                    PaymentInterface::STATE_PROCESSING => 'sylius.form.payment.state.processing',
-                    PaymentInterface::STATE_PENDING    => 'sylius.form.payment.state.pending',
-                    PaymentInterface::STATE_FAILED     => 'sylius.form.payment.state.failed',
-                    PaymentInterface::STATE_VOID       => 'sylius.form.payment.state.void',
-                    PaymentInterface::STATE_COMPLETED  => 'sylius.form.payment.state.completed',
-                    PaymentInterface::STATE_NEW        => 'sylius.form.payment.state.new',
-                    PaymentInterface::STATE_CANCELLED  => 'sylius.form.payment.state.cancelled',
-                    PaymentInterface::STATE_REFUNDED   => 'sylius.form.payment.state.refunded',
-                    PaymentInterface::STATE_UNKNOWN    => 'sylius.form.payment.state.unknown'
+                    PaymentState::PROCESSING => 'sylius.form.payment.state.processing',
+                    PaymentState::PENDING    => 'sylius.form.payment.state.pending',
+                    PaymentState::FAILED     => 'sylius.form.payment.state.failed',
+                    PaymentState::VOID       => 'sylius.form.payment.state.void',
+                    PaymentState::COMPLETED  => 'sylius.form.payment.state.completed',
+                    PaymentState::CREATED        => 'sylius.form.payment.state.new',
+                    PaymentState::CANCELLED  => 'sylius.form.payment.state.cancelled',
+                    PaymentState::REFUNDED   => 'sylius.form.payment.state.refunded',
+                    PaymentState::UNKNOWN    => 'sylius.form.payment.state.unknown'
                 )
             ))
         ;

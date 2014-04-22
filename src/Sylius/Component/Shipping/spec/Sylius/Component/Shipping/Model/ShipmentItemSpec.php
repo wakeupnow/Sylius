@@ -12,6 +12,7 @@
 namespace spec\Sylius\Component\Shipping\Model;
 
 use PhpSpec\ObjectBehavior;
+use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface;
 use Sylius\Component\Shipping\Model\ShippableInterface;
 
@@ -68,13 +69,13 @@ class ShipmentItemSpec extends ObjectBehavior
 
     function it_has_ready_state_by_default()
     {
-        $this->getShippingState()->shouldReturn(ShipmentInterface::STATE_READY);
+        $this->getShippingState()->shouldReturn(ShipmentState::READY);
     }
 
     function its_state_is_mutable()
     {
-        $this->setShippingState(ShipmentInterface::STATE_SHIPPED);
-        $this->getShippingState()->shouldReturn(ShipmentInterface::STATE_SHIPPED);
+        $this->setShippingState(ShipmentState::SHIPPED);
+        $this->getShippingState()->shouldReturn(ShipmentState::SHIPPED);
     }
 
     function it_initializes_creation_date_by_default()

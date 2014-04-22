@@ -12,6 +12,7 @@
 namespace Sylius\Bundle\PayumBundle\Payum\Request;
 
 use Payum\Core\Request\BaseStatusRequest;
+use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 
 class StatusRequest extends BaseStatusRequest
@@ -21,7 +22,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function markNew()
     {
-        $this->status = PaymentInterface::STATE_NEW;
+        $this->status = PaymentState::CREATED;
     }
 
     /**
@@ -29,7 +30,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function isNew()
     {
-        return $this->status === PaymentInterface::STATE_NEW;
+        return $this->status === PaymentState::CREATED;
     }
 
     /**
@@ -37,7 +38,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function markSuccess()
     {
-        $this->status = PaymentInterface::STATE_COMPLETED;
+        $this->status = PaymentState::COMPLETED;
     }
 
     /**
@@ -45,7 +46,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function isSuccess()
     {
-        return $this->status === PaymentInterface::STATE_COMPLETED;
+        return $this->status === PaymentState::COMPLETED;
     }
 
     /**
@@ -53,7 +54,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function markSuspended()
     {
-        $this->status = PaymentInterface::STATE_PROCESSING;
+        $this->status = PaymentState::PROCESSING;
     }
 
     /**
@@ -61,7 +62,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function isSuspended()
     {
-        return $this->status === PaymentInterface::STATE_PROCESSING;
+        return $this->status === PaymentState::PROCESSING;
     }
 
     /**
@@ -69,7 +70,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function markExpired()
     {
-        $this->status = PaymentInterface::STATE_FAILED;
+        $this->status = PaymentState::FAILED;
     }
 
     /**
@@ -77,7 +78,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function isExpired()
     {
-        return $this->status === PaymentInterface::STATE_FAILED;
+        return $this->status === PaymentState::FAILED;
     }
 
     /**
@@ -85,7 +86,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function markCanceled()
     {
-        $this->status = PaymentInterface::STATE_CANCELLED;
+        $this->status = PaymentState::CANCELLED;
     }
 
     /**
@@ -93,7 +94,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function isCanceled()
     {
-        return $this->status === PaymentInterface::STATE_CANCELLED;
+        return $this->status === PaymentState::CANCELLED;
     }
 
     /**
@@ -101,7 +102,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function markPending()
     {
-        $this->status = PaymentInterface::STATE_PROCESSING;
+        $this->status = PaymentState::PROCESSING;
     }
 
     /**
@@ -109,7 +110,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function isPending()
     {
-        return $this->status === PaymentInterface::STATE_PROCESSING;
+        return $this->status === PaymentState::PROCESSING;
     }
 
     /**
@@ -117,7 +118,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function markFailed()
     {
-        $this->status = PaymentInterface::STATE_FAILED;
+        $this->status = PaymentState::FAILED;
     }
 
     /**
@@ -125,7 +126,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function isFailed()
     {
-        return $this->status === PaymentInterface::STATE_FAILED;
+        return $this->status === PaymentState::FAILED;
     }
 
     /**
@@ -133,7 +134,7 @@ class StatusRequest extends BaseStatusRequest
      */
     public function markUnknown()
     {
-        $this->status = PaymentInterface::STATE_UNKNOWN;
+        $this->status = PaymentState::UNKNOWN;
     }
 
     /**
@@ -141,6 +142,6 @@ class StatusRequest extends BaseStatusRequest
      */
     public function isUnknown()
     {
-        return $this->status === PaymentInterface::STATE_UNKNOWN;
+        return $this->status === PaymentState::UNKNOWN;
     }
 }
