@@ -16,18 +16,8 @@ namespace Sylius\Component\Payment\Model;
  *
  * @package Sylius\Component\Payment\Model
  */
-class PaymentState
+class PaymentState implements PaymentStateInterface
 {
-    const CREATED    = 'new';
-    const PENDING    = 'pending';
-    const PROCESSING = 'processing';
-    const COMPLETED  = 'completed';
-    const FAILED     = 'failed';
-    const CANCELLED  = 'cancelled';
-    const VOID       = 'void';
-    const REFUNDED   = 'refunded';
-    const UNKNOWN    = 'unknown';
-
     /**
      * Payments method identifier.
      *

@@ -15,16 +15,8 @@ namespace Sylius\Component\Shipping\Model;
  * Class ShipmentState
  * @package Sylius\Component\Shipping\Model
  */
-class ShipmentState
+class ShipmentState implements ShipmentStateInterface
 {
-    const CHECKOUT   = 'checkout';
-    const ONHOLD     = 'onhold';
-    const PENDING    = 'pending';
-    const READY      = 'ready';
-    const SHIPPED    = 'shipped';
-    const RETURNED   = 'returned';
-    const CANCELLED  = 'cancelled';
-    
     /**
      * @var mixed
      */
@@ -39,14 +31,6 @@ class ShipmentState
      * @var Shipment[]
      */
     protected $shipments;
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return mixed

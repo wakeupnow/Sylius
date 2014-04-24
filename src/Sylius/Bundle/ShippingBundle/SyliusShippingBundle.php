@@ -48,6 +48,7 @@ class SyliusShippingBundle extends Bundle
     {
         $interfaces = array(
             'Sylius\Component\Shipping\Model\ShipmentInterface'         => 'sylius.model.shipment.class',
+            'Sylius\Component\Shipping\Model\ShipmentStateInterface'    => 'sylius.model.shipment_state.class',
             'Sylius\Component\Shipping\Model\ShipmentItemInterface'     => 'sylius.model.shipment_item.class',
             'Sylius\Component\Shipping\Model\ShippingCategoryInterface' => 'sylius.model.shipping_category.class',
             'Sylius\Component\Shipping\Model\ShippingMethodInterface'   => 'sylius.model.shipping_method.class',

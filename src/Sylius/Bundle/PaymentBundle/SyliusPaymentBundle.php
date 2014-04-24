@@ -45,6 +45,7 @@ class SyliusPaymentBundle extends Bundle
             'Sylius\Component\Payment\Model\CreditCardInterface'    => 'sylius.model.credit_card.class',
             'Sylius\Component\Payment\Model\PaymentInterface'       => 'sylius.model.payment.class',
             'Sylius\Component\Payment\Model\PaymentMethodInterface' => 'sylius.model.payment_method.class',
+            'Sylius\Component\Payment\Model\PaymentStateInterface'  => 'sylius.model.payment_state.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('sylius_payment', $interfaces));

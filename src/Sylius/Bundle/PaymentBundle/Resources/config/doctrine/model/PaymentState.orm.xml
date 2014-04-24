@@ -20,7 +20,7 @@
 
         <field name="name" column="name" type="string" nullable="false" unique="true" />
 
-        <one-to-many field="shipments" target-entity="Sylius\Component\Shipping\Model\Shipment" mapped-by="state">
+        <one-to-many field="payments" target-entity="Sylius\Component\Payment\Model\Payment" mapped-by="state">
             <cascade>
                 <cascade-persist/>
             </cascade>
