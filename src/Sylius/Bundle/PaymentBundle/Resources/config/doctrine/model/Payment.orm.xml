@@ -29,14 +29,14 @@
         <field name="amount" column="amount" type="integer">
             <gedmo:versioned />
         </field>
-        <many-to-one field="state" target-entity="Sylius\Component\Payment\Model\PaymentState">
-            <join-column name="state_id" referenced-column-name="id" nullable="false" />
-            <gedmo:versioned />
-        </many-to-one>
         <field name="details" column="details" type="json_array">
             <gedmo:versioned />
         </field>
 
+        <many-to-one field="state" target-entity="Sylius\Component\Payment\Model\PaymentState">
+            <join-column name="state_id" referenced-column-name="id" nullable="false" />
+            <gedmo:versioned />
+        </many-to-one>
         <many-to-one field="creditCard" target-entity="Sylius\Component\Payment\Model\CreditCardInterface">
             <cascade>
                 <cascade-all/>

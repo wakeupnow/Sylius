@@ -51,7 +51,7 @@ class Payment implements PaymentInterface
      *
      * @var string
      */
-    protected $state = PaymentState::CREATED;
+    protected $state;
 
     /**
      * Credit card as a source.

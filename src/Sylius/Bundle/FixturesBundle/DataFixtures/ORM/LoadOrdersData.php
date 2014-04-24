@@ -17,6 +17,7 @@ use Sylius\Component\Cart\SyliusCartEvents;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\ShipmentInterface;
+use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Core\SyliusCheckoutEvents;
 use Sylius\Component\Order\SyliusOrderEvents;
 use Sylius\Component\Payment\Model\PaymentState;
@@ -130,29 +131,18 @@ class LoadOrdersData extends DataFixture
 
     protected function getPaymentState()
     {
-        return array_rand(array_flip(array(
-            PaymentState::COMPLETED,
-            PaymentState::FAILED,
-            PaymentState::CREATED,
-            PaymentState::PENDING,
-            PaymentState::PROCESSING,
-            PaymentState::UNKNOWN,
-            PaymentState::VOID,
-            PaymentState::CANCELLED,
-            PaymentState::REFUNDED,
-        )));
+        static $paymentStates = null;
+        $paymentStates or $paymentStates = $this->getPaymentStateRepository()->findAll();
+
+        return $paymentStates[array_rand($paymentStates)];
     }
 
     protected function getShipmentState()
     {
-        return array_rand(array_flip(array(
-            ShipmentState::CHECKOUT,
-            ShipmentState::SHIPPED,
-            ShipmentState::PENDING,
-            ShipmentState::READY,
-            ShipmentState::RETURNED,
-            ShipmentState::CANCELLED,
-        )));
+        static $shipmentStates = null;
+        $shipmentStates or $shipmentStates = $this->getShipmentStateRepository()->findAll();
+
+        return $shipmentStates[array_rand($shipmentStates)];
     }
 
     public function getOrder()

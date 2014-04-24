@@ -77,4 +77,27 @@ class PaymentState implements PaymentStateInterface
     {
         return $this->payments;
     }
+
+    /**
+     * @return array
+     */
+    public static function getNames()
+    {
+        return array(
+            self::COMPLETED,
+            self::FAILED,
+            self::CREATED,
+            self::PENDING,
+            self::PROCESSING,
+            self::UNKNOWN,
+            self::VOID,
+            self::CANCELLED,
+            self::REFUNDED,
+        );
+    }
+
+    public function __toString()
+    {
+        return "PaymentState.__toString:{$this->name}";
+    }
 }

@@ -71,4 +71,19 @@ class ShipmentState implements ShipmentStateInterface
     {
         return $this->shipments;
     }
+
+    /**
+     * @return array
+     */
+    public static function getNames()
+    {
+        return array(
+            self::CHECKOUT,
+            self::SHIPPED,
+            self::PENDING,
+            self::READY,
+            self::RETURNED,
+            self::CANCELLED,
+        );
+    }
 }

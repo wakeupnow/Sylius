@@ -49,4 +49,9 @@ interface ShipmentStateInterface
      * @return \Sylius\Component\Shipping\Model\Shipment[]
      */
     public function getShipments();
+
+    /**
+     * @return array
+     */
+    public static function getNames();
 }

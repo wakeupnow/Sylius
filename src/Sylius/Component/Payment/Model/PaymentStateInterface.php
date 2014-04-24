@@ -51,4 +51,9 @@ interface PaymentStateInterface
      * @return \Sylius\Component\Payment\Model\Payment[]
      */
     public function getPayments();
+
+    /**
+     * @return array
+     */
+    public static function getNames();
 }
