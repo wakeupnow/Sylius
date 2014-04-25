@@ -95,9 +95,4 @@ class PaymentState implements PaymentStateInterface
             self::REFUNDED,
         );
     }
-
-    public function __toString()
-    {
-        return "PaymentState.__toString:{$this->name}";
-    }
 }

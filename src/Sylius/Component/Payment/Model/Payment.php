@@ -49,6 +49,8 @@ class Payment implements PaymentInterface
     /**
      * State.
      *
+     * @todo init entity
+     *
      * @var string
      */
     protected $state;

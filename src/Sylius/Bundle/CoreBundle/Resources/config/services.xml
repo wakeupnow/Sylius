@@ -215,7 +215,9 @@
             <argument type="service" id="sylius.inventory_operator" />
             <argument type="service" id="sylius.inventory_unit_factory" />
         </service>
-        <service id="sylius.order_processing.state_resolver" class="%sylius.order_processing.state_resolver.class%" />
+        <service id="sylius.order_processing.state_resolver" class="%sylius.order_processing.state_resolver.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
         <service id="sylius.order_processing.shipment_factory" class="%sylius.order_processing.shipment_factory.class%">
             <argument type="service" id="sylius.repository.shipment" />
         </service>

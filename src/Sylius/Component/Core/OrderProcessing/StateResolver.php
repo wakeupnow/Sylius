@@ -12,8 +12,9 @@
 namespace Sylius\Component\Core\OrderProcessing;
 
 use Sylius\Component\Core\Model\OrderInterface;
-use Sylius\Component\Core\Model\OrderShippingStates;
+use Sylius\Component\Core\Model\OrderShippingState;
 use Sylius\Component\Shipping\Model\ShipmentState;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Order state resolver.
@@ -22,6 +23,16 @@ use Sylius\Component\Shipping\Model\ShipmentState;
  */
 class StateResolver implements StateResolverInterface
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    private $em;
+
+    function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -36,7 +47,9 @@ class StateResolver implements StateResolverInterface
     public function resolveShippingState(OrderInterface $order)
     {
         if ($order->isBackorder()) {
-            $order->setShippingState(OrderShippingStates::BACKORDER);
+            $state = $this->em->getRepository('Sylius\Component\Core\Model\OrderShippingState')
+                              ->findOneBy(['name' => OrderShippingState::BACKORDER]);
+            $order->setShippingState($state);
 
             return;
         }
@@ -49,26 +62,29 @@ class StateResolver implements StateResolverInterface
         $states = array();
 
         foreach ($order->getShipments() as $shipment) {
-            $states[] = $shipment->getState();
+            $states[] = $shipment->getState()->getName();
         }
 
         $states = array_unique($states);
 
         $acceptableStates = array(
-            ShipmentState::CHECKOUT   => OrderShippingStates::CHECKOUT,
-            ShipmentState::ONHOLD     => OrderShippingStates::ONHOLD,
-            ShipmentState::READY      => OrderShippingStates::READY,
-            ShipmentState::SHIPPED    => OrderShippingStates::SHIPPED,
-            ShipmentState::RETURNED   => OrderShippingStates::RETURNED,
-            ShipmentState::CANCELLED  => OrderShippingStates::CANCELLED,
+            ShipmentState::CHECKOUT   => OrderShippingState::CHECKOUT,
+            ShipmentState::ONHOLD     => OrderShippingState::ONHOLD,
+            ShipmentState::READY      => OrderShippingState::READY,
+            ShipmentState::SHIPPED    => OrderShippingState::SHIPPED,
+            ShipmentState::RETURNED   => OrderShippingState::RETURNED,
+            ShipmentState::CANCELLED  => OrderShippingState::CANCELLED,
         );
 
+        $name = OrderShippingState::PARTIALLY_SHIPPED;
         foreach ($acceptableStates as $shipmentState => $orderState) {
             if (array($shipmentState) == $states) {
-                return $orderState;
+                $name = $orderState;
             }
         }
 
-        return OrderShippingStates::PARTIALLY_SHIPPED;
+        $state = $this->em->getRepository('Sylius\Component\Core\Model\OrderShippingState')->findOneBy(compact('name'));
+
+        return $state;
     }
 }

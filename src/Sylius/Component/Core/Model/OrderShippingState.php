@@ -12,11 +12,11 @@
 namespace Sylius\Component\Core\Model;
 
 /**
- * Default order shipping states.
+ * Class OrderShippingState
  *
- * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ * @package Sylius\Component\Core\Model
  */
-class OrderShippingStates
+class OrderShippingState implements OrderShippingStateInterface
 {
     const CHECKOUT          = 'checkout';
     const ONHOLD            = 'onhold';
@@ -27,25 +27,20 @@ class OrderShippingStates
     const RETURNED          = 'returned';
     const CANCELLED         = 'cancelled';
 
-
     /**
-     * Payments method identifier.
-     *
      * @var mixed
      */
     protected $id;
 
     /**
-     * Method.
-     *
      * @var string
      */
     protected $name;
 
     /**
-     * @var Payment[]
+     * @var Order[]
      */
-    protected $payments;
+    protected $orders;
 
 
     /**
@@ -73,18 +68,35 @@ class OrderShippingStates
     }
 
     /**
-     * @param \Sylius\Component\Payment\Model\Payment[] $payments
+     * @param \Sylius\Component\Order\Model\Order[] $orders
      */
-    public function setPayments($payments)
+    public function setOrders($orders)
     {
-        $this->payments = $payments;
+        $this->orders = $orders;
     }
 
     /**
-     * @return \Sylius\Component\Payment\Model\Payment[]
+     * @return \Sylius\Component\Order\Model\Order[]
      */
-    public function getPayments()
+    public function getOrders()
     {
-        return $this->payments;
+        return $this->orders;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getNames()
+    {
+        return array(
+            self::CHECKOUT,
+            self::ONHOLD,
+            self::READY,
+            self::BACKORDER,
+            self::PARTIALLY_SHIPPED,
+            self::SHIPPED,
+            self::RETURNED,
+            self::CANCELLED,
+        );
     }
 }

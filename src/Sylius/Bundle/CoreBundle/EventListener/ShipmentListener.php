@@ -13,7 +13,7 @@ namespace Sylius\Bundle\CoreBundle\EventListener;
 
 use Sylius\Bundle\ResourceBundle\Exception\UnexpectedTypeException;
 use Sylius\Component\Core\Model\OrderInterface;
-use Sylius\Component\Core\Model\OrderShippingStates;
+use Sylius\Component\Core\Model\OrderShippingState;
 use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Core\OrderProcessing\StateResolverInterface;
 use Sylius\Component\Core\SyliusOrderEvents;
@@ -76,7 +76,7 @@ class ShipmentListener
 
         $this->stateResolver->resolveShippingState($order);
 
-        if (OrderShippingStates::SHIPPED === $order->getShippingState()) {
+        if (OrderShippingState::SHIPPED === $order->getShippingState()) {
             $this->dispatcher->dispatch(SyliusOrderEvents::PRE_SHIP, new GenericEvent($order));
         }
     }

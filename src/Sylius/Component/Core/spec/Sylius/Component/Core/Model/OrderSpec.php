@@ -16,7 +16,7 @@ use Sylius\Component\Addressing\Model\AddressInterface;
 use Sylius\Component\Core\Model\InventoryUnitInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
-use Sylius\Component\Core\Model\OrderShippingStates;
+use Sylius\Component\Core\Model\OrderShippingState;
 use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Core\Model\UserInterface;
 use Sylius\Component\Order\Model\AdjustmentInterface;
@@ -198,13 +198,13 @@ class OrderSpec extends ObjectBehavior
 
     function it_has_checkout_shipping_state_by_default()
     {
-        $this->getShippingState()->shouldReturn(OrderShippingStates::CHECKOUT);
+        $this->getShippingState()->shouldReturn(OrderShippingState::CHECKOUT);
     }
 
     function its_shipping_state_is_mutable()
     {
-        $this->setShippingState(OrderShippingStates::SHIPPED);
-        $this->getShippingState()->shouldReturn(OrderShippingStates::SHIPPED);
+        $this->setShippingState(OrderShippingState::SHIPPED);
+        $this->getShippingState()->shouldReturn(OrderShippingState::SHIPPED);
     }
 
     function it_is_a_backorder_if_contains_at_least_one_backordered_unit(
