@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Sylius\Bundle\FixturesBundle\DataFixtures\ORM;
+namespace Sylius\Bundle\FixturesBundle\DataFixtures\ORM\Basic;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Component\Core\Model\OrderShippingState;
 
-class LoadOrderShippingStateData extends DataFixture
+class LoadOrderShippingStateData extends \Sylius\Bundle\FixturesBundle\DataFixtures\ORM\DataFixture
 {
     public function load(ObjectManager $manager)
     {

@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Sylius\Bundle\FixturesBundle\DataFixtures\ORM;
+namespace Sylius\Bundle\FixturesBundle\DataFixtures\ORM\Basic;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Sylius\Component\Shipping\Model\ShipmentState;
+use Sylius\Component\Payment\Model\PaymentState;
 
-class LoadShipmentStateData extends DataFixture
+class LoadPaymentStateData extends \Sylius\Bundle\FixturesBundle\DataFixtures\ORM\DataFixture
 {
     public function load(ObjectManager $manager)
     {
-        $names = ShipmentState::getNames();
+        $names = PaymentState::getNames();
         foreach ($names as $name) {
-            $state = new ShipmentState();
+            $state = new PaymentState();
             $state->setName($name);
             $manager->persist($state);
         }

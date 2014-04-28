@@ -70,6 +70,11 @@ class FeatureContext extends RawMinkContext implements KernelAwareInterface
 
         $purger = new ORMPurger($entityManager);
         $purger->purge();
+
+        $this->runConsole('doctrine:fixtures:load', [
+            '--no-interaction' => true,
+            '--fixtures' => realpath(__DIR__ . '/../../FixturesBundle/DataFixtures/ORM/Basic')
+        ]);
     }
 
     /**
@@ -83,5 +88,16 @@ class FeatureContext extends RawMinkContext implements KernelAwareInterface
             ->find('css', sprintf('.sylius_property_choices_%d_delete', $number))
             ->click()
         ;
+    }
+
+    protected function runConsole($command, array $options = [])
+    {
+        $application = new \Symfony\Bundle\FrameworkBundle\Console\Application($this->kernel);
+        $application->setAutoExit(false);
+
+        $options['--env'] = 'test';
+        $options = array_merge($options, ['command' => $command]);
+
+        return $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
     }
 }

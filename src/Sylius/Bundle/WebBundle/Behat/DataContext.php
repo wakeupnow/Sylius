@@ -40,6 +40,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Locale\Locale;
 use Symfony\Component\PropertyAccess\StringUtil;
+use Sylius\Component\Shipping\Model\ShipmentState;
 
 /**
  * Data writing and reading context.
