@@ -13,6 +13,7 @@ namespace spec\Sylius\Component\Core\OrderProcessing;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Doctrine\ORM\EntityManager;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderShippingState;
 use Sylius\Component\Shipping\Model\ShipmentState;
@@ -23,6 +24,15 @@ use Sylius\Component\Core\Model\ShipmentInterface;
  */
 class StateResolverSpec extends ObjectBehavior
 {
+    function let(
+        EntityManager $entityManager, $repo
+    )
+    {
+        $repo->findOneBy(Argument::any())->willReturn(new OrderShippingState(OrderShippingState::BACKORDER));
+        $entityManager->getRepository(Argument::any())->willReturn($repo);
+        $this->beConstructedWith($entityManager);
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType('Sylius\Component\Core\OrderProcessing\StateResolver');

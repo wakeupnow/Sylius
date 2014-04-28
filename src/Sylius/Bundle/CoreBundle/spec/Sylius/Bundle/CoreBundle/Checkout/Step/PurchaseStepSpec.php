@@ -94,7 +94,9 @@ class PurchaseStepSpec extends ObjectBehavior
         EventDispatcherInterface $eventDispatcher
     ) {
         $paymentModel = new Payment();
-        $paymentModel->setState(PaymentState::CREATED);
+        $paymentState = new PaymentState();
+        $paymentState->setName(PaymentState::CREATED);
+        $paymentModel->setState($paymentState);
         $order = new Order();
         $order->setPayment($paymentModel);
 
