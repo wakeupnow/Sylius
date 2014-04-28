@@ -129,7 +129,7 @@ class OrderPaymentListener
             throw new \Exception(sprintf('Cannot retrieve Order from Payment with id %s', $payment->getId()));
         }
 
-        if (PaymentState::COMPLETED === $payment->getState()) {
+        if (PaymentState::COMPLETED === $payment->getState()->getName()) {
             $this->dispatcher->dispatch(SyliusOrderEvents::PRE_PAY, new GenericEvent($order, $event->getArguments()));
             $this->dispatcher->dispatch(SyliusOrderEvents::POST_PAY, new GenericEvent($order, $event->getArguments()));
         }

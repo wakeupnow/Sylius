@@ -13,6 +13,7 @@ namespace Sylius\Component\Core\OrderProcessing;
 
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Payment\Model\PaymentStateInterface;
 
 /**
  * Payment processor.
@@ -29,13 +30,18 @@ class PaymentProcessor implements PaymentProcessorInterface
     protected $paymentRepository;
 
     /**
-     * Constructor.
-     *
-     * @param RepositoryInterface $paymentRepository
+     * @var RepositoryInterface
      */
-    public function __construct(RepositoryInterface $paymentRepository)
+    protected $stateRepository;
+
+    /**
+     * @param RepositoryInterface $paymentRepository
+     * @param RepositoryInterface $stateRepository
+     */
+    public function __construct(RepositoryInterface $paymentRepository, RepositoryInterface $stateRepository)
     {
         $this->paymentRepository = $paymentRepository;
+        $this->stateRepository = $stateRepository;
     }
 
     /**
@@ -47,6 +53,10 @@ class PaymentProcessor implements PaymentProcessorInterface
 
         $payment->setCurrency($order->getCurrency());
         $payment->setAmount($order->getTotal());
+
+        $state = $this->stateRepository->findOneBy(['name' => PaymentStateInterface::CREATED]);
+        $payment->setState($state);
+
         $order->setPayment($payment);
 
         return $payment;

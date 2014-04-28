@@ -34,7 +34,7 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      *
      * @var ShipmentState
      */
-    protected $state = ShipmentState::CHECKOUT;
+    protected $state;
 
     /**
      * Shipping method.

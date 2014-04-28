@@ -36,6 +36,7 @@
         <parameter key="sylius.order_processing.taxation_processor.class">Sylius\Component\Core\OrderProcessing\TaxationProcessor</parameter>
         <parameter key="sylius.order_processing.shipping_processor.class">Sylius\Component\Core\OrderProcessing\ShippingChargesProcessor</parameter>
 
+        <parameter key="sylius.listener.order.class">Sylius\Bundle\CoreBundle\EventListener\OrderListener</parameter>
         <parameter key="sylius.listener.order_currency.class">Sylius\Bundle\CoreBundle\EventListener\OrderCurrencyListener</parameter>
         <parameter key="sylius.listener.order_inventory.class">Sylius\Bundle\CoreBundle\EventListener\OrderInventoryListener</parameter>
         <parameter key="sylius.listener.order_item_inventory.class">Sylius\Bundle\CoreBundle\EventListener\OrderItemInventoryListener</parameter>
@@ -223,6 +224,7 @@
         </service>
         <service id="sylius.order_processing.payment_processor" class="%sylius.order_processing.payment_processor.class%">
             <argument type="service" id="sylius.repository.payment" />
+            <argument type="service" id="sylius.repository.payment_state" />
         </service>
         <service id="sylius.order_processing.taxation_processor" class="%sylius.order_processing.taxation_processor.class%">
             <argument type="service" id="sylius.repository.adjustment" />
@@ -326,6 +328,9 @@
             <tag name="kernel.event_listener" event="sylius.promotion.coupon_invalid" method="handleCouponPromotion" />
             <tag name="kernel.event_listener" event="sylius.promotion.coupon_eligible" method="handleCouponPromotion" />
             <tag name="kernel.event_listener" event="sylius.promotion.coupon_not_eligible" method="handleCouponPromotion" />
+        </service>
+        <service id="sylius.listener.order" class="%sylius.listener.order.class%">
+            <tag name="doctrine.event_listener" event="prePersist" />
         </service>
         <service id="sylius.listener.order_currency" class="%sylius.listener.order_currency.class%">
             <argument type="service" id="sylius.currency_context" />

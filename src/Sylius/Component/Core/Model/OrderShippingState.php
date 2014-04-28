@@ -18,15 +18,6 @@ namespace Sylius\Component\Core\Model;
  */
 class OrderShippingState implements OrderShippingStateInterface
 {
-    const CHECKOUT          = 'checkout';
-    const ONHOLD            = 'onhold';
-    const READY             = 'ready';
-    const BACKORDER         = 'backorder';
-    const PARTIALLY_SHIPPED = 'partially_shipped';
-    const SHIPPED           = 'shipped';
-    const RETURNED          = 'returned';
-    const CANCELLED         = 'cancelled';
-
     /**
      * @var mixed
      */

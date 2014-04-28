@@ -80,22 +80,16 @@ class Order extends Cart implements OrderInterface
     /**
      * Order payment state.
      *
-     * @todo init entity
-     *
      * @var string
      */
-//    protected $paymentState = PaymentState::CREATED;
     protected $paymentState;
 
     /**
      * Order shipping state.
      * It depends on the status of all order shipments.
      *
-     * @todo init entity
-     *
      * @var string
      */
-//    protected $shippingState = OrderShippingState::CHECKOUT;
     protected $shippingState;
 
     /**
