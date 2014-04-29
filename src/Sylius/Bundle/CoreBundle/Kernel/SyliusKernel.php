@@ -83,13 +83,10 @@ abstract class SyliusKernel extends Kernel
             new \Payum\Bundle\PayumBundle\PayumBundle(),
         );
 
-        if ('dev' === $this->environment) {
-            $bundles[] = new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-        }
-
         if (in_array($this->environment, array('dev', 'test')) && class_exists('Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle')) {
             $bundles[] = new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new \Sylius\Bundle\FixturesBundle\SyliusFixturesBundle();
+            $bundles[] = new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
         }
 
         return $bundles;
