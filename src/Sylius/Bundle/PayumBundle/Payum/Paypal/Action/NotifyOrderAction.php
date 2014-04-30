@@ -63,9 +63,13 @@ class NotifyOrderAction extends PaymentAwareAction
 
         $status = new StatusRequest($payment);
         $this->payment->execute($status);
-        $payment->setState($status->getStatus());
 
-        if ($previousState !== $payment->getState()) {
+        $paymentStatus = $this->objectManager
+                              ->getRepository('Sylius\Component\Payment\Model\PaymentState')
+                              ->findOneBy(['name' => $status->getStatus()]);
+        $payment->setState($paymentStatus);
+
+        if ($previousState != $payment->getState()) {
             $this->eventDispatcher->dispatch(
                 SyliusPaymentEvents::PRE_STATE_CHANGE,
                 new GenericEvent($order->getPayment(), array('previous_state' => $previousState))

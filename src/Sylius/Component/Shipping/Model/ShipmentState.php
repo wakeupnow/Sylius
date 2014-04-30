@@ -33,6 +33,14 @@ class ShipmentState implements ShipmentStateInterface
     protected $shipments;
 
     /**
+     * @param $name
+     */
+    public function __construct($name = '')
+    {
+        $this->name = $name;
+    }
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -73,6 +81,15 @@ class ShipmentState implements ShipmentStateInterface
     }
 
     /**
+     * @param $name
+     * @return bool
+     */
+    public function is($name)
+    {
+        return $this->name === $name;
+    }
+
+    /**
      * @return array
      */
     public static function getNames()
@@ -85,5 +102,13 @@ class ShipmentState implements ShipmentStateInterface
             self::RETURNED,
             self::CANCELLED,
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->name;
     }
 }

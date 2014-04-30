@@ -33,6 +33,13 @@ class OrderShippingState implements OrderShippingStateInterface
      */
     protected $orders;
 
+    /**
+     * @param $name
+     */
+    public function __construct($name = '')
+    {
+        $this->name = $name;
+    }
 
     /**
      * @return mixed
@@ -89,5 +96,13 @@ class OrderShippingState implements OrderShippingStateInterface
             self::RETURNED,
             self::CANCELLED,
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->name;
     }
 }

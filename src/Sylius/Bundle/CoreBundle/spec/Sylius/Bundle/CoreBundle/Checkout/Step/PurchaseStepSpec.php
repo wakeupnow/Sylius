@@ -94,9 +94,7 @@ class PurchaseStepSpec extends ObjectBehavior
         EventDispatcherInterface $eventDispatcher
     ) {
         $paymentModel = new Payment();
-        $paymentState = new PaymentState();
-        $paymentState->setName(PaymentState::CREATED);
-        $paymentModel->setState($paymentState);
+        $paymentModel->setState(new PaymentState(PaymentState::CREATED));
         $order = new Order();
         $order->setPayment($paymentModel);
 
@@ -140,17 +138,17 @@ class PurchaseStepSpec extends ObjectBehavior
         EventDispatcherInterface $eventDispatcher
     ) {
         $paymentModel = new Payment();
-        $paymentModel->setState(PaymentState::COMPLETED);
+        $paymentModel->setState(new PaymentState(PaymentState::COMPLETED));
         $order = new Order();
         $order->setPayment($paymentModel);
 
         $payment
             ->execute(Argument::type('Sylius\Bundle\PayumBundle\Payum\Request\StatusRequest'))
             ->will(function ($args) use ($order, $paymentModel) {
-                $args[0]->markSuccess();
-                $args[0]->setModel($order);
-            }
-        );
+                    $args[0]->markSuccess();
+                    $args[0]->setModel($order);
+                }
+            );
 
         $eventDispatcher
             ->dispatch(

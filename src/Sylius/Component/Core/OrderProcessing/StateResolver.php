@@ -14,7 +14,7 @@ namespace Sylius\Component\Core\OrderProcessing;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderShippingState;
 use Sylius\Component\Shipping\Model\ShipmentState;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ObjectRepository;
 
 /**
  * Order state resolver.
@@ -26,11 +26,14 @@ class StateResolver implements StateResolverInterface
     /**
      * @var \Doctrine\ORM\EntityManager
      */
-    private $em;
+    private $orderShippingStateRepository;
 
-    function __construct(EntityManager $em)
+    /**
+     * @param ObjectRepository $orderShippingStateRepository
+     */
+    function __construct(ObjectRepository $orderShippingStateRepository)
     {
-        $this->em = $em;
+        $this->orderShippingStateRepository = $orderShippingStateRepository;
     }
 
     /**
@@ -47,8 +50,7 @@ class StateResolver implements StateResolverInterface
     public function resolveShippingState(OrderInterface $order)
     {
         if ($order->isBackorder()) {
-            $state = $this->em->getRepository('Sylius\Component\Core\Model\OrderShippingState')
-                              ->findOneBy(['name' => OrderShippingState::BACKORDER]);
+            $state = $this->orderShippingStateRepository->findOneBy(['name' => OrderShippingState::BACKORDER]);
             $order->setShippingState($state);
 
             return;
@@ -83,7 +85,7 @@ class StateResolver implements StateResolverInterface
             }
         }
 
-        $state = $this->em->getRepository('Sylius\Component\Core\Model\OrderShippingState')->findOneBy(compact('name'));
+        $state = $this->orderShippingStateRepository->findOneBy(compact('name'));
 
         return $state;
     }

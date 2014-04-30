@@ -13,7 +13,7 @@ namespace spec\Sylius\Component\Core\OrderProcessing;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderShippingState;
 use Sylius\Component\Shipping\Model\ShipmentState;
@@ -25,12 +25,13 @@ use Sylius\Component\Core\Model\ShipmentInterface;
 class StateResolverSpec extends ObjectBehavior
 {
     function let(
-        EntityManager $entityManager, $repo
+        ObjectRepository $repo
     )
     {
-        $repo->findOneBy(Argument::any())->willReturn(new OrderShippingState(OrderShippingState::BACKORDER));
-        $entityManager->getRepository(Argument::any())->willReturn($repo);
-        $this->beConstructedWith($entityManager);
+        $repo->findOneBy(Argument::any())->will(function($args) {
+            return new OrderShippingState($args[0]['name']);
+        });
+        $this->beConstructedWith($repo);
     }
 
     function it_is_initializable()
@@ -47,7 +48,10 @@ class StateResolverSpec extends ObjectBehavior
     {
         $order->isBackorder()->shouldBeCalled()->willReturn(true);
 
-        $order->setShippingState(OrderShippingState::BACKORDER)->shouldBeCalled();
+        $order
+            ->setShippingState(Argument::that($this->isOrderShippingState(OrderShippingState::BACKORDER)))
+            ->shouldBeCalled();
+
         $this->resolveShippingState($order);
     }
 
@@ -57,13 +61,16 @@ class StateResolverSpec extends ObjectBehavior
         ShipmentInterface $shipment2
     )
     {
+        $shipment1->getState()->willReturn(new ShipmentState(ShipmentState::SHIPPED));
+        $shipment2->getState()->willReturn(new ShipmentState(ShipmentState::SHIPPED));
+
         $order->isBackorder()->shouldBeCalled()->willReturn(false);
         $order->getShipments()->willReturn(array($shipment1, $shipment2));
 
-        $shipment1->getState()->willReturn(ShipmentState::SHIPPED);
-        $shipment2->getState()->willReturn(ShipmentState::SHIPPED);
+        $order
+            ->setShippingState(Argument::that($this->isOrderShippingState(OrderShippingState::SHIPPED)))
+            ->shouldBeCalled();
 
-        $order->setShippingState(OrderShippingState::SHIPPED)->shouldBeCalled();
         $this->resolveShippingState($order);
     }
 
@@ -73,13 +80,16 @@ class StateResolverSpec extends ObjectBehavior
         ShipmentInterface $shipment2
     )
     {
+        $shipment1->getState()->willReturn(new ShipmentState(ShipmentState::SHIPPED));
+        $shipment2->getState()->willReturn(new ShipmentState(ShipmentState::READY));
+
         $order->isBackorder()->shouldBeCalled()->willReturn(false);
         $order->getShipments()->willReturn(array($shipment1, $shipment2));
 
-        $shipment1->getState()->willReturn(ShipmentState::SHIPPED);
-        $shipment2->getState()->willReturn(ShipmentState::READY);
+        $order
+            ->setShippingState(Argument::that($this->isOrderShippingState(OrderShippingState::PARTIALLY_SHIPPED)))
+            ->shouldBeCalled();
 
-        $order->setShippingState(OrderShippingState::PARTIALLY_SHIPPED)->shouldBeCalled();
         $this->resolveShippingState($order);
     }
 
@@ -89,13 +99,27 @@ class StateResolverSpec extends ObjectBehavior
         ShipmentInterface $shipment2
     )
     {
+        $shipment1->getState()->willReturn(new ShipmentState(ShipmentState::RETURNED));
+        $shipment2->getState()->willReturn(new ShipmentState(ShipmentState::RETURNED));
+
         $order->isBackorder()->shouldBeCalled()->willReturn(false);
         $order->getShipments()->willReturn(array($shipment1, $shipment2));
 
-        $shipment1->getState()->willReturn(ShipmentState::RETURNED);
-        $shipment2->getState()->willReturn(ShipmentState::RETURNED);
+        $order
+            ->setShippingState(Argument::that($this->isOrderShippingState(OrderShippingState::RETURNED)))
+            ->shouldBeCalled();
 
-        $order->setShippingState(OrderShippingState::RETURNED)->shouldBeCalled();
         $this->resolveShippingState($order);
+    }
+
+    /**
+     * @param $name
+     * @return callable
+     */
+    private function isOrderShippingState($name)
+    {
+        return function(OrderShippingState $state) use ($name) {
+            return ($state->getName() === $name);
+        };
     }
 }

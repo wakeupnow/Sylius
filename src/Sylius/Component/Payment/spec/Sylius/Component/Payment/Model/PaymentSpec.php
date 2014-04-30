@@ -88,15 +88,15 @@ class PaymentSpec extends ObjectBehavior
         $this->getAmount()->shouldReturn(4999);
     }
 
-    function it_has_new_state_by_default()
+    function it_has_no_state_by_default()
     {
-        $this->getState()->shouldReturn(PaymentState::CREATED);
+        $this->getState()->shouldReturn(null);
     }
 
     function its_state_is_mutable()
     {
-        $this->setState(PaymentState::COMPLETED);
-        $this->getState()->shouldReturn(PaymentState::COMPLETED);
+        $this->setState($state = new PaymentState(PaymentState::COMPLETED));
+        $this->getState()->shouldReturn($state);
     }
 
     function it_initializes_creation_date_by_default()

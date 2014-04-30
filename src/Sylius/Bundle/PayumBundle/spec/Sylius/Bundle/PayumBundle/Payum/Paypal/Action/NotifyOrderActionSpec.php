@@ -12,13 +12,13 @@
 namespace spec\Sylius\Bundle\PayumBundle\Payum\Paypal\Action;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Payum\Core\PaymentInterface;
 use Payum\Core\Request\ModelRequestInterface;
 use Payum\Core\Request\SecuredNotifyRequest;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\OrderInterface;
-use Sylius\Component\Payment\Model\Payment;
 use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface as PaymentModelInterface;
 use Sylius\Component\Payment\SyliusPaymentEvents;
@@ -29,8 +29,14 @@ class NotifyOrderActionSpec extends ObjectBehavior
     function let(
         EventDispatcherInterface $eventDispatcher,
         ObjectManager $objectManager,
-        PaymentInterface $payment
+        PaymentInterface $payment,
+        ObjectRepository $repository
     ) {
+        $objectManager->getRepository('Sylius\Component\Payment\Model\PaymentState')->willReturn($repository);
+        $repository->findOneBy(Argument::any())->will(function($args) {
+            return new PaymentState($args[0]['name']);
+        });
+
         $this->beConstructedWith($eventDispatcher, $objectManager);
         $this->setPayment($payment);
     }
@@ -89,10 +95,14 @@ class NotifyOrderActionSpec extends ObjectBehavior
         $request->getModel()->willReturn($order);
         $order->getPayment()->willReturn($paymentModel);
 
-        $paymentModel->getState()->willReturn(PaymentState::COMPLETED);
-        $paymentModel->setState(Argument::type('string'))->will(function($args) use ($paymentModel) {
-            $paymentModel->getState()->willReturn($args[0]);
-        });
+        $paymentModel->getState()->willReturn(new PaymentState(PaymentState::COMPLETED));
+        $paymentModel
+            ->setState(Argument::type('Sylius\Component\Payment\Model\PaymentState'))
+            ->will(
+                  function($args) use ($paymentModel) {
+                      $paymentModel->getState()->willReturn($args[0]);
+                  }
+            );
 
         $payment->execute(Argument::type('Payum\Core\Request\SyncRequest'))->willReturn(null);
 
@@ -132,10 +142,14 @@ class NotifyOrderActionSpec extends ObjectBehavior
         $request->getModel()->willReturn($order);
         $order->getPayment()->willReturn($paymentModel);
 
-        $paymentModel->getState()->willReturn(PaymentState::COMPLETED);
-        $paymentModel->setState(Argument::type('string'))->will(function($args) use ($paymentModel) {
-            $paymentModel->getState()->willReturn($args[0]);
-        });
+        $paymentModel->getState()->willReturn(new PaymentState(PaymentState::COMPLETED));
+        $paymentModel
+            ->setState(Argument::type('Sylius\Component\Payment\Model\PaymentState'))
+            ->will(
+                function($args) use ($paymentModel) {
+                    $paymentModel->getState()->willReturn($args[0]);
+                }
+            );
 
         $payment->execute(Argument::type('Payum\Core\Request\SyncRequest'))->willReturn(null);
 

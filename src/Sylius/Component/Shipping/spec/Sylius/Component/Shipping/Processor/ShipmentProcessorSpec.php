@@ -12,6 +12,7 @@
 namespace spec\Sylius\Component\Shipping\Processor;
 
 use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
 use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface;
 use Sylius\Component\Shipping\Model\ShipmentItemInterface;
@@ -36,14 +37,23 @@ class ShipmentProcessorSpec extends ObjectBehavior
         ShipmentItemInterface $item
     )
     {
-        $shipment->getState()->shouldBeCalled()->willReturn(ShipmentState::READY);
-        $shipment->setState(ShipmentState::SHIPPED)->shouldBeCalled();
+        $shipment->getState()->shouldBeCalled()->willReturn(new ShipmentState(ShipmentState::READY));
+        $shipment->setState(Argument::that(
+            function($state) {
+                return $state->is(ShipmentState::SHIPPED);
+            }
+        ))->shouldBeCalled();
         $shipment->getItems()->shouldBeCalled()->willReturn(array($item));
 
-        $item->getShippingState()->shouldBeCalled()->willReturn(ShipmentState::READY);
-        $item->setShippingState(ShipmentState::SHIPPED)->shouldBeCalled();
+        $item->getShippingState()->shouldBeCalled()->willReturn(new ShipmentState(ShipmentState::READY));
+        $item->setShippingState(Argument::that(
+            function($state) {
+                return $state->is(ShipmentState::SHIPPED);
+            }
+        ))->shouldBeCalled();
 
-        $this->updateShipmentStates(array($shipment), ShipmentState::SHIPPED, ShipmentState::READY);
+        $this->updateShipmentStates(
+            array($shipment), new ShipmentState(ShipmentState::SHIPPED), new ShipmentState(ShipmentState::READY));
     }
 
     function it_does_not_update_shipment_states_if_state_from_does_not_match(

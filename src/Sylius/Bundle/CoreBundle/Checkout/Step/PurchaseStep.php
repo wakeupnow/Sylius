@@ -22,6 +22,7 @@ use Sylius\Component\Core\SyliusCheckoutEvents;
 use Sylius\Component\Payment\SyliusPaymentEvents;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Sylius\Component\Payment\Model\PaymentState;
 
 class PurchaseStep extends CheckoutStep
 {
@@ -62,9 +63,9 @@ class PurchaseStep extends CheckoutStep
 
         $payment = $order->getPayment();
         $previousState = $order->getPayment()->getState();
-        $payment->setState($status->getStatus());
+        $payment->setState(new PaymentState($status->getStatus()));
 
-        if ($previousState !== $payment->getState()) {
+        if ($previousState != $payment->getState()) {
             $this->dispatchEvent(
                 SyliusPaymentEvents::PRE_STATE_CHANGE,
                 new GenericEvent($order->getPayment(), array('previous_state' => $previousState))
@@ -73,7 +74,7 @@ class PurchaseStep extends CheckoutStep
 
         $this->getDoctrine()->getManager()->flush();
 
-        if ($previousState !== $payment->getState()) {
+        if ($previousState != $payment->getState()) {
             $this->dispatchEvent(
                 SyliusPaymentEvents::POST_STATE_CHANGE,
                 new GenericEvent($order->getPayment(), array('previous_state' => $previousState))

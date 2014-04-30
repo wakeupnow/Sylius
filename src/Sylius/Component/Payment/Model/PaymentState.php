@@ -37,6 +37,13 @@ class PaymentState implements PaymentStateInterface
      */
     protected $payments;
 
+    /**
+     * @param $name
+     */
+    public function __construct($name = '')
+    {
+        $this->name = $name;
+    }
 
     /**
      * @return mixed
@@ -94,5 +101,22 @@ class PaymentState implements PaymentStateInterface
             self::CANCELLED,
             self::REFUNDED,
         );
+    }
+
+    /**
+     * @param $name
+     * @return bool
+     */
+    public function is($name)
+    {
+        return $this->name === $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->name;
     }
 }

@@ -21,6 +21,7 @@ use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
+use Sylius\Bundle\CoreBundle\EventListener\OrderPaymentListener;
 
 /**
  * @author Alexandre Bacco <alexandre.bacco@gmail.com>
@@ -104,7 +105,7 @@ class OrderPaymentListenerSpec extends ObjectBehavior
         EventDispatcherInterface $dispatcher
     )
     {
-        $payment->getState()->willReturn(PaymentState::COMPLETED);
+        $payment->getState()->willReturn(new PaymentState(PaymentState::COMPLETED));
 
         $event->getSubject()->willReturn($payment);
         $event->getArguments()->willReturn(array('foo' => 'bar'));
@@ -125,7 +126,7 @@ class OrderPaymentListenerSpec extends ObjectBehavior
         EventDispatcherInterface $dispatcher
     )
     {
-        $payment->getState()->willReturn('anything_but_completed');
+        $payment->getState()->willReturn(new PaymentState('anything_but_completed'));
 
         $event->getSubject()->willReturn($payment);
         $event->getArguments()->willReturn(array('foo' => 'bar'));
