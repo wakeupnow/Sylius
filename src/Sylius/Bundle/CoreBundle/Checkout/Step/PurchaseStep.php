@@ -63,7 +63,11 @@ class PurchaseStep extends CheckoutStep
 
         $payment = $order->getPayment();
         $previousState = $order->getPayment()->getState();
-        $payment->setState(new PaymentState($status->getStatus()));
+
+        $newState = $this->getManager()
+                         ->getRepository('Sylius\Component\Payment\Model\PaymentState')
+                         ->findOneBy(['name' => $status->getStatus()]);
+        $payment->setState($newState);
 
         if ($previousState != $payment->getState()) {
             $this->dispatchEvent(
