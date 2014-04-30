@@ -52,16 +52,9 @@ class ShipmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('state', 'choice', array(
-                'label'   => 'sylius.form.shipment.state',
-                'choices' => array(
-                    ShipmentState::CHECKOUT   => 'sylius.form.shipment.states.checkout',
-                    ShipmentState::PENDING    => 'sylius.form.shipment.states.pending',
-                    ShipmentState::READY      => 'sylius.form.shipment.states.ready',
-                    ShipmentState::SHIPPED    => 'sylius.form.shipment.states.shipped',
-                    ShipmentState::RETURNED   => 'sylius.form.shipment.states.returned',
-                    ShipmentState::CANCELLED  => 'sylius.form.shipment.states.cancelled',
-                ),
+            ->add('state', 'entity', array(
+                'label' => 'sylius.form.shipment.state',
+                'class' => 'Sylius\Component\Shipping\Model\ShipmentState'
             ))
             ->add('tracking', 'text', array(
                 'label'    => 'sylius.form.shipment.tracking_code',

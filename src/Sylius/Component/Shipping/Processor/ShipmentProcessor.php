@@ -12,8 +12,8 @@
 namespace Sylius\Component\Shipping\Processor;
 
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Bundle\ResourceBundle\Exception\UnexpectedTypeException;
-use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface;
 use Sylius\Component\Shipping\Model\ShipmentItemInterface;
 
@@ -24,6 +24,19 @@ use Sylius\Component\Shipping\Model\ShipmentItemInterface;
  */
 class ShipmentProcessor implements ShipmentProcessorInterface
 {
+    /**
+     * @var ObjectRepository
+     */
+    private $shipmentStateRepository;
+
+    /**
+     * @param ObjectRepository $shipmentStateRepository
+     */
+    public function __construct(ObjectRepository $shipmentStateRepository)
+    {
+        $this->shipmentStateRepository = $shipmentStateRepository;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -39,6 +52,9 @@ class ShipmentProcessor implements ShipmentProcessorInterface
             }
 
             if (null === $stateFrom || $stateFrom == $shipment->getState()) {
+                if (!is_object($stateTo)) {
+                    $stateTo = $this->shipmentStateRepository->findOneBy(['name' => $stateTo]);
+                }
                 $shipment->setState($stateTo);
                 $this->updateItemStates($shipment->getItems(), $stateTo, $stateFrom);
             }

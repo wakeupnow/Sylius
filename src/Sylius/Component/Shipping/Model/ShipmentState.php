@@ -96,6 +96,7 @@ class ShipmentState implements ShipmentStateInterface
     {
         return array(
             self::CHECKOUT,
+            self::ONHOLD,
             self::SHIPPED,
             self::PENDING,
             self::READY,

@@ -62,19 +62,9 @@ class PaymentType extends AbstractType
             ->add('amount', 'sylius_money', array(
                 'label' => 'sylius.form.payment.amount'
             ))
-            ->add('state', 'choice', array(
-                'label'   => 'sylius.form.payment.state',
-                'choices' => array(
-                    PaymentState::PROCESSING => 'sylius.form.payment.state.processing',
-                    PaymentState::PENDING    => 'sylius.form.payment.state.pending',
-                    PaymentState::FAILED     => 'sylius.form.payment.state.failed',
-                    PaymentState::VOID       => 'sylius.form.payment.state.void',
-                    PaymentState::COMPLETED  => 'sylius.form.payment.state.completed',
-                    PaymentState::CREATED        => 'sylius.form.payment.state.new',
-                    PaymentState::CANCELLED  => 'sylius.form.payment.state.cancelled',
-                    PaymentState::REFUNDED   => 'sylius.form.payment.state.refunded',
-                    PaymentState::UNKNOWN    => 'sylius.form.payment.state.unknown'
-                )
+            ->add('state', 'entity', array(
+                'label' => 'sylius.form.payment.state',
+                'class' => 'Sylius\Component\Payment\Model\PaymentState'
             ))
         ;
     }
