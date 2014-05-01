@@ -16,9 +16,6 @@
 [submodule "src/Sylius/Component/Money"]
 	path = src/Sylius/Component/Money
 	url = git@github.com:wakeupnow/Sylius-Money.git
-[submodule "src/Sylius/Component/Order"]
-	path = src/Sylius/Component/Order
-	url = git@github.com:wakeupnow/Sylius-Order.git
 [submodule "src/Sylius/Component/Payment"]
 	path = src/Sylius/Component/Payment
 	url = git@github.com:wakeupnow/Sylius-Payment.git
@@ -43,3 +40,6 @@
 [submodule "src/Sylius/Component/Variation"]
 	path = src/Sylius/Component/Variation
 	url = git@github.com:wakeupnow/Sylius-Variation.git
+[submodule "src/Sylius/Component/Order"]
+	path = src/Sylius/Component/Order
+	url = git@github.com:wakeupnow/Sylius-Order.git
