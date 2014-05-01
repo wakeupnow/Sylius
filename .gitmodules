@@ -1,0 +1,45 @@
+[submodule "src/Sylius/Component/Addressing"]
+	path = src/Sylius/Component/Addressing
+	url = git@github.com:wakeupnow/Sylius-Addressing.git
+[submodule "src/Sylius/Component/Attribute"]
+	path = src/Sylius/Component/Attribute
+	url = git@github.com:wakeupnow/Sylius-Attribute.git
+[submodule "src/Sylius/Component/Cart"]
+	path = src/Sylius/Component/Cart
+	url = git@github.com:wakeupnow/Sylius-Cart.git
+[submodule "src/Sylius/Component/Core"]
+	path = src/Sylius/Component/Core
+	url = git@github.com:wakeupnow/Sylius-Core.git
+[submodule "src/Sylius/Component/Inventory"]
+	path = src/Sylius/Component/Inventory
+	url = git@github.com:wakeupnow/Sylius-Inventory.git
+[submodule "src/Sylius/Component/Money"]
+	path = src/Sylius/Component/Money
+	url = git@github.com:wakeupnow/Sylius-Money.git
+[submodule "src/Sylius/Component/Order"]
+	path = src/Sylius/Component/Order
+	url = git@github.com:wakeupnow/Sylius-Order.git
+[submodule "src/Sylius/Component/Payment"]
+	path = src/Sylius/Component/Payment
+	url = git@github.com:wakeupnow/Sylius-Payment.git
+[submodule "src/Sylius/Component/Product"]
+	path = src/Sylius/Component/Product
+	url = git@github.com:wakeupnow/Sylius-Product.git
+[submodule "src/Sylius/Component/Promotion"]
+	path = src/Sylius/Component/Promotion
+	url = git@github.com:wakeupnow/Sylius-Promotion.git
+[submodule "src/Sylius/Component/Resource"]
+	path = src/Sylius/Component/Resource
+	url = git@github.com:wakeupnow/Sylius-Resource.git
+[submodule "src/Sylius/Component/Shipping"]
+	path = src/Sylius/Component/Shipping
+	url = git@github.com:wakeupnow/Sylius-Shipping.git
+[submodule "src/Sylius/Component/Taxation"]
+	path = src/Sylius/Component/Taxation
+	url = git@github.com:wakeupnow/Sylius-Taxation.git
+[submodule "src/Sylius/Component/Taxonomy"]
+	path = src/Sylius/Component/Taxonomy
+	url = git@github.com:wakeupnow/Sylius-Taxonomy.git
+[submodule "src/Sylius/Component/Variation"]
+	path = src/Sylius/Component/Variation
+	url = git@github.com:wakeupnow/Sylius-Variation.git
