@@ -44,6 +44,14 @@ class ProductVariantPrice implements ProductVariantPriceInterface
     }
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->accountTypes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * @param \Wun\Shared\DomainModelsBundle\Entity\AccountType[] $accountTypes
      */
     public function setAccountTypes(array $accountTypes)
@@ -64,8 +72,18 @@ class ProductVariantPrice implements ProductVariantPriceInterface
      */
     public function addAccountType(AccountType $accountType)
     {
-        if (!in_array($accountType, $this->accountTypes)) {
+        if (!$this->accountTypes->contains($accountType)) {
             $this->accountTypes[] = $accountType;
+        }
+    }
+
+    /**
+     * @param AccountType $accountType
+     */
+    public function removeAccountType(AccountType $accountType)
+    {
+        if ($this->accountTypes->contains($accountType)) {
+            $this->accountTypes->removeElement($accountType);
         }
     }
 

@@ -17,16 +17,16 @@ namespace Sylius\Component\Core\Model;
 interface PriceableInterface
 {
     /**
-     * Get the price.
+     * Get the prices.
      *
      * @return PriceInterface
      */
-    public function getPrice();
+    public function getPrices();
 
     /**
-     * Set the price.
+     * Set the prices.
      *
-     * @param PriceInterface $price
+     * @param array $prices
      */
-    public function setPrice(PriceInterface $price);
+    public function setPrices(array $prices);
 }

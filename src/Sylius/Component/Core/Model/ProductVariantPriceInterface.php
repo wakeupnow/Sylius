@@ -44,4 +44,9 @@ interface ProductVariantPriceInterface extends PriceInterface
      * @param AccountType $accountType
      */
     public function addAccountType(AccountType $accountType);
+
+    /**
+     * @param AccountType $accountType
+     */
+    public function removeAccountType(AccountType $accountType);
 }

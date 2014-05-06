@@ -27,9 +27,9 @@
 
         <field name="amount" column="amount" type="float" nullable="false" />
 
-        <one-to-one field="variant" target-entity="Sylius\Component\Product\Model\VariantInterface" inversed-by="price">
-            <join-column name="variant_id" referenced-column-name="id" nullable="false" />
-        </one-to-one>
+        <many-to-one field="variant" target-entity="Sylius\Component\Product\Model\VariantInterface" inversed-by="prices">
+            <join-column name="variant_id" referenced-column-name="id" />
+        </many-to-one>
 
         <many-to-many field="accountTypes" target-entity="Wun\Shared\DomainModelsBundle\Entity\AccountType">
             <join-table name="sylius_price_wun_account_type">

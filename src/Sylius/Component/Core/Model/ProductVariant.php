@@ -31,11 +31,11 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     protected $sku;
 
     /**
-     * The variant price.
+     * The variant prices.
      *
-     * @var PriceInterface
+     * @var PriceInterface[]
      */
-    protected $price;
+    protected $prices;
 
     /**
      * On hold.
@@ -141,17 +141,17 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * {@inheritdoc}
      */
-    public function getPrice()
+    public function getPrices()
     {
-        return $this->price;
+        return $this->prices;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setPrice(PriceInterface $price)
+    public function setPrices(array $prices)
     {
-        $this->price = $price;
+        $this->prices = $prices;
 
         return $this;
     }
