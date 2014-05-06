@@ -11,7 +11,17 @@
             {{ form_label(form.masterVariant.availableOn) }}
             {{ form_widget(form.masterVariant.availableOn, {'label': false}) }}
             {{ form_row(form.masterVariant.availableOnDemand) }}
-            {{ form_row(form.masterVariant.price) }}
+
+            <div style="list-style-type:none; margin:22px 0 20px 0; padding-left:20px; border-left:1px solid gray;" id="product-multi-prices" data-prototype="{{ form_widget(form.masterVariant.prices.vars.prototype)|e }}">
+                <div style="width:100%;">&nbsp;</div>
+
+                {% for price in form.masterVariant.prices %}
+                    <div style="width:100%; border-bottom:1px solid gray; padding:15px 0;">{{ form_row(price) }}</div>
+                {% endfor %}
+
+                <div><a href="javascript:void(null);" id="product-multi-prices-add-link">Add a Price</a></div>
+            </div>
+
             {{ form_row(form.masterVariant.onHand) }}
             <hr />
             {{ form_row(form.taxCategory) }}

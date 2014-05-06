@@ -142,6 +142,7 @@ class Configuration implements ConfigurationInterface
                             ->children()
                                 ->scalarNode('model')->defaultValue('Sylius\Component\Core\Model\ProductVariantPrice')->end()
                                 ->scalarNode('controller')->defaultValue('Sylius\Bundle\ResourceBundle\Controller\ResourceController')->end()
+                                ->scalarNode('form')->defaultValue('Sylius\Bundle\CoreBundle\Form\Type\ProductVariantPriceType')->end()
                             ->end()
                         ->end()
                         ->arrayNode('block')
