@@ -33,7 +33,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * The variant price.
      *
-     * @var integer
+     * @var PriceInterface
      */
     protected $price;
 
@@ -149,7 +149,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * {@inheritdoc}
      */
-    public function setPrice($price)
+    public function setPrice(PriceInterface $price)
     {
         $this->price = $price;
 

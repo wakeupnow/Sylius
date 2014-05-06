@@ -12,6 +12,7 @@
 namespace spec\Sylius\Bundle\CoreBundle\Checkout\Step;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
 use Payum\Core\PaymentInterface;
 use Payum\Core\Registry\RegistryInterface;
 use Payum\Core\Security\HttpRequestVerifierInterface;
@@ -50,17 +51,24 @@ class PurchaseStepSpec extends ObjectBehavior
         EventDispatcherInterface $eventDispatcher,
         DoctrinRegistryInterface $doctrine,
         ObjectManager $objectManager,
+        ObjectRepository $paymentStateRepository,
         Session $session,
         FlashBagInterface $flashBag,
         TranslatorInterface $translator
     ) {
         $requestStack->getCurrentRequest()->willReturn($request);
         $session->getFlashBag()->willReturn($flashBag);
-        $doctrine->getManager()->willReturn($objectManager);
         $token->getPaymentName()->willReturn('aPaymentName');
         $payum->getPayment('aPaymentName')->willReturn($payment);
         $httpRequestVerifier->verify($request)->willReturn($token);
         $httpRequestVerifier->invalidate($token)->willReturn(null);
+
+        $doctrine->getManager()->willReturn($objectManager);
+        $objectManager->getRepository('Sylius\Component\Payment\Model\PaymentState')
+                      ->willReturn($paymentStateRepository);
+        $paymentStateRepository->findOneBy(Argument::any())->will(function($args) {
+            return new PaymentState($args[0]['name']);
+        });
 
         $container->get('payum.security.http_request_verifier')->willReturn($httpRequestVerifier);
         $container->get('request')->willReturn($request);
@@ -91,12 +99,15 @@ class PurchaseStepSpec extends ObjectBehavior
     function it_must_dispatch_pre_and_post_payment_state_changed_if_state_changed(
         ProcessContextInterface $context,
         PaymentInterface $payment,
-        EventDispatcherInterface $eventDispatcher
+        EventDispatcherInterface $eventDispatcher,
+        ObjectManager $objectManager
     ) {
         $paymentModel = new Payment();
         $paymentModel->setState(new PaymentState(PaymentState::CREATED));
         $order = new Order();
         $order->setPayment($paymentModel);
+
+        $objectManager->flush()->shouldBeCalled();
 
         $payment
             ->execute(Argument::type('Sylius\Bundle\PayumBundle\Payum\Request\StatusRequest'))
@@ -135,12 +146,15 @@ class PurchaseStepSpec extends ObjectBehavior
     function it_must_not_dispatch_pre_and_post_payment_state_changed_if_state_not_changed(
         ProcessContextInterface $context,
         PaymentInterface $payment,
-        EventDispatcherInterface $eventDispatcher
+        EventDispatcherInterface $eventDispatcher,
+        ObjectManager $objectManager
     ) {
         $paymentModel = new Payment();
         $paymentModel->setState(new PaymentState(PaymentState::COMPLETED));
         $order = new Order();
         $order->setPayment($paymentModel);
+
+        $objectManager->flush()->shouldBeCalled();
 
         $payment
             ->execute(Argument::type('Sylius\Bundle\PayumBundle\Payum\Request\StatusRequest'))

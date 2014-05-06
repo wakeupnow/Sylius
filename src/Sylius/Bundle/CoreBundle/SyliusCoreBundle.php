@@ -39,6 +39,8 @@ class SyliusCoreBundle extends Bundle
             'Sylius\Component\Core\Model\GroupInterface'               => 'sylius.model.group.class',
             'Sylius\Component\Core\Model\ProductVariantImageInterface' => 'sylius.model.product_variant_image.class',
             'Sylius\Component\Core\Model\OrderShippingStateInterface'  => 'sylius.model.order_shipping_state.class',
+            'Sylius\Component\Core\Model\PriceTypeInterface'           => 'sylius.model.price_type.class',
+            'Sylius\Component\Core\Model\ProductVariantPriceInterface' => 'sylius.model.product_variant_price.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('sylius_core', $interfaces));

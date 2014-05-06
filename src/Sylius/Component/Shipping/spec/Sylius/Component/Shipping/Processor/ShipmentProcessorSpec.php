@@ -13,6 +13,8 @@ namespace spec\Sylius\Component\Shipping\Processor;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Doctrine\Common\Persistence\ObjectRepository;
+use Sylius\Component\Shipping\Processor\ShipmentProcessor;
 use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface;
 use Sylius\Component\Shipping\Model\ShipmentItemInterface;
@@ -22,6 +24,11 @@ use Sylius\Component\Shipping\Model\ShipmentItemInterface;
  */
 class ShipmentProcessorSpec extends ObjectBehavior
 {
+    function let(ObjectRepository $shipmentStateRepository)
+    {
+        $this->beConstructedWith($shipmentStateRepository);
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType('Sylius\Component\Shipping\Processor\ShipmentProcessor');
