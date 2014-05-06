@@ -11,7 +11,10 @@
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
+/** @var \Composer\Autoload\ClassLoader $loader */
 $loader = require __DIR__.'/../vendor/autoload.php';
+
+$loader->add('Wun', realpath(__DIR__ . '/../src'));
 
 // Intl stubs.
 if (!function_exists('intl_get_error_code')) {

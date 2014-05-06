@@ -31,6 +31,17 @@
             <join-column name="variant_id" referenced-column-name="id" nullable="false" />
         </one-to-one>
 
+        <many-to-many field="accountTypes" target-entity="Wun\Shared\DomainModelsBundle\Entity\AccountType">
+            <join-table name="sylius_price_wun_account_type">
+                <join-columns>
+                    <join-column name="price_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="account_type_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
     </mapped-superclass>
 
 </doctrine-mapping>

@@ -18,4 +18,12 @@ use Sylius\Bundle\CoreBundle\Kernel\SyliusKernel;
  */
 class AppKernel extends SyliusKernel
 {
+    public function registerBundles()
+    {
+        return array_merge(parent::registerBundles(), [
+            new \Wun\Shared\DomainModelsBundle\WunSharedDomainModelsBundle(),
+            new \Wun\Shared\DomainModelsOrmBundle\WunSharedDomainModelsOrmBundle(),
+        ]);
+    }
+
 }

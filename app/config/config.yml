@@ -44,13 +44,16 @@ doctrine:
         auto_generate_proxy_classes: %kernel.debug%
         entity_managers:
             default:
-                auto_mapping: true
+#                auto_mapping: true
                 mappings:
                     gedmo_loggable:
                         type: annotation
                         prefix: Gedmo\Loggable\Entity
                         dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
                         is_bundle: false
+                    WunSharedDomainModelsBundle:
+                        type: yml
+                        dir: ../DomainModelsOrmBundle/Resources/config/doctrine
                 filters:
                     softdeleteable:
                         class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
