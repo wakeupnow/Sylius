@@ -66,14 +66,7 @@
             {# Retail Price #}
             {% if not product.hasOptions %}
                 <td class="retail-price" style="font-size:80%;">
-                    {% for price in product.masterVariant.prices %}
-                        <div style="margin-bottom:15px;">
-                            <b>{{ price.type.name }} {{ price.amount|sylius_price }}</b>:
-                            {% for accountType in price.accountTypes %}
-                                {{ accountType.name }}{% if not loop.last %}, {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
+                    {% include 'SyliusWebBundle:Backend/ProductVariant:_prices_display.html.twig' with {'prices': product.masterVariant.prices } %}
                 </td>
             {% else %}
                 <td class="retail-price text-muted">

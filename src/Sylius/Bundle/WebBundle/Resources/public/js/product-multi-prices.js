@@ -34,12 +34,12 @@ function addProductPricesCollectionItemForm($collectionHolder, $newLinkDiv) {
 
     var removeBtn = '<a href="javascript:void(null)" ' +
                     '   onclick="$(this).parent().remove();" ' +
-                    '   class="btn btn-danger btn-sm" style="float:right;">Remove</a>';
+                    '   class="btn btn-danger btn-sm remove">Remove</a>';
 
     // increase the index with one for the next item
     $collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<div style="max-width:700px; margin-bottom:90px;"></div>').append(newForm + removeBtn);
+    var $newFormLi = $('<div class="price-item-form-wrapper"></div>').append(newForm + removeBtn);
     $newLinkDiv.before($newFormLi);
 }

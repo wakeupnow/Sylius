@@ -136,14 +136,7 @@
                 <tr>
                     <td>{{ 'sylius.product.price'|trans }}</td>
                     <td>
-                        {% for price in product.masterVariant.prices %}
-                            <div style="margin-bottom:15px;">
-                                <b>{{ price.type.name }} {{ price.amount|sylius_price }}</b>:
-                                {% for accountType in price.accountTypes %}
-                                    {{ accountType.name }}{% if not loop.last %}, {% endif %}
-                                {% endfor %}
-                            </div>
-                        {% endfor %}
+                        {% include 'SyliusWebBundle:Backend/ProductVariant:_prices_display.html.twig' with {'prices': product.masterVariant.prices } %}
                     </td>
                 </tr>
             </tbody>
