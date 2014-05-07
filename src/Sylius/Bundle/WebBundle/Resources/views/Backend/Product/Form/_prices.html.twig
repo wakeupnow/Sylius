@@ -1,0 +1,16 @@
+{% form_theme form 'SyliusWebBundle::forms.html.twig' %}
+
+<div class="tab-pane" id="prices">
+    <div style="list-style-type:none;" id="product-multi-prices" data-prototype="{{ form_widget(form.masterVariant.prices.vars.prototype)|e }}">
+        {% for price in form.masterVariant.prices %}
+            <div style="max-width:700px; margin-bottom:90px;">
+                {{ form_widget(price) }}
+                <a href="javascript:void(null)" onclick="$(this).parent().remove();" class="btn btn-danger btn-sm" style="float:right;">Remove</a>
+            </div>
+        {% endfor %}
+
+        <div>
+            <a href="javascript:void(null);" class="btn btn-success" id="product-multi-prices-add-link">Add a Price</a>
+        </div>
+    </div>
+</div>

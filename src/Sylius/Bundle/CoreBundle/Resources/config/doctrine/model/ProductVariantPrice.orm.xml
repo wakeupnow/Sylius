@@ -21,14 +21,14 @@
             <generator strategy="AUTO" />
         </id>
 
-        <many-to-one field="type" target-entity="Sylius\Component\Order\Model\OrderInterface">
+        <many-to-one field="type" target-entity="Sylius\Component\Core\Model\PriceTypeInterface">
             <join-column name="type_id" referenced-column-name="id" nullable="false" />
         </many-to-one>
 
         <field name="amount" column="amount" type="float" nullable="false" />
 
         <many-to-one field="variant" target-entity="Sylius\Component\Product\Model\VariantInterface" inversed-by="prices">
-            <join-column name="variant_id" referenced-column-name="id" />
+            <join-column name="variant_id" referenced-column-name="id" nullable="false" />
         </many-to-one>
 
         <many-to-many field="accountTypes" target-entity="Wun\Shared\DomainModelsBundle\Entity\AccountType">

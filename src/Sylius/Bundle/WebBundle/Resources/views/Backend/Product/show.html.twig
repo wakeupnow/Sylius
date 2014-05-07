@@ -135,7 +135,16 @@
                 </tr>
                 <tr>
                     <td>{{ 'sylius.product.price'|trans }}</td>
-                    <td>{{ product.masterVariant.price|sylius_price }}</td>
+                    <td>
+                        {% for price in product.masterVariant.prices %}
+                            <div style="margin-bottom:15px;">
+                                <b>{{ price.type.name }} {{ price.amount|sylius_price }}</b>:
+                                {% for accountType in price.accountTypes %}
+                                    {{ accountType.name }}{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </td>
                 </tr>
             </tbody>
         </table>

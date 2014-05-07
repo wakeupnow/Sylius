@@ -24,9 +24,12 @@ interface PriceableInterface
     public function getPrices();
 
     /**
-     * Set the prices.
-     *
-     * @param array $prices
+     * @param PriceInterface $price
      */
-    public function setPrices(array $prices);
+    public function addPrice(PriceInterface $price);
+
+    /**
+     * @param PriceInterface $price
+     */
+    public function removePrice(PriceInterface $price);
 }

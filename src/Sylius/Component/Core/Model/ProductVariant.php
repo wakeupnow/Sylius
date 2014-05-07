@@ -101,6 +101,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
         parent::__construct();
 
         $this->images = new ArrayCollection();
+        $this->prices = new ArrayCollection();
     }
 
     public function __toString()
@@ -147,13 +148,24 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param PriceInterface $price
      */
-    public function setPrices(array $prices)
+    public function addPrice(PriceInterface $price)
     {
-        $this->prices = $prices;
+        if (!$this->prices->contains($price)) {
+            $this->prices->add($price);
+        }
+        $price->setVariant($this);
+    }
 
-        return $this;
+    /**
+     * @param PriceInterface $price
+     */
+    public function removePrice(PriceInterface $price)
+    {
+        if ($this->prices->contains($price)) {
+            $this->prices->removeElement($price);
+        }
     }
 
     /**

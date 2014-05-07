@@ -122,7 +122,7 @@ class ProductVariantPrice implements ProductVariantPriceInterface
     /**
      * @param \Sylius\Component\Core\Model\ProductVariantInterface $variant
      */
-    public function setVariant(ProductVariantInterface $variant)
+    public function setVariant(ProductVariantInterface $variant = null)
     {
         $this->variant = $variant;
     }

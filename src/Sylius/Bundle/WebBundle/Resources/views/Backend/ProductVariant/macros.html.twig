@@ -44,7 +44,16 @@
                 </span>
             </td>
             <td><span class="label label-{{ variant.inStock ? 'success' : 'important' }}">{{ variant.onHand }}</span></td>
-            <td>{{ variant.price|sylius_price }}</td>
+            <td>
+                {% for price in variant.prices %}
+                    <div style="margin-bottom:15px;">
+                        <b>{{ price.type.name }} {{ price.amount|sylius_price }}</b>:
+                        {% for accountType in price.accountTypes %}
+                            {{ accountType.name }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </td>
             <td>
                 <div class="pull-right">
                 {% if not variant.deleted %}
