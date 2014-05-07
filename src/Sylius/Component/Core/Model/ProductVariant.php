@@ -169,6 +169,19 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     }
 
     /**
+     * @param \ArrayAccess $prices
+     * @return $this
+     */
+    public function setPrices($prices)
+    {
+        foreach ($prices as $price) {
+            $this->addPrice($price);
+        }
+
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function isInStock()
@@ -249,7 +262,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     {
         parent::setDefaults($masterVariant);
 
-        $this->setPrice($masterVariant->getPrice());
+        $this->setPrices($masterVariant->getPrices());
 
         return $this;
     }

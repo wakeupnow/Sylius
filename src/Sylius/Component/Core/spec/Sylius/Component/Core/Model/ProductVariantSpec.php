@@ -39,7 +39,7 @@ class ProductVariantSpec extends ObjectBehavior
 
     function it_should_not_have_price_by_default()
     {
-        $this->getPrice()->shouldReturn(null);
+        $this->getPrices()->toArray()->shouldHaveCount(0);
     }
 
     function it_initializes_image_collection_by_default()
@@ -49,18 +49,18 @@ class ProductVariantSpec extends ObjectBehavior
 
     function its_price_should_be_mutable(PriceInterface $price)
     {
-        $this->setPrice($price)->getPrice()->shouldReturn($price);
+        $this->setPrices([$price])->getPrices()->toArray()->shouldBe([$price]);
     }
 
     function it_should_inherit_price_from_master_variant(ProductVariantInterface $masterVariant, PriceInterface $price)
     {
         $masterVariant->isMaster()->willReturn(true);
         $masterVariant->getAvailableOn()->willReturn(new \DateTime('yesterday'));
-        $masterVariant->getPrice()->willReturn($price);
+        $masterVariant->getPrices()->willReturn([$price]);
 
         $this->setDefaults($masterVariant);
 
-        $this->getPrice()->shouldReturn($price);
+        $this->getPrices()->toArray()->shouldReturn([$price]);
     }
 
     function it_implements_Sylius_shippable_interface()

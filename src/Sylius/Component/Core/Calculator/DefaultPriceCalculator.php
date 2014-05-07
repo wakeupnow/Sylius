@@ -22,6 +22,6 @@ class DefaultPriceCalculator implements PriceCalculatorInterface
 {
     public function calculate(PriceableInterface $priceable)
     {
-        return $priceable->getPrice();
+        return $priceable->getPrices();
     }
 }
