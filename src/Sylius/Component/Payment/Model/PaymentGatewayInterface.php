@@ -14,11 +14,11 @@ namespace Sylius\Component\Payment\Model;
 use Sylius\Component\Resource\Model\TimestampableInterface;
 
 /**
- * Payment method interface.
+ * Payment gateway interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-interface PaymentMethodInterface extends TimestampableInterface
+interface PaymentGatewayInterface extends TimestampableInterface
 {
     /**
      * Check whether the payments method is currently enabled.
@@ -49,7 +49,7 @@ interface PaymentMethodInterface extends TimestampableInterface
     public function setName($name);
 
     /**
-     * Get payment method description.
+     * Get payment gateway description.
      *
      * @return string
      */

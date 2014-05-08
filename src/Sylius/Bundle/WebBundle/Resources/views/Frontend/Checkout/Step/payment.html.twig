@@ -11,10 +11,10 @@
 
 {{ form_errors(form) }}
 
-{{ form_label(form.paymentMethod) }}
+{{ form_label(form.paymentGateway) }}
 <fieldset>
-    {% for paymentMethodForm in form.paymentMethod %}
-        {{ form_row(paymentMethodForm) }}
+    {% for paymentGatewayForm in form.paymentGateway %}
+        {{ form_row(paymentGatewayForm) }}
     {% endfor %}
 </fieldset>
 

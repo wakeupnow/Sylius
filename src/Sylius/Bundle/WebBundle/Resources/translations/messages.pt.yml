@@ -185,7 +185,7 @@ sylius:
     no_results: Não há pagamentos configurados
     update_header: Editando pagamento
     updated_at: Última atualização
-  payment_method:
+  payment_gateway:
     create: Criar meio de pagamento
     create_header: Novo meio de pagamento
     enabled: Habilitado?

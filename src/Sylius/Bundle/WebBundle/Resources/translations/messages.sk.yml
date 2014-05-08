@@ -65,7 +65,7 @@ sylius:
       index: Skupiny
     payment:
       index: Platby
-    payment_method:
+    payment_gateway:
       index: Spôsoby platby
     product:
       index: Produkty
@@ -190,7 +190,7 @@ sylius:
       completed: Dokončené
       failed: Neúspešné
     updated_at: Posledná aktualizácia
-  payment_method:
+  payment_gateway:
     create_header: Nový spôsob platby
     id: ID
     name: Názov

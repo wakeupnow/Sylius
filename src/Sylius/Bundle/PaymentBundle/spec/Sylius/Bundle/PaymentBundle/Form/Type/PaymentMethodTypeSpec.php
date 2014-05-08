@@ -19,11 +19,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 /**
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class PaymentMethodTypeSpec extends ObjectBehavior
+class PaymentGatewayTypeSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('PaymentMethod', array('sylius'));
+        $this->beConstructedWith('PaymentGateway', array('sylius'));
     }
 
     function it_is_a_form_type()
@@ -64,7 +64,7 @@ class PaymentMethodTypeSpec extends ObjectBehavior
     {
         $resolver
             ->setDefaults(array(
-                'data_class'        => 'PaymentMethod',
+                'data_class'        => 'PaymentGateway',
                 'validation_groups' => array('sylius'),
             ))
             ->shouldBeCalled()
@@ -75,6 +75,6 @@ class PaymentMethodTypeSpec extends ObjectBehavior
 
     function it_has_valid_name()
     {
-        $this->getName()->shouldReturn('sylius_payment_method');
+        $this->getName()->shouldReturn('sylius_payment_gateway');
     }
 }

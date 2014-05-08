@@ -54,7 +54,7 @@ sylius:
       index: Các trang tĩnh
     payment:
       index: Thanh toán
-    payment_method:
+    payment_gateway:
       index: Phương thức thanh toán
     product:
       index: Sản phẩm
@@ -164,7 +164,7 @@ sylius:
     created_at: Được tạo vào lúc
     index_header: Thanh toán
     updated_at: Cập nhật lần cuối
-  payment_method:
+  payment_gateway:
     index_header: Phương thức thanh toán
     updated_at: Cập nhật lần cuối
   product:

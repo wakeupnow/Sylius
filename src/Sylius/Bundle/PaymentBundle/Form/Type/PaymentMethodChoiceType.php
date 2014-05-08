@@ -19,10 +19,10 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-abstract class PaymentMethodChoiceType extends AbstractType
+abstract class PaymentGatewayChoiceType extends AbstractType
 {
     /**
-     * Payment method class name.
+     * Payment gateway class name.
      *
      * @var string
      */
@@ -56,6 +56,6 @@ abstract class PaymentMethodChoiceType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_payment_method_choice';
+        return 'sylius_payment_gateway_choice';
     }
 }

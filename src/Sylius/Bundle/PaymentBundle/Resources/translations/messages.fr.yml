@@ -23,7 +23,7 @@ sylius:
         processing: En cours
         unknown: Inconnu
         void: Nul
-    payment_method:
+    payment_gateway:
       description: Description
       enabled: Activé ?
       gateway: Passerelle

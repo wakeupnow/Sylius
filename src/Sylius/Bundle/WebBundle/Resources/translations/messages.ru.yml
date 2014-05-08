@@ -117,7 +117,7 @@ sylius:
       index: Страницы
     payment:
       index: Список платежей
-    payment_method:
+    payment_gateway:
       index: Список методов оплаты
     product:
       index: Список товаров
@@ -428,7 +428,7 @@ sylius:
       void: Пустой
     update_header: Редактирование платежа
     updated_at: Последнее обновление
-  payment_method:
+  payment_gateway:
     create: Создать метод оплаты
     create_header: Новый метод оплаты
     enabled: Включен?

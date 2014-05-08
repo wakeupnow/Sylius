@@ -15,7 +15,7 @@ sylius:
                 new_promotion: Додај нову промоцију
                 options: Управљање опцијама производа
                 orders: Тренутне наруџбине
-                payment_methods: Опције плаћања
+                payment_gateways: Опције плаћања
                 payments: Плаћања
                 products: Пороизводи
                 promotions: Промоције
@@ -43,7 +43,7 @@ sylius:
                 new_promotion: Додај промоцију
                 options: Управљај опцијама
                 orders: Тренутне наруџбине
-                payment_methods: Методи плаћања
+                payment_gateways: Методи плаћања
                 payments: Плаћања
                 products: Производи
                 promotions: Промоције

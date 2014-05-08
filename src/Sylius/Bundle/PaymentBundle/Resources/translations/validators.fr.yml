@@ -19,7 +19,7 @@ sylius:
       min_length: 'Le code de sécurité CVV de la carte bancaire doit contenir au moins {{ min }} caractères et ne peux dépasser les {{ max }} chiffres.'
     expiry_year:
       not_blank: "Veuillez sélectionner l'année d'expiration."
-  payment_method:
+  payment_gateway:
     gateway:
       not_blank: Veuillez sélectionner la passerelle de la méthode de paiement.
     name:

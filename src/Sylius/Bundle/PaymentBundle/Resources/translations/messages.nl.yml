@@ -23,7 +23,7 @@ sylius:
         processing: Verwerken
         unknown: Onbekend
         void: Leeg
-    payment_method:
+    payment_gateway:
       description: Omschrijving
       enabled: Actief?
       gateway: Gateway

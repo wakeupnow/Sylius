@@ -15,7 +15,7 @@ sylius:
                 new_promotion: Add new promotion
                 options: Manage product options
                 orders: Current orders
-                payment_methods: Payment methods
+                payment_gateways: Payment gateways
                 payments: Payments
                 products: Products
                 promotions: Promotions
@@ -50,7 +50,7 @@ sylius:
                 options: Manage options
                 orders: Current orders
                 pages: Pages
-                payment_methods: Payment methods
+                payment_gateways: Payment gateways
                 payments: Payments
                 products: Products
                 promotions: Promotions

@@ -17,7 +17,7 @@ sylius:
         new_promotion: Thêm khuyến mãi mới
         options: Quản lý tuỳ chọn sản phẩm
         orders: Đơn đặt hàng hiện tại
-        payment_methods: Phương thức thanh toán
+        payment_gateways: Phương thức thanh toán
         payments: Thanh toán
         products: Sản phẩm
         promotions: Chương trình khuyến mãi
@@ -39,7 +39,7 @@ sylius:
         new_order: Thêm trật tự mới
         new_promotion: Thêm khuyến mãi mới
         orders: Đơn đặt hàng hiện tại
-        payment_methods: Phương thức thanh toán
+        payment_gateways: Phương thức thanh toán
         payments: Thanh toán
         products: Sản phẩm
         promotions: Chương trình khuyến mãi

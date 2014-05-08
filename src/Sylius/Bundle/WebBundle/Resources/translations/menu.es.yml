@@ -18,7 +18,7 @@ sylius:
         new_promotion: Añadir nueva promoción
         options: Administrar opciones de producto
         orders: Pedidos en curso
-        payment_methods: Modos de pago
+        payment_gateways: Modos de pago
         payments: Pagos
         products: Productos
         promotions: Promociones
@@ -53,7 +53,7 @@ sylius:
         options: Administrar opciones de producto
         orders: Pedidos en curso
         pages: Páginas
-        payment_methods: Modos de pago
+        payment_gateways: Modos de pago
         payments: Pagos
         products: Productos
         promotions: Promociones

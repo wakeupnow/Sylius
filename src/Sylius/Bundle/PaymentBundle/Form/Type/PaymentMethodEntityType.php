@@ -16,11 +16,11 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Payment method choice type for "doctrine/orm" driver.
+ * Payment gateway choice type for "doctrine/orm" driver.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class PaymentMethodEntityType extends PaymentMethodChoiceType
+class PaymentGatewayEntityType extends PaymentGatewayChoiceType
 {
     /**
      * {@inheritdoc}

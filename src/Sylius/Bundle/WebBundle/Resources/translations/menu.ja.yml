@@ -16,7 +16,7 @@ sylius:
         new_promotion: 新しいプロモーションを登録
         options: 商品オプションの管理
         orders: 現在の注文
-        payment_methods: 支払い方法の管理
+        payment_gateways: 支払い方法の管理
         payments: 入金管理
         products: 商品管理
         promotions: プロモーション管理
@@ -45,7 +45,7 @@ sylius:
         new_promotion: 新しいプロモーションを登録
         options: 商品オプションの管理
         orders: 現在の注文
-        payment_methods: 支払い方法の管理
+        payment_gateways: 支払い方法の管理
         payments: 入金管理
         products: 商品管理
         promotions: プロモーション管理

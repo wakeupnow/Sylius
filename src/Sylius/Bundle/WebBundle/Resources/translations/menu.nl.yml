@@ -18,7 +18,7 @@ sylius:
         new_promotion: Voeg nieuwe promotie toe
         options: Productopties
         orders: Huidige bestellingen
-        payment_methods: Betaalmethodes
+        payment_gateways: Betaalmethodes
         payments: Betalingen
         products: Producten
         promotions: Promoties
@@ -53,7 +53,7 @@ sylius:
         options: Productopties
         orders: Huidige bestellingen
         pages: "Pagina's"
-        payment_methods: Betaalmethodes
+        payment_gateways: Betaalmethodes
         payments: Betalingen
         products: Producten
         promotions: Promoties

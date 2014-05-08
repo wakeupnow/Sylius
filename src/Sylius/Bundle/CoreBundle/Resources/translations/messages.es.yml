@@ -21,7 +21,7 @@ sylius:
     checkout:
       addressing:
         different_billing_address: ¿Usar una dirección diferente para la facturación?
-      payment_method: Método de pago
+      payment_gateway: Método de pago
       shipping_method: Método de envío
     group:
       name: Nombre

@@ -210,7 +210,7 @@ sylius:
         no_results: Nisu konfigurisana plaćanja.
         update_header: Ažuriranje plaćanja
         updated_at: Ažurirano
-    payment_method:
+    payment_gateway:
         create: Kreirajte metod plaćanja
         create_header: Novi metod plaćanja
         enabled: Aktivno?

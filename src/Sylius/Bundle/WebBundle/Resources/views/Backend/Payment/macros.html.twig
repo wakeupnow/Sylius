@@ -9,7 +9,7 @@
     <thead>
         <tr>
             <th>{{ sylius_resource_sort('id', 'sylius.payment.id'|trans) }}</th>
-            <th>{{ sylius_resource_sort('method', 'sylius.payment.method'|trans) }}</th>
+            <th>{{ sylius_resource_sort('method', 'sylius.payment.gateway'|trans) }}</th>
             <th>{{ sylius_resource_sort('amount', 'sylius.payment.amount'|trans) }}</th>
             <th>{{ sylius_resource_sort('state', 'sylius.payment.state'|trans) }}</th>
             <th>{{ sylius_resource_sort('createdAt', 'sylius.payment.created_at'|trans) }}</th>
@@ -21,7 +21,7 @@
     {% for payment in payments %}
         <tr id="{{ payment.id }}">
             <td>{{ payment.id }}</td>
-            <td><span class="label label-primary">{{ payment.method }}</span></td>
+            <td><span class="label label-primary">{{ payment.gateway }}</span></td>
             <td>
                 {{ payment.amount|sylius_price(payment.currency) }}
             </td>

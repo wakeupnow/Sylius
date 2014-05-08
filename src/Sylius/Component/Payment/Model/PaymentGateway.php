@@ -12,11 +12,11 @@
 namespace Sylius\Component\Payment\Model;
 
 /**
- * Payments method model.
+ * Payments gateway model.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class PaymentMethod implements PaymentMethodInterface
+class PaymentGateway implements PaymentGatewayInterface
 {
     /**
      * Payments method identifier.

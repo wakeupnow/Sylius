@@ -14,21 +14,21 @@ namespace Sylius\Bundle\FixturesBundle\DataFixtures\ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Sample payment methods.
+ * Sample payment gateways.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class LoadPaymentMethodsData extends DataFixture
+class LoadPaymentGatewaysData extends DataFixture
 {
     /**
      * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
-        $manager->persist($this->createPaymentMethod('Dummy', 'dummy'));
-        $manager->persist($this->createPaymentMethod('Paypal Express Checkout', 'paypal_express_checkout'));
-        $manager->persist($this->createPaymentMethod('Stripe', 'stripe'));
-        $manager->persist($this->createPaymentMethod('Be2bill', 'be2bill'));
+        $manager->persist($this->createPaymentGateway('Dummy', 'dummy'));
+        $manager->persist($this->createPaymentGateway('Paypal Express Checkout', 'paypal_express_checkout'));
+        $manager->persist($this->createPaymentGateway('Stripe', 'stripe'));
+        $manager->persist($this->createPaymentGateway('Be2bill', 'be2bill'));
 
         $manager->flush();
     }
@@ -42,18 +42,18 @@ class LoadPaymentMethodsData extends DataFixture
     }
 
     /**
-     * Create payment method.
+     * Create payment gateway.
      *
      * @param string  $name
      * @param string  $gateway
      * @param Boolean $enabled
      *
-     * @return PaymentMethodInterface
+     * @return PaymentGatewayInterface
      */
-    protected function createPaymentMethod($name, $gateway, $enabled = true)
+    protected function createPaymentGateway($name, $gateway, $enabled = true)
     {
         $method = $this
-            ->getPaymentMethodRepository()
+            ->getPaymentGatewayRepository()
             ->createNew()
         ;
 
@@ -61,7 +61,7 @@ class LoadPaymentMethodsData extends DataFixture
         $method->setGateway($gateway);
         $method->setEnabled($enabled);
 
-        $this->setReference('Sylius.PaymentMethod.'.$name, $method);
+        $this->setReference('Sylius.PaymentGateway.'.$name, $method);
 
         return $method;
     }

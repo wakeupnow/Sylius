@@ -21,20 +21,20 @@ use Sylius\Component\Resource\Model\TimestampableInterface;
 interface PaymentInterface extends TimestampableInterface
 {
     /**
-     * Get payment method associated with this payment.
+     * Get payment gateway associated with this payment.
      *
-     * @return PaymentMethodInterface
+     * @return PaymentGatewayInterface
      */
     public function getMethod();
 
     /**
-     * Set payment method.
+     * Set payment gateway.
      *
-     * @param null|PaymentMethodInterface $method
+     * @param null|PaymentGatewayInterface $method
      *
      * @return PaymentInterface
      */
-    public function setMethod(PaymentMethodInterface $method = null);
+    public function setMethod(PaymentGatewayInterface $method = null);
 
     /**
      * Get payment source.

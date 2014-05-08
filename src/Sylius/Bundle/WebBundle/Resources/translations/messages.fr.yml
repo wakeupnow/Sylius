@@ -118,7 +118,7 @@ sylius:
       index: Pages statiques
     payment:
       index: Paiements
-    payment_method:
+    payment_gateway:
       index: Moyens de paiement
     product:
       index: Produits
@@ -437,7 +437,7 @@ sylius:
       void: Nul
     update_header: Modification du paiement
     updated_at: Date de mise à jour
-  payment_method:
+  payment_gateway:
     create: Ajouter un mode de paiement
     create_header: Nouveau mode de paiement
     enabled: Actif ?

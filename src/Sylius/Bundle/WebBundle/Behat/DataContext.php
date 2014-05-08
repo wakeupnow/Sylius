@@ -29,7 +29,7 @@ use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Sylius\Component\Core\Model\UserInterface;
 use Sylius\Component\Money\Model\ExchangeRateInterface;
 use Sylius\Component\Order\Model\OrderInterface;
-use Sylius\Component\Payment\Model\PaymentMethodInterface;
+use Sylius\Component\Payment\Model\PaymentGatewayInterface;
 use Sylius\Component\Shipping\Calculator\DefaultCalculators;
 use Sylius\Component\Shipping\Model\RuleInterface;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
@@ -875,17 +875,17 @@ class DataContext extends BehatContext implements KernelAwareInterface
     }
 
     /**
-     * @Given /^there are payment methods:$/
-     * @Given /^there are following payment methods:$/
-     * @Given /^the following payment methods exist:$/
+     * @Given /^there are payment gateways:$/
+     * @Given /^there are following payment gateways:$/
+     * @Given /^the following payment gateways exist:$/
      */
-    public function thereArePaymentMethods(TableNode $table)
+    public function thereArePaymentGateways(TableNode $table)
     {
         $manager = $this->getEntityManager();
-        $repository = $this->getRepository('payment_method');
+        $repository = $this->getRepository('payment_gateway');
 
         foreach ($table->getHash() as $data) {
-            /* @var $method PaymentMethodInterface */
+            /* @var $method PaymentGatewayInterface */
             $method = $repository->createNew();
             $method->setName(trim($data['name']));
             $method->setGateway(trim($data['gateway']));

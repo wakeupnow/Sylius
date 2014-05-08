@@ -88,9 +88,9 @@ sylius_backend_shipment:
     resource: @SyliusWebBundle/Resources/config/routing/backend/shipment.yml
     prefix: /shipments
 
-sylius_backend_payment_method:
-    resource: @SyliusWebBundle/Resources/config/routing/backend/payment_method.yml
-    prefix: /payment-methods
+sylius_backend_payment_gateway:
+    resource: @SyliusWebBundle/Resources/config/routing/backend/payment_gateway.yml
+    prefix: /payment-gateways
 
 sylius_backend_payment:
     resource: @SyliusWebBundle/Resources/config/routing/backend/payment.yml

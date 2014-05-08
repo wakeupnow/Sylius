@@ -209,7 +209,7 @@ sylius:
         no_results: Нису конфигурисана плаћања.
         update_header: Ажурирање плаћања
         updated_at: Ажурирано
-    payment_method:
+    payment_gateway:
         create: Креирајте метод плаћања
         create_header: Нови метод плаћања
         enabled: Активно?

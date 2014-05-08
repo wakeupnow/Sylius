@@ -21,7 +21,7 @@ sylius:
     checkout:
       addressing:
         different_billing_address: Użyć innego adresu do rozliczeń?
-      payment_method: Metoda płatności
+      payment_gateway: Metoda płatności
       shipping_method: Metoda wysyłki
     group:
       name: Nazwa

@@ -115,7 +115,7 @@ sylius:
       index: Strony statyczne
     payment:
       index: Płatności
-    payment_method:
+    payment_gateway:
       index: Metody płatności
     product:
       index: Produkty
@@ -428,7 +428,7 @@ sylius:
       void: Void
     update_header: Edycja płatności
     updated_at: Ostatnia aktualizacja
-  payment_method:
+  payment_gateway:
     create: Dodaj metodę płatności
     create_header: Nowa metoda płatności
     enabled: Aktywna?

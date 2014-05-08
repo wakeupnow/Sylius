@@ -12,7 +12,7 @@ sylius:
       type: sylius.form.credit_card.type
     payment:
       amount: sylius.form.payment.amount
-      method: sylius.form.payment.method
+      method: sylius.form.payment.gateway
       state:
         0: Status płatności
         checkout: Koszyk
@@ -23,7 +23,7 @@ sylius:
         processing: W trakcie przetwarzania
         unknown: Nieznany
         void: Void
-    payment_method:
+    payment_gateway:
       description: Opis
       enabled: Aktywna?
       gateway: Bramka

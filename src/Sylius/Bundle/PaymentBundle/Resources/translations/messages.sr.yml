@@ -3,5 +3,5 @@
 
 sylius:
   form:
-    payment_method:
+    payment_gateway:
       name: Ime

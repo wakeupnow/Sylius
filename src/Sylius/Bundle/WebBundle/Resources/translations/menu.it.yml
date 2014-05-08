@@ -15,7 +15,7 @@ sylius:
         new_promotion: Aggiugngi nuova promozione
         options: Gestisci opzioni prodotto
         orders: Ordini correnti
-        payment_methods: Metodi di pagamento
+        payment_gateways: Metodi di pagamento
         payments: Pagamenti
         products: Prodotti
         promotions: Promozioni
@@ -43,7 +43,7 @@ sylius:
         new_promotion: Aggiungi nuova promozione
         options: Gestisci opzioni
         orders: Ordini correnti
-        payment_methods: Metodi di pagamento
+        payment_gateways: Metodi di pagamento
         payments: Pagamenti
         products: Prodotti
         promotions: Promozioni
