@@ -7,7 +7,7 @@ $reportsDir  = join(DIRECTORY_SEPARATOR, [dirname(__DIR__), 'behat-reports']);
 shell_exec("rm -rf $reportsDir/*");
 
 $cmd = "php -d memory_limit=1024M " .
-       __DIR__ . "/behat %s --tags '~javascript ~broken-by-multi-pricing' --format html --out $reportsDir/%s.html";
+       __DIR__ . "/behat %s --tags '~@javascript&&~@broken-by-multi-pricing' --format html --out $reportsDir/%s.html";
 
 $features = collect_files($featuresDir, 'feature');
 foreach ($features as $feature) {
