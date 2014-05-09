@@ -98,4 +98,14 @@ class ShippingStep extends CheckoutStep
             }, $this->zones) : null)
         ));
     }
+
+    /**
+     * Get zone matcher.
+     *
+     * @return ZoneMatcherInterface
+     */
+    protected function getZoneMatcher()
+    {
+        return $this->get('sylius.zone_matcher');
+    }
 }

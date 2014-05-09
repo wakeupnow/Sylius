@@ -56,7 +56,7 @@
                 <option name="groups">sylius</option>
             </constraint>
         </property>
-        <property name="street">
+       <!-- <property name="street">
             <constraint name="NotBlank">
                 <option name="message">sylius.address.street.not_blank</option>
                 <option name="groups">sylius</option>
@@ -68,7 +68,7 @@
                 <option name="maxMessage">sylius.address.street.max_length</option>
                 <option name="groups">sylius</option>
             </constraint>
-        </property>
+        </property> -->
         <property name="city">
             <constraint name="NotBlank">
                 <option name="message">sylius.address.city.not_blank</option>

@@ -43,7 +43,8 @@ class PaymentMethodEntityType extends PaymentMethodChoiceType
 
         $resolver
             ->setDefaults(array(
-                'query_builder' => $queryBuilder
+                'query_builder' => $queryBuilder,
+                'required' => true,
             ))
         ;
     }

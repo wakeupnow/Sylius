@@ -1,22 +1,189 @@
-{% extends 'SyliusWebBundle:Frontend:layout.html.twig' %}
+{% extends 'SyliusWebBundle:Frontend/Cart:cart-layout.html.twig' %}
+
+{% import 'SyliusWebBundle:Frontend/Macros:alerts.html.twig' as alerts %}
+{% import 'SyliusWebBundle:Frontend/Macros:cartHeader.html.twig' as cartHeader %}
 
 {% block content %}
-<div class="page-header">
-    <h1>{{ 'sylius.checkout.credit_card.header'|trans|raw }}</h1>
-</div>
 
 <form action="" method="post" class="form-horizontal" novalidate>
-    {{ form_errors(form) }}
+    <div class="content-padding">
+        <div class="container">
+            <ul class="column2 box-gray-bg list-clear clearfix">
+                <li class="left-panel">
+                    <div class="box-gray border-right clearfix new-payment payment-info">
+                        <h2>Enter New Payment Info</h2>
+                        <div class="field">
+                            {{ form_errors(form.type) }}
+                            {{ form_label(form.type) }}
+                            {{ form_widget(form.type) }}
+                        </div>
+                        <div class="field">
+                            {{ form_errors(form.number) }}
+                            {{ form_label(form.number) }}
+                            {{ form_widget(form.number) }}
+                        </div>
+                        <div class="half-row clearfix">
+                            <div class="field">
+                                {{ form_errors(form.expiryMonth) }}
+                                {{ form_label(form.expiryMonth) }}
+                                {{ form_widget(form.expiryMonth) }}
+                            </div>
+                            <div class="field">
+                                {{ form_errors(form.expiryYear) }}
+                                {{ form_label(form.expiryYear) }}
+                                {{ form_widget(form.expiryYear) }}
+                            </div>
+                        </div>
+                        <div class="half-row clearfix">
+                            <div class="field">
+                                {{ form_errors(form.securityCode) }}
+                                {{ form_label(form.securityCode) }}
+                                {{ form_widget(form.securityCode) }}
+                            </div>
+                        </div>
+                        <div class="field checkbox">
+                                <input type="checkbox" /> <div class="text">Save card for future purchases</div>
+                        </div>
+                        {{ form_widget(form._token) }}
+                    </div>
 
-    <fieldset>
-        {{ form_widget(form) }}
-    </fieldset>
+                    <div class="box-gray border-right clearfix existing-payment payment-info" style="display:none;">
+                        <h2>Existing Payment Info</h2>
+                        <div>
+                            <h3>The standard Lorem Ipsum passage, used since the 1500s</h3>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                            <h3>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</h3>
+                            <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                        </div>
+                    </div>
 
-    {{ form_widget(form._token) }}
+                    <div class="box-gray border-right clearfix payment-visa payment-info" style="display:none;">
+                        <h2>Visa Payment Info</h2>
+                        <div>
+                            <h3>The standard Lorem Ipsum passage, used since the 1500s</h3>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                            <h3>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</h3>
+                            <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                        </div>
+                    </div>
+                    <div class="box-gray border-right clearfix existing-payment payment-amex payment-info" style="display:none;">
+                        <h2>Amex Payment Info</h2>
+                        <div>
+                            <h3>The standard Lorem Ipsum passage, used since the 1500s</h3>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                            <h3>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</h3>
+                            <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                        </div>
+                    </div>
+                    <div class="box-gray border-right clearfix payment-cash payment-info" style="display:none;">
+                        <h2>Cash Payment Info</h2>
+                        <div>
+                            <h3>The standard Lorem Ipsum passage, used since the 1500s</h3>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                            <h3>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</h3>
+                            <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                        </div>
+                    </div>
+                    <div class="box-gray border-right clearfix payment-wun-commision payment-info" style="display:none;">
+                        <h2>Wun Commision Payment Info</h2>
+                        <div>
+                            <h3>The standard Lorem Ipsum passage, used since the 1500s</h3>
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                            <h3>Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</h3>
+                            <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+                        </div>
+                    </div>
 
-    <div class="form-actions">
-        <a href="{{ path('sylius_cart_summary') }}" class="btn btn-lg"><i class="icon-chevron-left"></i> {{ 'sylius.checkout.back'|trans }}</a> &nbsp;
-        <button type="submit" class="btn btn-primary btn-lg">{{ 'sylius.checkout.forward'|trans }} <i class="icon-chevron-right"></i></button>
+                </li>
+                <li>
+                    <div class="box-gray clearfix">
+                            <h2>Use Existing Payment Info</h2>
+
+                            <div class="field radio">
+                                <input type="radio" name="cards_on_file" data-payinfo="existing-payment" class="payment-method-info"/> <div class="text">Use WUN Wallet Balance ($4453.45)</div>
+                            </div>
+
+                            <div class="hr"></div>
+
+                            <p>Use Cards on File</p>
+                            
+                            <div><button class="button wide" id="checkout-use-new-card">{{ 'sylius.checkout.new_card'|trans }}</button></div>
+
+                            <div class="hr"></div>
+                            <div class="field radio">
+                                    <input type="radio" name="cards_on_file" data-payinfo="payment-visa" class="payment-method-info"/> <div class="text">Visa Ending in 3476 Exp: 12/16</div>
+                            </div>
+                            <div class="field radio">
+                                    <input type="radio" name="cards_on_file" data-payinfo="payment-amex" class="payment-method-info"/> <div class="text">Amex Ending in 4635 Exp: 12/19</div>
+                            </div>
+
+                            <div class="hr"></div>
+                            <div class="field radio">
+                                    <input type="radio" name="cards_on_file" data-payinfo="payment-cash" class="payment-method-info"/> <div class="text">Cash</div>
+                            </div>
+
+                            <div class="hr"></div>
+                            <div class="field radio">
+                                    <input type="radio" name="cards_on_file" data-payinfo="payment-wun-commision" class="payment-method-info"/> <div class="text">Use WUN Commisions ($6230.20)</div>
+                            </div>
+
+                    </div>
+                </li>
+            </ul>
+
+            <div class="box-gray">
+                    <h2>WakeUpNow Shipping</h2>
+                    <p>
+                        {% for shipment in order.shipments %}
+
+                        {% set shipmentForm = form.shipments[loop.index0] %}
+
+                        {{ form_row(shipmentForm.method) }}
+
+                        {% endfor %}
+                    </p>
+                    <p>
+                        <div class="half-row clearfix">
+                            <div class="field">
+                                <div class="field radio">
+                                    <input type="radio" id="shipping_method" name="shipping_method"/> <div class="text">FedEx</div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <span>$45</span>
+                            </div>
+                        </div>
+
+                        <div class="half-row clearfix">
+                            <div class="field">
+                                <div class="field radio">
+                                    <input type="radio" id="shipping_method" name="shipping_method"/> <div class="text">UPS</div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <span>$93.50</span>
+                            </div>
+                        </div>
+
+                    </p>
+
+                    <p>This product is in stock and will ship in 3-5 business days via US mail. Product available only available in the United States. We glady accept returns for any reason within 30 days of purchase. Please see WakeUpNow's <a href="#">return policy</a> for details on returns.</p>
+            </div>
+        </div>
+        <div class="container next clearfix">
+            <div class="row">
+                    <div class="span6 offset6">
+                            <button type="submit" class="button huge">{{ 'sylius.checkout.forward'|trans }}</button>
+                    </div>
+            </div>
+        </div>
     </div>
 </form>
 {% endblock %}
+
+{% block cart_step_header %}
+    {% set homeUrl = path('sylius_homepage') %}
+    {% set shoppingUrl = path('sylius_homepage') %}
+    {% set title = 'sylius.checkout.credit_card.header'|trans|raw %}
+    {{ cartHeader.cartHeader('step3', homeUrl, title, shoppingUrl)}}
+{% endblock cart_step_header %}

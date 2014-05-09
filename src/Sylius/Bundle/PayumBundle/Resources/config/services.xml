@@ -32,6 +32,9 @@
         <parameter key="sylius.payum.action.order_status.class">Sylius\Bundle\PayumBundle\Payum\Action\OrderStatusAction</parameter>
         <parameter key="sylius.payum.action.obtain_credit_card.class">Sylius\Bundle\PayumBundle\Payum\Action\ObtainCreditCardAction</parameter>
         <parameter key="sylius.payum.action.execute_same_request_with_payment_details.class">Sylius\Bundle\PayumBundle\Payum\Action\ExecuteSameRequestWithPaymentDetailsAction</parameter>
+
+        <parameter key="sylius.payum.gpg.action.capture_order_using_credit_card.class">Sylius\Bundle\PayumBundle\Payum\GPG\Action\CaptureOrderUsingCreditCardAction</parameter>        
+
     </parameters>
 
     <services>
@@ -68,6 +71,7 @@
         <service id="sylius.payum.action.obtain_credit_card" class="%sylius.payum.action.obtain_credit_card.class%" >
             <argument type="service" id="form.factory" />
             <argument type="service" id="templating" />
+            <argument type="service" id="service_container"/>
             <call method="setRequest">
                 <argument type="service" id="request" on-invalid="null" strict="false" />
             </call>
@@ -76,6 +80,11 @@
         <!-- dummy -->
         <service id="sylius.payum.dummy.action.capture_order" class="%sylius.payum.dummy.action.capture_order.class%" />
         <service id="sylius.payum.dummy.action.order_status" class="%sylius.payum.dummy.action.order_status.class%" />
+
+        <!-- gpg -->
+        <service id="sylius.payum.gpg.action.capture_order_using_credit_card" class="%sylius.payum.gpg.action.capture_order_using_credit_card.class%">
+            
+        </service>
     </services>
 
 </container>

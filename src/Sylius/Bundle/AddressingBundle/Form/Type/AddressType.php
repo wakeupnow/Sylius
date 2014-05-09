@@ -70,16 +70,18 @@ class AddressType extends AbstractType
             ->add('lastName', 'text', array(
                 'label' => 'sylius.form.address.last_name'
             ))
-            ->add('company', 'text', array(
-                'required' => false,
-                'label'    => 'sylius.form.address.company'
-            ))
             ->add('country', 'sylius_country_choice', array(
                 'label' => 'sylius.form.address.country',
                 'empty_value' => 'sylius.form.country.select'
             ))
-            ->add('street', 'text', array(
-                'label' => 'sylius.form.address.street'
+            ->add('state', 'text', array(
+                'label' => 'sylius.form.address.state'
+            ))
+            ->add('address1', 'text', array(
+                'label' => 'sylius.form.address.address1'
+            ))
+            ->add('address2', 'text', array(
+                'label' => 'sylius.form.address.address2'
             ))
             ->add('city', 'text', array(
                 'label' => 'sylius.form.address.city'

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="payum.gpg.api.class">Wun\Iris\GPGBundle\Payum\Api\Api</parameter>
+        <parameter key="payum.gpg.action.capture.class">Wun\Iris\GPGBundle\Payum\Action\CaptureAction</parameter>
+        <!--<parameter key="payum.gpg.action.capture_onsite.class">Payum\Be2Bill\Action\CaptureOnsiteAction</parameter>-->
+        <parameter key="payum.gpg.action.status.class">Wun\Iris\GPGBundle\Payum\Action\StatusAction</parameter>
+    </parameters>
+
+    <services>
+        <service
+            id="payum.gpg.api"
+            class="%payum.gpg.api.class%"
+            abstract="true"
+            public="false"
+        >
+            <argument type="service" id="payum.buzz.client" />
+            <argument type="collection">
+                <!-- It is template service. The real service will be created by Be2BillPaymentFactory -->
+            </argument>
+        </service>
+
+        <service
+            id="payum.gpg.action.capture"
+            class="%payum.gpg.action.capture.class%"
+            public="false"
+        >
+        </service>
+
+        <!--<service
+            id="payum.gpg.action.capture_onsite"
+            class="%payum.gpg.action.capture_onsite.class%"
+            public="false"
+        >
+        </service> -->
+
+        <service
+            id="payum.gpg.action.status"
+            class="%payum.gpg.action.status.class%"
+            public="false"
+        >
+        </service>
+    </services>
+</container>

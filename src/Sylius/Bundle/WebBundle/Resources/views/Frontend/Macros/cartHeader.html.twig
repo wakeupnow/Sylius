@@ -1,0 +1,28 @@
+{% macro cartHeader(step, homeUrl, title, shoppingUrl) %}
+    <div class="header-top-checkout clearfix">
+            <div class="logo-blue">
+                    <a href="{{ homeUrl }}" title="{{ 'sylius.logo'|trans }}">
+                        <img src="{{asset('bundles/syliusweb/img/checkout/logo-blue.gif')}}" alt="Wake Up Now">
+                    </a>
+            </div>
+            <div class="container">
+                    <div class="checkout-progress {{step}}">
+                            <ul class="list-clear clearfix">
+                                    <li class="cart">cart</li>
+                                    <li class="address">address</li>
+                                    <li class="payment">payment</li>
+                            </ul>
+                            <div class="step-bar">
+                                    <div class="step-bar-top"></div>
+                                    <div class="step-bar-bottom"></div>
+                            </div>
+                    </div>
+            </div>
+    </div>
+    <div class="header-bottom-checkout clearfix">
+        <div class="container">
+                <h1 class="pull-left">{{title|trans()}}</h1>
+                <a href="{{shoppingUrl}}" class="pull-right">continue shopping</a>
+        </div>
+    </div>
+{% endmacro %}

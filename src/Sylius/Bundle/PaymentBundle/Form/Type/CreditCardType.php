@@ -39,7 +39,7 @@ class CreditCardType extends AbstractType
         $builder
             ->add('type', 'choice', array(
                 'label'    => 'sylius.form.credit_card.type',
-                'expanded' => true,
+                'choices' =>  $this->getCardsType(),
               ))
               ->add('cardholderName', 'text', array(
                 'label' => 'sylius.form.credit_card.cardholder_name',
@@ -58,6 +58,10 @@ class CreditCardType extends AbstractType
                   'label'   => 'sylius.form.credit_card.expiry_year',
                   'choices' =>  $this->getViableYears()
               ))
+              ->add('shipments', 'collection', array(
+                'type'    => 'sylius_checkout_shipment',
+                'options' => array('criteria' => $options['criteria'])
+            ))
         ;
     }
 
@@ -68,6 +72,12 @@ class CreditCardType extends AbstractType
                 'data_class'        => $this->dataClass,
                 'validation_groups' => $this->validationGroups,
             ))
+            ->setOptional(array(
+                'criteria'
+            ))
+            ->setAllowedTypes(array(
+                'criteria' => array('array')
+            ))
         ;
     }
 
@@ -77,6 +87,23 @@ class CreditCardType extends AbstractType
     public function getName()
     {
         return 'sylius_credit_card';
+    }
+
+    /**
+     * Get years to add as choices in cards type
+     *
+     * @return array
+     */
+    private function getCardsType()
+    {
+        $cardChoices = array(
+            'visa' => 'Visa',
+            'master_card' => 'MasterCard',
+            'discover' => 'Discover Card',
+            'amex' => 'American Express'
+            );
+
+        return $cardChoices;
     }
 
     /**
@@ -106,7 +133,8 @@ class CreditCardType extends AbstractType
         $monthChoices = array();
 
         foreach (range(1, 12) as $month) {
-            $monthChoices[$month] = str_pad($month, 2, 0, STR_PAD_LEFT);
+            
+            $monthChoices[$month] = \date('F', mktime(0,0,0,$month));
         }
 
         return $monthChoices;

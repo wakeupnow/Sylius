@@ -15,6 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -36,6 +37,9 @@ class AddressingStepType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $notBlank = new NotBlank();
+        $notBlank->message = 'sylius.checkout.payment_method.not_blank';
+
         $builder
             ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
                 $data = $event->getData();
@@ -51,6 +55,15 @@ class AddressingStepType extends AbstractType
             ->add('differentBillingAddress', 'checkbox', array(
                 'mapped' => false,
                 'label'  => 'sylius.form.checkout.addressing.different_billing_address'
+            ))
+
+            ->add('paymentMethod', 'sylius_payment_method_choice', array(
+                'label'         => 'sylius.form.checkout.payment_method',
+                'expanded'      => true,                
+                'property_path' => 'payment.method',
+                'constraints'   => array(
+                    $notBlank
+                )
             ))
         ;
     }

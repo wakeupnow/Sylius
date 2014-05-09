@@ -1,15 +1,62 @@
-{{ form_row(form.company) }}
-{{ form_row(form.firstName) }}
-{{ form_row(form.lastName) }}
-{{ form_row(form.country, {'attr': {'class': 'select2 country-select'}}) }}
+<div class="half-row clearfix">
+    <div class="field">
+        {{ form_errors(form.firstName) }}
+        {{ form_label(form.firstName) }}
+        {{ form_widget(form.firstName) }}
+    </div>
+    <div class="field">
+        {{ form_errors(form.lastName) }}
+        {{ form_label(form.lastName) }}
+        {{ form_widget(form.lastName) }}
+    </div>
+</div>
 
-<div class="province-container" data-url="{{ path('sylius_province_choice_form') }}">
+<div class="half-row clearfix">
+        <div class="field">
+            {{ form_errors(form.address1) }}
+            {{ form_label(form.address1) }}
+            {{ form_widget(form.address1) }}
+        </div>
+        <div class="field">
+            {{ form_errors(form.address2) }}
+            {{ form_label(form.address2) }}
+            {{ form_widget(form.address2) }}
+        </div>
+</div>
+
+<div class="half-row clearfix">
+        <div class="field">
+            {{ form_errors(form.city) }}
+            {{ form_label(form.city) }}
+            {{ form_widget(form.city) }}
+        </div>
+        <div class="half-row">
+            <div class="field">
+                {{ form_errors(form.state) }}
+                {{ form_label(form.state) }}
+                {{ form_widget(form.state) }}
+            </div>
+            <div class="field">
+                {{ form_errors(form.postcode) }}
+                {{ form_label(form.postcode) }}
+                {{ form_widget(form.postcode, {'attr':{'maxlength': '5'}}) }}
+            </div>
+        </div>
+</div>
+
+<div class="half-row clearfix">
+    <div class="field">
+        {{ form_errors(form.country) }}
+        {{ form_label(form.country) }}
+        {{ form_widget(form.country, {'attr':{'class': 'select2 country-select'}}) }}
+    </div>
+    
+    
+<div class="field province-container" data-url="{{ path('sylius_province_choice_form') }}">
     {% if form.province is defined %}
         {{ form_row(form.province, {'attr': {'class': 'select2'}}) }}
     {% endif %}
 </div>
+</div>
 
-{{ form_row(form.street) }}
-{{ form_row(form.city) }}
-{{ form_row(form.postcode) }}
 {{ form_rest(form) }}

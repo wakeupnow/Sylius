@@ -82,6 +82,26 @@ class Address implements AddressInterface
     protected $postcode;
 
     /**
+     * State.
+     *
+     * @var string
+     */
+    protected $state;
+    /**
+     * Address1.
+     *
+     * @var string
+     */
+    protected $address1;
+
+    /**
+     * Address2.
+     *
+     * @var string
+     */
+    protected $address2;
+
+    /**
      * Creation time.
      *
      * @var \DateTime
@@ -269,6 +289,60 @@ class Address implements AddressInterface
     public function setPostcode($postcode)
     {
         $this->postcode = $postcode;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAddress1()
+    {
+        return $this->address1;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAddress1($address1)
+    {
+        $this->address1 = $address1;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAddress2()
+    {
+        return $this->address2;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAddress2($address2)
+    {
+        $this->address1 = $address2;
 
         return $this;
     }

@@ -135,6 +135,11 @@ class ZoneMatcher implements ZoneMatcherInterface
         }
     }
 
+    public function getAllZones()
+    {
+        return $this->getZones();
+    }
+
     /**
      * Gets all zones
      *

@@ -32,6 +32,7 @@ class PurchaseStep extends CheckoutStep
     public function displayAction(ProcessContextInterface $context)
     {
         $order = $this->getCurrentCart();
+//        $this->dispatchCheckoutEvent(SyliusCheckoutEvents::SHIPPING_INITIALIZE, $order);
 
         $captureToken = $this->getTokenFactory()->createCaptureToken(
             $order->getPayment()->getMethod()->getGateway(),
@@ -56,6 +57,9 @@ class PurchaseStep extends CheckoutStep
 
         /** @var OrderInterface $order */
         $order = $status->getModel();
+        
+        //Dispatch shipping step events
+        $this->dispatchCheckoutEvent(SyliusCheckoutEvents::SHIPPING_INITIALIZE, $order);
 
         if (!$order instanceof OrderInterface) {
             throw new \RuntimeException(sprintf('Expected order to be set as model but it is %s', get_class($order)));
@@ -74,6 +78,9 @@ class PurchaseStep extends CheckoutStep
                 SyliusPaymentEvents::PRE_STATE_CHANGE,
                 new GenericEvent($order->getPayment(), array('previous_state' => $previousState))
             );
+
+            //Dispatch shipping step events
+            $this->dispatchCheckoutEvent(SyliusCheckoutEvents::SHIPPING_PRE_COMPLETE, $order);
         }
 
         $this->getDoctrine()->getManager()->flush();
@@ -82,11 +89,15 @@ class PurchaseStep extends CheckoutStep
             $this->dispatchEvent(
                 SyliusPaymentEvents::POST_STATE_CHANGE,
                 new GenericEvent($order->getPayment(), array('previous_state' => $previousState))
-            );
+            );          
+            
         }
 
         $event = new PurchaseCompleteEvent($order->getPayment());
         $this->dispatchEvent(SyliusCheckoutEvents::PURCHASE_COMPLETE, $event);
+
+        //Dispatch shipping step events
+        $this->dispatchCheckoutEvent(SyliusCheckoutEvents::SHIPPING_COMPLETE, $order);
 
         if ($event->hasResponse()) {
             return $event->getResponse();

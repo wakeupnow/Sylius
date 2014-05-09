@@ -43,3 +43,8 @@ parameters:
     sylius.inventory.holding.duration: 15 minutes
 
     sylius.order.pending.duration: 3 hours
+
+    gpg.apiusername: 'Wun05730noW'
+    gpg.apipassword: 'mgT9mwk77'
+    gpg.sandbox: true
+

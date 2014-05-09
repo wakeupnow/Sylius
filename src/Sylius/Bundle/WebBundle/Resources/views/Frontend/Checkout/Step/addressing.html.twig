@@ -1,4 +1,6 @@
-{% extends 'SyliusWebBundle:Frontend:layout.html.twig' %}
+{% extends 'SyliusWebBundle:Frontend/Cart:cart-layout.html.twig' %}
+
+{% import 'SyliusWebBundle:Frontend/Macros:cartHeader.html.twig' as cartHeader %}
 
 {% block javascripts %}
 {{ parent() }}
@@ -10,40 +12,125 @@
 {% endblock %}
 
 {% block content %}
-<div class="page-header">
-    <h1>{{ 'sylius.checkout.addressing.header'|trans|raw }}</h1>
-</div>
-
-{% include 'SyliusWebBundle:Frontend/Checkout:_progressBar.html.twig' %}
 
 <form method="post" action="{{ path('sylius_checkout_forward', {'stepName': context.currentStep.name}) }}" class="form-horizontal" novalidate>
 
-{{ form_errors(form) }}
+    <div class="content-padding">
+        <div class="container">
+        {{ form_errors(form) }}
+            <div class="box-gray clearfix">
 
-<fieldset>
-    <div class="row">
-        <div class="col-md-6 address-container">
-            <div class="well">
-                <h4>{{ 'sylius.checkout.finalize.order.shipping_address'|trans }}</h4>
-                {% include 'SyliusWebBundle:Frontend/Address:_form.html.twig' with {'form': form.shippingAddress} %}
-                {{ form_row(form.differentBillingAddress, {'attr': {'class': 'sylius-different-billing-address-trigger'}}) }}
+                <!-- //TODO: Need to fill this hardcoded values by real time data after done with model changes.-->
+                <ul class="column3 list-clear clearfix">
+                        <li>
+                                <h2>Shipping Address</h2>
+
+                                
+                        </li>
+                        <li>
+                                <div class="field checkbox">
+                                        <input type="checkbox" /> <div class="text">Make Primary Address</div>
+                                </div>
+                        </li>
+                        <li><button class="button wide pull-right" id="add-new-shipping-address" >New Address</button></li>
+                </ul>
+                <ul class="column3 list-clear clearfix">
+                        <li>
+                                <div class="field radio"><input type="radio" /> <div class="PN-Bold">Chase Thompson</div></div>
+                                <div>4327 South 500 East</div>
+                                <div>Unit B</div>
+                                <div>Millcreek, UT 84107</div>
+                                <div><button class="button wide">Change</button></div>
+                        </li>
+                        <li>
+                                <div class="field radio"><input type="radio" /> <div class="PN-Bold">Chase Thompson</div></div>
+                                <div>4327 South 500 East</div>
+                                <div>Unit B</div>
+                                <div>Millcreek, UT 84107</div>
+                                <div><button class="button wide">Change</button></div>
+                        </li>
+                        <li>
+                                <div class="field radio"><input type="radio" /> <div class="PN-Bold">Chase Thompson</div></div>
+                                <div>4327 South 500 East</div>
+                                <div>Unit B</div>
+                                <div>Millcreek, UT 84107</div>
+                                <div><button class="button wide">Change</button></div>
+                        </li>
+                </ul>
+                <div class="shipping-address" style="display:none;">
+                    {% include 'SyliusWebBundle:Frontend/Address:_form.html.twig' with {'form': form.shippingAddress} %}
+                {#{ form_row(form.differentBillingAddress, {'attr': {'class': 'sylius-different-billing-address-trigger'}}) }#}
+                </div>
+            </div>
+
+            <div class="box-gray">
+                <!-- //TODO: Need to fill this hardcoded values by real time data after done with model changes.-->
+                <ul class="column3 list-clear clearfix no-margin-bottom">
+                        <li>
+                                <h2>Billing Address</h2>
+                        </li>
+                        <li>
+                                <div class="field checkbox">
+                                        <input type="checkbox" /> <div class="text">Make Primary Address</div>
+                                </div>
+                        </li>
+                        <li><button class="button wide pull-right" id="add-new-billing-address">New Address</button></li>
+                </ul>
+                <ul class="column3 list-clear clearfix">
+                        <li>
+                                <div class="field radio"><input type="radio" /> <div class="PN-Bold">Chase Thompson</div></div>
+                                <div>4327 South 500 East</div>
+                                <div>Unit B</div>
+                                <div>Millcreek, UT 84107</div>
+                        </li>
+                        <li>
+                                <div class="field radio"><input type="radio" /> <div class="PN-Bold">Chase Thompson</div></div>
+                                <div>4327 South 500 East</div>
+                                <div>Unit B</div>
+                                <div>Millcreek, UT 84107</div>
+                        </li>
+                        <li>
+                                <div class="field radio"><input type="radio" /> <div class="PN-Bold">Chase Thompson</div></div>
+                                <div>4327 South 500 East</div>
+                                <div>Unit B</div>
+                                <div>Millcreek, UT 84107</div>
+                        </li>
+                </ul>
+                <div class="billing-address" style="display:none;">
+                    {% include 'SyliusWebBundle:Frontend/Address:_form.html.twig' with {'form': form.billingAddress} %}
+                </div>
+
+            </div>
+
+          
+            <div class="field" style="display: none;">
+                {% for paymentMethodForm in form.paymentMethod %}
+                    {{ form_label(paymentMethodForm) }}
+                    {% if loop.index0 == 0 %}
+                        {{ form_widget(paymentMethodForm, {'attr':{'checked': 'checked'}}) }}
+                    {% else %}
+                        {{ form_widget(paymentMethodForm) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+        {{ form_widget(form._token) }}
+        </div>
+        <div class="container next clearfix">
+            <div class="row">
+                    <div class="span6 offset6">
+                            <button class="button huge">{{ 'sylius.checkout.forward'|trans }}</button>
+                    </div>
             </div>
         </div>
-        <div class="col-md-6 hidden address-container" id="sylius-billing-address-container">
-            <div class="well">
-                <h4>{{ 'sylius.checkout.finalize.order.billing_address'|trans }}</h4>
-                {% include 'SyliusWebBundle:Frontend/Address:_form.html.twig' with {'form': form.billingAddress} %}
-            </div>
-        </div>
+        
     </div>
-</fieldset>
-
-{{ form_widget(form._token) }}
-
-<div class="form-actions">
-    <a href="{{ path('sylius_cart_summary') }}" class="btn btn-lg"><i class="icon-chevron-left"></i> {{ 'sylius.checkout.back'|trans }}</a> &nbsp;
-    <button type="submit" class="btn btn-primary btn-lg">{{ 'sylius.checkout.forward'|trans }} <i class="icon-chevron-right"></i></button>
-</div>
-
 </form>
 {% endblock %}
+
+{% block cart_step_header %}
+    {% set homeUrl = path('sylius_homepage') %}
+    {% set shoppingUrl = path('sylius_homepage') %}
+    {% set title = 'sylius.checkout.addressing.header'|trans|raw %}
+    {{ cartHeader.cartHeader('step2', homeUrl, title, shoppingUrl)}}
+{% endblock cart_step_header %}

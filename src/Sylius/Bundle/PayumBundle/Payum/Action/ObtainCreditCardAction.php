@@ -21,6 +21,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ObtainCreditCardAction implements ActionInterface
 {
@@ -40,13 +41,22 @@ class ObtainCreditCardAction implements ActionInterface
     protected $httpRequest;
 
     /**
+     * @var null|ZoneInterface
+     */
+    private $zones;
+
+    /** @var ContainerInterface */
+    protected $container;
+
+    /**
      * @param FormFactoryInterface $formFactory
      * @param EngineInterface      $templating
      */
-    public function __construct(FormFactoryInterface $formFactory, EngineInterface $templating)
+    public function __construct(FormFactoryInterface $formFactory, EngineInterface $templating, ContainerInterface $container)
     {
         $this->formFactory = $formFactory;
         $this->templating = $templating;
+        $this->container = $container;
     }
 
     /**
@@ -70,9 +80,10 @@ class ObtainCreditCardAction implements ActionInterface
             throw new LogicException('The action can be run only when http request is set.');
         }
 
-        $form = $this->createCreditCardForm();
-        $form->submit($this->httpRequest);
-        if ($form->isValid()) {
+        $order = $request->getOrder();
+        $form = $this->createCreditCardForm($order);
+
+        if ($this->httpRequest->isMethod('POST') && $form->submit($this->httpRequest)->isValid()) {
             $request->setCreditCard($form->getData());
 
             return;
@@ -80,7 +91,8 @@ class ObtainCreditCardAction implements ActionInterface
 
         throw new ResponseInteractiveRequest(new Response(
             $this->templating->render('SyliusPayumBundle::Payum\Action\obtainCreditCard.html.twig', array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'order' => $order,
             ))
         ));
     }
@@ -96,8 +108,30 @@ class ObtainCreditCardAction implements ActionInterface
     /**
      * @return FormInterface
      */
-    protected function createCreditCardForm()
+    protected function createCreditCardForm($order)
     {
-        return $this->formFactory->create('sylius_credit_card');
+        $this->zones = $this->getZoneMatcher()->matchAll($order->getShippingAddress());
+
+        if (empty($this->zones)) {
+            $this->container->get('session')->getFlashBag()->add('error', 'sylius.checkout.shipping.error');
+        }
+
+        return $this->formFactory->create('sylius_credit_card', null, array(
+            'criteria' => array('zone' => !empty($this->zones) ? array_map(function ($zone) {
+                return $zone->getId();
+            }, $this->zones) : null)
+        ));
+
+//        return $this->formFactory->create('sylius_credit_card');
+    }    
+
+    /**
+     * Get zone matcher.
+     *
+     * @return ZoneMatcherInterface
+     */
+    protected function getZoneMatcher()
+    {
+        return $this->container->get('sylius.zone_matcher');
     }
 }
