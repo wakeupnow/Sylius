@@ -28,7 +28,7 @@ class Payment implements PaymentInterface
     /**
      * Method.
      *
-     * @var PaymentGatewayInterface
+     * @var PaymentMethodInterface
      */
     protected $method;
 
@@ -106,7 +106,7 @@ class Payment implements PaymentInterface
     /**
      * {@inheritdoc}
      */
-    public function setMethod(PaymentGatewayInterface $method = null)
+    public function setMethod(PaymentMethodInterface $method = null)
     {
         $this->method = $method;
 

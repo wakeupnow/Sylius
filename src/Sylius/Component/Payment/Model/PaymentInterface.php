@@ -23,18 +23,18 @@ interface PaymentInterface extends TimestampableInterface
     /**
      * Get payment gateway associated with this payment.
      *
-     * @return PaymentGatewayInterface
+     * @return PaymentMethodInterface
      */
     public function getMethod();
 
     /**
      * Set payment gateway.
      *
-     * @param null|PaymentGatewayInterface $method
+     * @param null|PaymentMethodInterface $method
      *
      * @return PaymentInterface
      */
-    public function setMethod(PaymentGatewayInterface $method = null);
+    public function setMethod(PaymentMethodInterface $method = null);
 
     /**
      * Get payment source.
