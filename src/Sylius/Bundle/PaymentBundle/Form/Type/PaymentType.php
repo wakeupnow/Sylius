@@ -56,7 +56,7 @@ class PaymentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('method', 'sylius_payment_gateway_choice', array(
+            ->add('gateway', 'sylius_payment_gateway_choice', array(
                 'label' => 'sylius.form.payment.gateway'
             ))
             ->add('amount', 'sylius_money', array(
