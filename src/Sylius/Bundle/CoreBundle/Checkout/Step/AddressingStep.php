@@ -31,6 +31,7 @@ class AddressingStep extends CheckoutStep
     {
         $order = $this->getCurrentCart();
         $this->dispatchCheckoutEvent(SyliusCheckoutEvents::ADDRESSING_INITIALIZE, $order);
+        //Added this in order to merge payment method with payment address
         $this->dispatchCheckoutEvent(SyliusCheckoutEvents::PAYMENT_INITIALIZE, $order);
 
         $form = $this->createCheckoutAddressingForm($order);
@@ -47,6 +48,7 @@ class AddressingStep extends CheckoutStep
 
         $order = $this->getCurrentCart();
         $this->dispatchCheckoutEvent(SyliusCheckoutEvents::ADDRESSING_INITIALIZE, $order);
+        //Added this in order to merge payment method with payment address
         $this->dispatchCheckoutEvent(SyliusCheckoutEvents::PAYMENT_INITIALIZE, $order);
         
         $form = $this->createCheckoutAddressingForm($order);

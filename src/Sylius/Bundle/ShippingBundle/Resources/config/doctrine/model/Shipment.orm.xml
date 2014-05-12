@@ -20,7 +20,7 @@
         </id>
 
         <many-to-one field="method" target-entity="Sylius\Component\Shipping\Model\ShippingMethodInterface">
-            <join-column name="method_id" referenced-column-name="id" nullable="false" />
+            <join-column name="method_id" referenced-column-name="id" nullable="true" />
         </many-to-one>
 
         <many-to-one field="state" target-entity="Sylius\Component\Shipping\Model\ShipmentState">

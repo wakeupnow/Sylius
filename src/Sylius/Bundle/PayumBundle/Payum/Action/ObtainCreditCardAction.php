@@ -16,6 +16,7 @@ use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\LogicException;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Sylius\Bundle\PayumBundle\Payum\Request\ObtainCreditCardRequest;
+use Sylius\Component\Core\Model\OrderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,16 +83,18 @@ class ObtainCreditCardAction implements ActionInterface
 
         $order = $request->getOrder();
         $form = $this->createCreditCardForm($order);
+        $shippingForm = $this->createCheckoutShippingForm($order);
 
         if ($this->httpRequest->isMethod('POST') && $form->submit($this->httpRequest)->isValid()) {
             $request->setCreditCard($form->getData());
-
+            //TODO: Have to add shipping with order object after changes the model.
             return;
         }
 
         throw new ResponseInteractiveRequest(new Response(
             $this->templating->render('SyliusPayumBundle::Payum\Action\obtainCreditCard.html.twig', array(
                 'form' => $form->createView(),
+                'shippingForm' => $shippingForm->createView(),
                 'order' => $order,
             ))
         ));
@@ -123,7 +126,22 @@ class ObtainCreditCardAction implements ActionInterface
         ));
 
 //        return $this->formFactory->create('sylius_credit_card');
-    }    
+    }
+
+    protected function createCheckoutShippingForm(OrderInterface $order)
+    {
+        $this->zones = $this->getZoneMatcher()->matchAll($order->getShippingAddress());
+
+        if (empty($this->zones)) {
+            $this->container->get('session')->getFlashBag()->add('error', 'sylius.checkout.shipping.error');
+        }
+
+        return $this->formFactory->create('sylius_checkout_shipping', $order, array(
+            'criteria' => array('zone' => !empty($this->zones) ? array_map(function ($zone) {
+                return $zone->getId();
+            }, $this->zones) : null)
+        ));
+    }
 
     /**
      * Get zone matcher.

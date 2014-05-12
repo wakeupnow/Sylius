@@ -32,7 +32,8 @@ class PurchaseStep extends CheckoutStep
     public function displayAction(ProcessContextInterface $context)
     {
         $order = $this->getCurrentCart();
-//        $this->dispatchCheckoutEvent(SyliusCheckoutEvents::SHIPPING_INITIALIZE, $order);
+        //Dispatch shipping step events
+        $this->dispatchCheckoutEvent(SyliusCheckoutEvents::SHIPPING_INITIALIZE, $order);
 
         $captureToken = $this->getTokenFactory()->createCaptureToken(
             $order->getPayment()->getMethod()->getGateway(),

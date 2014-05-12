@@ -136,37 +136,16 @@
                     <p>
                         {% for shipment in order.shipments %}
 
-                        {% set shipmentForm = form.shipments[loop.index0] %}
-
-                        {{ form_row(shipmentForm.method) }}
-
-                        {% endfor %}
-                    </p>
-                    <p>
-                        <div class="half-row clearfix">
-                            <div class="field">
+                            {% set shipmentForm = shippingForm.shipments[loop.index0] %}
+                            <div class="half-row clearfix">
                                 <div class="field radio">
-                                    <input type="radio" id="shipping_method" name="shipping_method"/> <div class="text">FedEx</div>
+                                    {{ form_errors(shipmentForm.method) }}
+                                    {{ form_widget(shipmentForm.method) }}
                                 </div>
                             </div>
-                            <div class="field">
-                                <span>$45</span>
-                            </div>
-                        </div>
-
-                        <div class="half-row clearfix">
-                            <div class="field">
-                                <div class="field radio">
-                                    <input type="radio" id="shipping_method" name="shipping_method"/> <div class="text">UPS</div>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <span>$93.50</span>
-                            </div>
-                        </div>
-
+                            {% endfor %}
                     </p>
-
+                    
                     <p>This product is in stock and will ship in 3-5 business days via US mail. Product available only available in the United States. We glady accept returns for any reason within 30 days of purchase. Please see WakeUpNow's <a href="#">return policy</a> for details on returns.</p>
             </div>
         </div>

@@ -58,10 +58,10 @@ class CreditCardType extends AbstractType
                   'label'   => 'sylius.form.credit_card.expiry_year',
                   'choices' =>  $this->getViableYears()
               ))
-              ->add('shipments', 'collection', array(
-                'type'    => 'sylius_checkout_shipment',
-                'options' => array('criteria' => $options['criteria'])
-            ))
+//              ->add('shipments', 'collection', array(
+//                'type'    => 'sylius_checkout_shipment',
+//                'options' => array('criteria' => $options['criteria'])
+//            ))
         ;
     }
 
