@@ -33,6 +33,13 @@ class Payment implements PaymentInterface
     protected $method;
 
     /**
+     * Gateway.
+     *
+     * @var PaymentGatewayInterface
+     */
+    protected $gateway;
+
+    /**
      * Currency.
      *
      * @var string
@@ -100,7 +107,7 @@ class Payment implements PaymentInterface
      */
     public function getMethod()
     {
-      return $this->method;
+        return $this->method;
     }
 
     /**
@@ -114,6 +121,29 @@ class Payment implements PaymentInterface
     }
 
     /**
+     * @param PaymentGatewayInterface $gateway
+     * @return PaymentInterface
+     */
+    public function setGateway(PaymentGatewayInterface $gateway = null)
+    {
+        $this->gateway = [$gateway];
+
+        return $this;
+    }
+
+    /**
+     * @return \Sylius\Component\Payment\Model\PaymentGatewayInterface
+     */
+    public function getGateway()
+    {
+        if ($this->gateway) {
+            return $this->gateway[0];
+        }
+
+        return $this->gateway;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setSource(PaymentSourceInterface $source = null)
@@ -123,7 +153,7 @@ class Payment implements PaymentInterface
         }
 
         if ($source instanceof CreditCardInterface) {
-            $this->creditCard = $source;
+            $this->creditCard = [$source];
         }
 
         return $this;
@@ -135,7 +165,7 @@ class Payment implements PaymentInterface
     public function getSource()
     {
         if (null !== $this->creditCard) {
-            return $this->creditCard;
+            return $this->creditCard[0];
         }
 
         return null;
