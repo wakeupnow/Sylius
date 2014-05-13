@@ -126,7 +126,12 @@ class Payment implements PaymentInterface
      */
     public function setGateway(PaymentGatewayInterface $gateway = null)
     {
-        $this->gateway = [$gateway];
+        if ($gateway) {
+            $this->gateway = [$gateway];
+        }
+        else {
+            $this->gateway = null;
+        }
 
         return $this;
     }

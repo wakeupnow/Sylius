@@ -18,6 +18,7 @@
 
     <parameters>
         <parameter key="sylius.form.type.payment_gateway_choice.class">Sylius\Bundle\PaymentBundle\Form\Type\PaymentGatewayChoiceType</parameter>
+        <parameter key="sylius.form.type.payment_method_choice.class">Sylius\Bundle\PaymentBundle\Form\Type\PaymentMethodChoiceType</parameter>
         <parameter key="sylius.form.type.credit_card.class">Sylius\Bundle\PaymentBundle\Form\Type\CreditCardType</parameter>
         <parameter key="sylius.listener.payment.class">Sylius\Bundle\PaymentBundle\EventListener\PaymentListener</parameter>
     </parameters>
@@ -31,6 +32,10 @@
         <service id="sylius.form.type.payment_gateway_choice" class="%sylius.form.type.payment_gateway_choice.class%">
             <argument>%sylius.model.payment_gateway.class%</argument>
             <tag name="form.type" alias="sylius_payment_gateway_choice" />
+        </service>
+        <service id="sylius.form.type.payment_method_choice" class="%sylius.form.type.payment_method_choice.class%">
+            <argument>%sylius.model.payment_method.class%</argument>
+            <tag name="form.type" alias="sylius_payment_method_choice" />
         </service>
 
         <service id="sylius.form.type.payment" class="%sylius.form.type.payment.class%">

@@ -75,6 +75,11 @@ class PaymentGateway implements PaymentGatewayInterface
     protected $updatedAt;
 
     /**
+     * @var PaymentMethodInterface
+     */
+    protected $paymentMethod;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -222,5 +227,23 @@ class PaymentGateway implements PaymentGatewayInterface
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPaymentMethod(PaymentMethodInterface $paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
     }
 }

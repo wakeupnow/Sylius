@@ -51,7 +51,7 @@
                     <join-column name="payment_id" referenced-column-name="id" unique="true" />
                 </join-columns>
                 <inverse-join-columns>
-                    <join-column name="gateway_id" referenced-column-name="id" />
+                    <join-column name="gateway_id" referenced-column-name="id" nullable="true" />
                 </inverse-join-columns>
             </join-table>
         </many-to-many>

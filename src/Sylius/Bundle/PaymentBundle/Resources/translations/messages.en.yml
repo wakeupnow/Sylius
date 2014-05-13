@@ -9,7 +9,8 @@ sylius:
             type: Card Type
         payment:
             amount: Payment amount
-            method: Payment gateway
+            method: Payment method
+            gateway: Payment gateway
             state:
                 0: Payment state
                 checkout: Checkout

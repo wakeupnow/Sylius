@@ -32,11 +32,11 @@ class PaymentGatewayEntityType extends PaymentGatewayChoiceType
         $queryBuilder = function (Options $options) {
             if (!$options['disabled']) {
                 return function (EntityRepository $repository) {
-                    return $repository->createQueryBuilder('method')->where('method.enabled = true');
+                    return $repository->createQueryBuilder('gateway')->where('gateway.enabled = true');
                 };
             } else {
                 return function (EntityRepository $repository) {
-                    return $repository->createQueryBuilder('method');
+                    return $repository->createQueryBuilder('gateway');
                 };
             }
         };

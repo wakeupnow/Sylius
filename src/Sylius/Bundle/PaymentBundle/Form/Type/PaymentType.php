@@ -16,6 +16,8 @@ use Sylius\Component\Payment\Model\PaymentInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 /**
  * Payment form type.
@@ -56,8 +58,12 @@ class PaymentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('method', 'sylius_payment_method_choice', array(
+                'label' => 'sylius.form.payment.method'
+            ))
             ->add('gateway', 'sylius_payment_gateway_choice', array(
-                'label' => 'sylius.form.payment.gateway'
+                'label' => 'sylius.form.payment.gateway',
+                'required' => false
             ))
             ->add('amount', 'sylius_money', array(
                 'label' => 'sylius.form.payment.amount'
@@ -66,6 +72,15 @@ class PaymentType extends AbstractType
                 'label' => 'sylius.form.payment.state',
                 'class' => 'Sylius\Component\Payment\Model\PaymentState'
             ))
+            ->addEventListener(FormEvents::POST_SET_DATA, function(FormEvent $event) {
+                /** @var PaymentInterface $payment */
+                $payment = $event->getData();
+                $form = $event->getForm();
+
+                if ($form->get('gateway')->getViewData() == '') {
+                    $payment->removeGateway(null);
+                }
+            })
         ;
     }
 

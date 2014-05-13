@@ -18,6 +18,7 @@
 
     <parameters>
         <parameter key="sylius.form.type.payment_gateway_choice.class">Sylius\Bundle\PaymentBundle\Form\Type\PaymentGatewayEntityType</parameter>
+        <parameter key="sylius.form.type.payment_method_choice.class">Sylius\Bundle\PaymentBundle\Form\Type\PaymentMethodEntityType</parameter>
     </parameters>
 
 </container>

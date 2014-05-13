@@ -89,4 +89,14 @@ interface PaymentGatewayInterface extends TimestampableInterface
      * @param string $environment
      */
     public function setEnvironment($environment);
+
+    /**
+     * @param PaymentMethodInterface $paymentMethod
+     */
+    public function setPaymentMethod(PaymentMethodInterface $paymentMethod);
+
+    /**
+     * @return PaymentMethodInterface
+     */
+    public function getPaymentMethod();
 }
