@@ -36,14 +36,18 @@ class PaymentStepType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $notBlank = new NotBlank();
-        $notBlank->message = 'sylius.checkout.payment_method.not_blank';
+        $notBlank->message = 'sylius.checkout.payment_gateway.not_blank';
 
         $builder
-            ->add('paymentMethod', 'sylius_payment_method_choice', array(
-                'label'         => 'sylius.form.checkout.payment_method',
+            ->add('paymentGateway', 'sylius_payment_gateway_choice', array(
+                'label'         => 'sylius.form.checkout.payment_gateway',
                 'expanded'      => true,
+<<<<<<< HEAD
                 'required' => true,
                 'property_path' => 'payment.method',
+=======
+                'property_path' => 'payment.gateway',
+>>>>>>> 099545060837146721a08643ddd87104f718fc05
                 'constraints'   => array(
                     $notBlank
                 )

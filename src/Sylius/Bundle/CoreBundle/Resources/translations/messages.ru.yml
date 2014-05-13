@@ -21,7 +21,7 @@ sylius:
     checkout:
       addressing:
         different_billing_address: Использовать другой адрес для составления счета?
-      payment_method: Метод оплаты
+      payment_gateway: Метод оплаты
       shipping_method: Метод доставки
     group:
       name: Название

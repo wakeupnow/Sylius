@@ -12,7 +12,6 @@
 namespace Sylius\Bundle\PaymentBundle\Form\Type;
 
 use Sylius\Component\Payment\Model\PaymentState;
-use Sylius\Component\Payment\Model\PaymentInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -58,6 +57,10 @@ class PaymentType extends AbstractType
         $builder
             ->add('method', 'sylius_payment_method_choice', array(
                 'label' => 'sylius.form.payment.method'
+            ))
+            ->add('gateway', 'sylius_payment_gateway_choice', array(
+                'label' => 'sylius.form.payment.gateway',
+                'required' => false
             ))
             ->add('amount', 'sylius_money', array(
                 'label' => 'sylius.form.payment.amount'

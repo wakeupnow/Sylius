@@ -1,0 +1,14 @@
+<div id="product-multi-prices" data-prototype="{{ form_widget(pricesForm.vars.prototype)|e }}">
+    {% for price in pricesForm %}
+        <div class="price-item-form-wrapper">
+            {{ form_widget(price) }}
+
+            <a href="javascript:void(null)" onclick="$(this).parent().remove();"
+               class="btn btn-danger btn-sm remove">Remove</a>
+        </div>
+    {% endfor %}
+
+    <div>
+        <a href="javascript:void(null);" class="btn btn-success" id="product-multi-prices-add-link">Add a Price</a>
+    </div>
+</div>

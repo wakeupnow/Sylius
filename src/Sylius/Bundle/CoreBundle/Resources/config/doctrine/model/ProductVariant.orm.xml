@@ -18,7 +18,13 @@
 
     <mapped-superclass name="Sylius\Component\Core\Model\ProductVariant" table="sylius_product_variant">
         <field name="sku" column="sku" type="string" nullable="true" />
-        <field name="price" column="price" type="integer" />
+        <one-to-many field="prices"
+                     target-entity="Sylius\Component\Core\Model\ProductVariantPrice"
+                     mapped-by="variant" orphan-removal="true">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
 
         <field name="onHold" column="on_hold" type="integer" />
         <field name="onHand" column="on_hand" type="integer" />

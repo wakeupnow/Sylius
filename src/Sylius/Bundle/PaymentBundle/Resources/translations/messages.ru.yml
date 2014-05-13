@@ -23,7 +23,7 @@ sylius:
         processing: Обрабатывается
         unknown: Неизвестен
         void: Пустой
-    payment_method:
+    payment_gateway:
       description: Описание
       enabled: Включен?
       gateway: Терминал

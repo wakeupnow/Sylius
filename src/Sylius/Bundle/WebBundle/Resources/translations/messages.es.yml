@@ -118,7 +118,7 @@ sylius:
       index: Páginas estáticas
     payment:
       index: Pagos
-    payment_method:
+    payment_gateway:
       index: Métodos de pago
     product:
       index: Productos
@@ -437,7 +437,7 @@ sylius:
       void: Vacío
     update_header: Editar pago
     updated_at: Fecha de última modificación
-  payment_method:
+  payment_gateway:
     create: Crear método de pago
     create_header: Nuevo método de pago
     enabled: habilitado

@@ -15,27 +15,27 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Payment gateway choice type.
+ * Base payments category choice type.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class PaymentGatewayChoiceType extends AbstractType
+abstract class PaymentGatewayChoiceType extends AbstractType
 {
     /**
-     * Choices.
+     * Payment gateway class name.
      *
-     * @var array
+     * @var string
      */
-    protected $gateways;
+    protected $className;
 
     /**
      * Constructor.
      *
-     * @param array $gateways
+     * @param string $className
      */
-    public function __construct(array $gateways)
+    public function __construct($className)
     {
-        $this->gateways = $gateways;
+        $this->className = $className;
     }
 
     /**
@@ -45,17 +45,10 @@ class PaymentGatewayChoiceType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'choices' => $this->gateways,
+                'class'    => $this->className,
+                'disabled' => false,
             ))
         ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
-    {
-        return 'choice';
     }
 
     /**

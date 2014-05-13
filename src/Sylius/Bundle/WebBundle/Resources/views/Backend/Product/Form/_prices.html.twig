@@ -1,0 +1,5 @@
+{% form_theme form 'SyliusWebBundle::forms.html.twig' %}
+
+<div class="tab-pane" id="prices">
+    {% include 'SyliusWebBundle:Backend/Product/Form:_prices_collection.html.twig' with {'pricesForm': form.masterVariant.prices } %}
+</div>

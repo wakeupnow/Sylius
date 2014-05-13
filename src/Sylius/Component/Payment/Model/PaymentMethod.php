@@ -12,9 +12,8 @@
 namespace Sylius\Component\Payment\Model;
 
 /**
- * Payments method model.
- *
- * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ * Class PaymentMethod
+ * @package Sylius\Component\Payment\Model
  */
 class PaymentMethod implements PaymentMethodInterface
 {
@@ -26,72 +25,22 @@ class PaymentMethod implements PaymentMethodInterface
     protected $id;
 
     /**
-     * Is method enabled?
-     *
-     * @var Boolean
-     */
-    protected $enabled = true;
-
-    /**
-     * Name.
+     * Method.
      *
      * @var string
      */
     protected $name;
 
     /**
-     * Description.
-     *
-     * @var string
+     * @param $name
      */
-    protected $description;
-
-    /**
-     * Gateway name.
-     *
-     * @var string
-     */
-    protected $gateway;
-
-    /**
-     * Required environment.
-     *
-     * @var string
-     */
-    protected $environment;
-
-    /**
-     * Creation date.
-     *
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * Last update time.
-     *
-     * @var \DateTime
-     */
-    protected $updatedAt;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
+    public function __construct($name = '')
     {
-        $this->createdAt = new \DateTime();
+        $this->name = $name;
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function __toString()
-    {
-        return $this->name;
-    }
-
-    /**
-     * {@inheritdoc}
+     * @return mixed
      */
     public function getId()
     {
@@ -99,25 +48,15 @@ class PaymentMethod implements PaymentMethodInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $name
      */
-    public function isEnabled()
+    public function setName($name)
     {
-        return $this->enabled;
+        $this->name = $name;
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = (Boolean) $enabled;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getName()
     {
@@ -125,102 +64,10 @@ class PaymentMethod implements PaymentMethodInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
-    public function setName($name)
+    public function __toString()
     {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getGateway()
-    {
-        return $this->gateway;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setGateway($gateway)
-    {
-        $this->gateway = $gateway;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEnvironment()
-    {
-        return $this->environment;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setEnvironment($environment)
-    {
-        $this->environment = $environment;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
+        return (string) $this->name;
     }
 }

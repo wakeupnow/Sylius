@@ -17,7 +17,6 @@
                 {{ form_row(form.availableOn.time, {'label': false}) }}
             </div>
         </div>
-        {{ form_row(form.price) }}
         {{ form_row(form.availableOnDemand) }}
         {{ form_row(form.onHand) }}
     </div>
@@ -50,4 +49,8 @@
         </div>
     </div>
     {{ form_widget(form._token) }}
+</div>
+
+<div class="row" style="padding:50px 20px;">
+    {% include 'SyliusWebBundle:Backend/Product/Form:_prices_collection.html.twig' with {'pricesForm': form.prices } %}
 </div>

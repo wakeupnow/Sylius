@@ -93,7 +93,7 @@ sylius:
       index: Ordini
     payment:
       index: Pagamenti
-    payment_method:
+    payment_gateway:
       index: Metodi di pagamento
     product:
       index: Prodotti
@@ -329,7 +329,7 @@ sylius:
       void: Nullo
     update_header: Modifica pagamento
     updated_at: Ultima modifica
-  payment_method:
+  payment_gateway:
     create: Crea metodo di pagamento
     create_header: Nuovo metodo di pagamento
     enabled: Abilitato?

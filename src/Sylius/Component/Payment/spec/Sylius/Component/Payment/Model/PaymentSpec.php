@@ -37,12 +37,12 @@ class PaymentSpec extends ObjectBehavior
         $this->getId()->shouldReturn(null);
     }
 
-    function it_has_no_payment_method_by_default()
+    function it_has_no_payment_gateway_by_default()
     {
         $this->getMethod()->shouldReturn(null);
     }
 
-    function its_payment_method_is_mutable(PaymentMethodInterface $method)
+    function its_payment_gateway_is_mutable(PaymentMethodInterface $method)
     {
       $this->setMethod($method);
       $this->getMethod()->shouldReturn($method);

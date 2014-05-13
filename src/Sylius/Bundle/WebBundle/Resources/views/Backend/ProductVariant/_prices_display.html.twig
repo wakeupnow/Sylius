@@ -1,0 +1,8 @@
+{% for price in prices %}
+    <div style="margin-bottom:15px;">
+        <b>{{ price.type.name }} {{ price.amount|sylius_price }}</b>:
+        {% for accountType in price.accountTypes %}
+            {{ accountType.name }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    </div>
+{% endfor %}

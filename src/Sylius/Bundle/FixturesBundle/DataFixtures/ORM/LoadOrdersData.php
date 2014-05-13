@@ -41,7 +41,7 @@ class LoadOrdersData extends DataFixture
                 /* @var $item OrderItemInterface */
                 $item = $orderItemRepository->createNew();
                 $item->setVariant($variant);
-                $item->setUnitPrice($variant->getPrice());
+                $item->setUnitPrice(rand(100, 500));
                 $item->setQuantity(rand(1, 5));
 
                 $order->addItem($item);
@@ -96,7 +96,8 @@ class LoadOrdersData extends DataFixture
     {
         /* @var $payment PaymentInterface */
         $payment = $this->getPaymentRepository()->createNew();
-        $payment->setMethod($this->getReference('Sylius.PaymentMethod.Stripe'));
+        $payment->setMethod($this->getPaymentMethodRepository()->findOneBy(['name' => 'Credit Card']));
+        $payment->setGateway($this->getReference('Sylius.PaymentGateway.Propay'));
         $payment->setAmount($order->getTotal());
         $payment->setCurrency($order->getCurrency());
         $payment->setState($this->getPaymentState());

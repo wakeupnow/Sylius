@@ -15,6 +15,7 @@ use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
+use Sylius\Component\Core\Model\PriceInterface;
 
 /**
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
@@ -38,7 +39,7 @@ class ProductVariantSpec extends ObjectBehavior
 
     function it_should_not_have_price_by_default()
     {
-        $this->getPrice()->shouldReturn(null);
+        $this->getPrices()->toArray()->shouldHaveCount(0);
     }
 
     function it_initializes_image_collection_by_default()
@@ -46,20 +47,20 @@ class ProductVariantSpec extends ObjectBehavior
         $this->getImages()->shouldHaveType('Doctrine\Common\Collections\Collection');
     }
 
-    function its_price_should_be_mutable()
+    function its_price_should_be_mutable(PriceInterface $price)
     {
-        $this->setPrice(499)->getPrice()->shouldReturn(499);
+        $this->setPrices([$price])->getPrices()->toArray()->shouldBe([$price]);
     }
 
-    function it_should_inherit_price_from_master_variant(ProductVariantInterface $masterVariant)
+    function it_should_inherit_price_from_master_variant(ProductVariantInterface $masterVariant, PriceInterface $price)
     {
         $masterVariant->isMaster()->willReturn(true);
         $masterVariant->getAvailableOn()->willReturn(new \DateTime('yesterday'));
-        $masterVariant->getPrice()->willReturn(499);
+        $masterVariant->getPrices()->willReturn([$price]);
 
         $this->setDefaults($masterVariant);
 
-        $this->getPrice()->shouldReturn(499);
+        $this->getPrices()->toArray()->shouldReturn([$price]);
     }
 
     function it_implements_Sylius_shippable_interface()

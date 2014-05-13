@@ -122,8 +122,8 @@ sylius:
             index: Static Pages
         payment:
             index: Payments
-        payment_method:
-            index: Payment Methods
+        payment_gateway:
+            index: Payment Gateways
         product:
             index: Products
         promotion:
@@ -209,7 +209,7 @@ sylius:
                 name: Name
         forward: Continue
         payment:
-            header: Payment method
+            header: Payment gateway
         security:
             existing_customer: Existing Customer
             header: Sign in to the store <small>or create new account</small>
@@ -446,16 +446,16 @@ sylius:
             void: Void
         update_header: Editing payment
         updated_at: Last update
-    payment_method:
-        create: Create payment method
-        create_header: New payment method
+    payment_gateway:
+        create: Create payment gateway
+        create_header: New payment gateway
         enabled: Is enabled?
         gateway: gateway
         id: ID
-        index_header: Payment methods
+        index_header: Payment gateways
         name: Name
-        no_results: There are no payment methods configured.
-        update_header: Editing payment method
+        no_results: There are no payment gateways configured.
+        update_header: Editing payment gateway
         updated_at: Last update
     product:
         add_attribute: Add attribute

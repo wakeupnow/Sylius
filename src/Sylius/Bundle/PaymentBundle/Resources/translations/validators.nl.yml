@@ -19,7 +19,7 @@ sylius:
       min_length: 'De creditcard CVV code moet tussen {{ min }} en {{ max }} tekens lang zijn.'
     expiry_year:
       not_blank: Selecteer het vervaljaar.
-  payment_method:
+  payment_gateway:
     gateway:
       not_blank: Selecteer een betaalmethode.
     name:

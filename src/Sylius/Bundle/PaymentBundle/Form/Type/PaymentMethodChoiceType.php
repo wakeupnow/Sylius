@@ -1,23 +1,13 @@
 <?php
 
-/*
- * This file is part of the Sylius package.
- *
- * (c) Paweł Jędrzejewski
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Sylius\Bundle\PaymentBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Base payments category choice type.
- *
- * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ * Class PaymentMethodChoiceType
+ * @package Sylius\Bundle\PaymentBundle\Form\Type
  */
 abstract class PaymentMethodChoiceType extends AbstractType
 {

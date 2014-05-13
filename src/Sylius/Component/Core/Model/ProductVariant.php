@@ -31,11 +31,11 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     protected $sku;
 
     /**
-     * The variant price.
+     * The variant prices.
      *
-     * @var integer
+     * @var PriceInterface[]
      */
-    protected $price;
+    protected $prices;
 
     /**
      * On hold.
@@ -101,6 +101,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
         parent::__construct();
 
         $this->images = new ArrayCollection();
+        $this->prices = new ArrayCollection();
     }
 
     public function __toString()
@@ -141,17 +142,41 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * {@inheritdoc}
      */
-    public function getPrice()
+    public function getPrices()
     {
-        return $this->price;
+        return $this->prices;
     }
 
     /**
-     * {@inheritdoc}
+     * @param PriceInterface $price
      */
-    public function setPrice($price)
+    public function addPrice(PriceInterface $price)
     {
-        $this->price = $price;
+        if (!$this->prices->contains($price)) {
+            $this->prices->add($price);
+        }
+        $price->setVariant($this);
+    }
+
+    /**
+     * @param PriceInterface $price
+     */
+    public function removePrice(PriceInterface $price)
+    {
+        if ($this->prices->contains($price)) {
+            $this->prices->removeElement($price);
+        }
+    }
+
+    /**
+     * @param \ArrayAccess $prices
+     * @return $this
+     */
+    public function setPrices($prices)
+    {
+        foreach ($prices as $price) {
+            $this->addPrice($price);
+        }
 
         return $this;
     }
@@ -237,7 +262,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     {
         parent::setDefaults($masterVariant);
 
-        $this->setPrice($masterVariant->getPrice());
+        $this->setPrices($masterVariant->getPrices());
 
         return $this;
     }

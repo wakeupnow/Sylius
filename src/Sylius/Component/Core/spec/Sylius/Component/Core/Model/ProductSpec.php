@@ -17,6 +17,7 @@ use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
+use Sylius\Component\Core\Model\PriceInterface;
 
 /**
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
@@ -60,10 +61,10 @@ class ProductSpec extends ObjectBehavior
         $this->getTaxons()->shouldReturn($taxons);
     }
 
-    function its_price_is_mutable()
+    function its_price_is_mutable(PriceInterface $price)
     {
-        $this->setPrice(4.99);
-        $this->getPrice()->shouldReturn(4.99);
+        $this->addPrice($price);
+        $this->getPrices()->toArray()->shouldHaveCount(1);
     }
 
     function its_variant_selection_method_is_choice_by_default()

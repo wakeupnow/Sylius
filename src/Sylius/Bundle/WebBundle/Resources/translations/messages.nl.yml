@@ -118,7 +118,7 @@ sylius:
       index: "Statische pagina's"
     payment:
       index: Betalingen
-    payment_method:
+    payment_gateway:
       index: Betaalmethodes
     product:
       index: Producten
@@ -437,7 +437,7 @@ sylius:
       void: Leeg
     update_header: Bewerk betaling
     updated_at: Laatste bijgewerkt
-  payment_method:
+  payment_gateway:
     create: Nieuwe betaalmethode
     create_header: Nieuwe betaalmethode toevoegen
     enabled: Is actief?

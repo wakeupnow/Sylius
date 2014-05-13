@@ -86,8 +86,8 @@ sylius:
       index: sylius.breadcrumb.order.index
     payment:
       index: sylius.breadcrumb.payment.index
-    payment_method:
-      index: sylius.breadcrumb.payment_method.index
+    payment_gateway:
+      index: sylius.breadcrumb.payment_gateway.index
     product:
       index: sylius.breadcrumb.product.index
     promotion:
@@ -323,7 +323,7 @@ sylius:
     no_results: 入金情報が登録されていません。
     update_header: 入金を編集
     updated_at: 最終更新日時
-  payment_method:
+  payment_gateway:
     create: 支払い方法を登録する
     create_header: 支払い方法を登録
     enabled: 有効

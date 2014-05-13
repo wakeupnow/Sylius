@@ -107,7 +107,7 @@ sylius:
       index: Statische Seiten
     payment:
       index: Bezahlungen
-    payment_method:
+    payment_gateway:
       index: Bezahlmethoden
     product:
       index: Produkte
@@ -350,7 +350,7 @@ sylius:
     no_results: Keine Ergebnisse
     update_header: Zahlart editieren
     updated_at: Geändert
-  payment_method:
+  payment_gateway:
     create: Erstellen
     create_header: Zahlart erstellen
     enabled: Aktiv

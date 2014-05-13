@@ -18,7 +18,7 @@ use Symfony\Component\Form\FormInterface;
 
 /**
  * The payment step of checkout.
- * User selects the payment method.
+ * User selects the payment gateway.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

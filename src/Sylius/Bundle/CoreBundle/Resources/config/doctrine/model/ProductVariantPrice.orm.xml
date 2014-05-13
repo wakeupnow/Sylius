@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+
+ This file is part of the Sylius package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Sylius\Component\Core\Model\ProductVariantPrice" table="sylius_product_variant_price">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+
+        <many-to-one field="type" target-entity="Sylius\Component\Core\Model\PriceTypeInterface">
+            <join-column name="type_id" referenced-column-name="id" nullable="false" />
+        </many-to-one>
+
+        <field name="amount" column="amount" type="float" nullable="false" />
+
+        <many-to-one field="variant" target-entity="Sylius\Component\Product\Model\VariantInterface" inversed-by="prices">
+            <join-column name="variant_id" referenced-column-name="id" nullable="false" />
+        </many-to-one>
+
+        <many-to-many field="accountTypes" target-entity="Wun\Shared\DomainModelsBundle\Entity\AccountType">
+            <join-table name="sylius_price_wun_account_type">
+                <join-columns>
+                    <join-column name="price_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="account_type_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+    </mapped-superclass>
+
+</doctrine-mapping>

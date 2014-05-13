@@ -16,10 +16,10 @@ sylius:
             min_length: The credit card's CVV code must be at most than {{ limit }} digits long.
         expiry_year:
             not_blank: Please select the expiration year.
-    payment_method:
+    payment_gateway:
         gateway:
-            not_blank: Please select payment method gateway.
+            not_blank: Please select payment gateway gateway.
         name:
-            max_length: Payment method name must be {{ limit }} characters long or less.
-            min_length: Payment method name must be at least {{ limit }} characters long.
-            not_blank: Please enter payment method name.
+            max_length: Payment gateway name must be {{ limit }} characters long or less.
+            min_length: Payment gateway name must be at least {{ limit }} characters long.
+            not_blank: Please enter payment gateway name.

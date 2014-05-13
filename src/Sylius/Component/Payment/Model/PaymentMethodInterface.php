@@ -11,82 +11,24 @@
 
 namespace Sylius\Component\Payment\Model;
 
-use Sylius\Component\Resource\Model\TimestampableInterface;
-
 /**
- * Payment method interface.
- *
- * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ * Interface PaymentMethodInterface
+ * @package Sylius\Component\Payment\Model
  */
-interface PaymentMethodInterface extends TimestampableInterface
+interface PaymentMethodInterface
 {
     /**
-     * Check whether the payments method is currently enabled.
-     *
-     * @return Boolean
+     * @return mixed
      */
-    public function isEnabled();
+    public function getId();
 
     /**
-     * Enable or disable the payments method.
-     *
-     * @param Boolean $enabled
-     */
-    public function setEnabled($enabled);
-
-    /**
-     * Get payments method name.
-     *
-     * @return string
-     */
-    public function getName();
-
-    /**
-     * Set the name.
-     *
      * @param string $name
      */
     public function setName($name);
 
     /**
-     * Get payment method description.
-     *
      * @return string
      */
-    public function getDescription();
-
-    /**
-     * Set description.
-     *
-     * @param string $description
-     */
-    public function setDescription($description);
-
-    /**
-     * Set the payment gateway to use.
-     *
-     * @return string
-     */
-    public function getGateway();
-
-    /**
-     * Set gateway.
-     *
-     * @param string $gateway
-     */
-    public function setGateway($gateway);
-
-    /**
-     * Get the required app environment.
-     *
-     * @return string
-     */
-    public function getEnvironment();
-
-    /**
-     * Set the environment requirement.
-     *
-     * @param string $environment
-     */
-    public function setEnvironment($environment);
+    public function getName();
 }

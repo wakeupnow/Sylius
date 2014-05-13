@@ -36,7 +36,7 @@ class PurchaseStep extends CheckoutStep
         $this->dispatchCheckoutEvent(SyliusCheckoutEvents::SHIPPING_INITIALIZE, $order);
 
         $captureToken = $this->getTokenFactory()->createCaptureToken(
-            $order->getPayment()->getMethod()->getGateway(),
+            $order->getPayment()->getMethod()->getName(),
             $order,
             'sylius_checkout_forward',
             array('stepName' => $this->getName())

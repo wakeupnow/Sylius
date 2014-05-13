@@ -32,9 +32,12 @@ class ProductVariantType extends BaseVariantType
             ->add('sku', 'text', array(
                 'label' => 'sylius.form.variant.sku'
             ))
-            ->add('price', 'sylius_money', array(
-                'label' => 'sylius.form.variant.price'
-            ))
+            ->add('prices', 'collection', [
+                'type'         => new ProductVariantPriceType(),
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ])
             ->add('availableOnDemand', 'checkbox', array(
                 'label' => 'sylius.form.variant.available_on_demand'
             ))

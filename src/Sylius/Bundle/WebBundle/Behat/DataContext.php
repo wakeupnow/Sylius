@@ -29,7 +29,7 @@ use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Sylius\Component\Core\Model\UserInterface;
 use Sylius\Component\Money\Model\ExchangeRateInterface;
 use Sylius\Component\Order\Model\OrderInterface;
-use Sylius\Component\Payment\Model\PaymentMethodInterface;
+use Sylius\Component\Payment\Model\PaymentGatewayInterface;
 use Sylius\Component\Shipping\Calculator\DefaultCalculators;
 use Sylius\Component\Shipping\Model\RuleInterface;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
@@ -281,7 +281,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
             /* @var $item OrderItem */
             $item = $orderItemRepository->createNew();
             $item->setVariant($product->getMasterVariant());
-            $item->setUnitPrice($product->getMasterVariant()->getPrice());
+            $item->setUnitPrice(rand(100, 500));
             $item->setQuantity($data['quantity']);
 
             $order->addItem($item);
@@ -441,7 +441,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
             $product = $repository->createNew();
             $product->setName(trim($data['name']));
             $product->setDescription('...');
-            $product->getMasterVariant()->setPrice($data['price'] * 100);
+//            $product->getMasterVariant()->setPrice($data['price'] * 100);
 
             if (!empty($data['options'])) {
                 foreach (explode(',', $data['options']) as $option) {
@@ -495,7 +495,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
         $this->getService('sylius.generator.product_variant')->generate($product);
 
         foreach ($product->getVariants() as $variant) {
-            $variant->setPrice($product->getMasterVariant()->getPrice());
+//            $variant->setPrice($product->getMasterVariant()->getPrice());
         }
 
         $manager = $this->getEntityManager();
@@ -875,17 +875,17 @@ class DataContext extends BehatContext implements KernelAwareInterface
     }
 
     /**
-     * @Given /^there are payment methods:$/
-     * @Given /^there are following payment methods:$/
-     * @Given /^the following payment methods exist:$/
+     * @Given /^there are payment gateways:$/
+     * @Given /^there are following payment gateways:$/
+     * @Given /^the following payment gateways exist:$/
      */
-    public function thereArePaymentMethods(TableNode $table)
+    public function thereArePaymentGateways(TableNode $table)
     {
         $manager = $this->getEntityManager();
-        $repository = $this->getRepository('payment_method');
+        $repository = $this->getRepository('payment_gateway');
 
         foreach ($table->getHash() as $data) {
-            /* @var $method PaymentMethodInterface */
+            /* @var $method PaymentGatewayInterface */
             $method = $repository->createNew();
             $method->setName(trim($data['name']));
             $method->setGateway(trim($data['gateway']));

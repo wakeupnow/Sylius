@@ -2,7 +2,7 @@ Payment Component [![Build status...](https://secure.travis-ci.org/Sylius/Sylius
 =================
 
 Sylius Payment component **does not** provide any gateways. It is only a raw
-architecture for managing payments and payment methods. It can be integrated
+architecture for managing payments and payment gateways. It can be integrated
 with many different services, but Sylius uses [Payum](http://payum.forma-dev.com/) by default.
 
 Sylius

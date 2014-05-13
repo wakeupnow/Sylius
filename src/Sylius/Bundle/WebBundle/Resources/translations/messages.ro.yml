@@ -133,7 +133,7 @@ sylius:
     index_header: Plăți
     method: Mod
     updated_at: Modificat
-  payment_method:
+  payment_gateway:
     index_header: Metode de plată
     name: Nume
     updated_at: Modificat

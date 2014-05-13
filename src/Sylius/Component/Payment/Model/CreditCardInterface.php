@@ -14,7 +14,7 @@ namespace Sylius\Component\Payment\Model;
 use Sylius\Component\Resource\Model\TimestampableInterface;
 
 /**
- * Payment method interface.
+ * Payment gateway interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */

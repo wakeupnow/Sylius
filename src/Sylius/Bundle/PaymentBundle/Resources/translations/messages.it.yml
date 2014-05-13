@@ -22,7 +22,7 @@ sylius:
         processing: In elaborazione
         unknown: Sconosciuto
         void: Nullo
-    payment_method:
+    payment_gateway:
       description: Descrizione
       enabled: Abilitato?
       name: Nome

@@ -18,7 +18,7 @@ sylius:
     checkout:
       addressing:
         different_billing_address: Andere Rechnungsadresse benutzen?
-      payment_method: Zahlungsmethode
+      payment_gateway: Zahlungsmethode
       shipping_method: Versandarten
     group:
       roles: Rollen

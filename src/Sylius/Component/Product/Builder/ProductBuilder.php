@@ -25,7 +25,6 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
  * $this->get('sylius.product_builder')
  *     ->create('Github mug')
  *     ->setDescription("Coffee. Tea. Coke. Water. Let's face it — humans need to drink liquids")
- *     ->setPrice(1200)
  *     ->addAttribute('collection', 2013)
  *     ->save()
  * ;

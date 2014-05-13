@@ -171,19 +171,29 @@ class Product extends BaseProduct implements ProductInterface
     /**
      * {@inheritdoc}
      */
-    public function getPrice()
+    public function getPrices()
     {
-        return $this->getMasterVariant()->getPrice();
+        return $this->getMasterVariant()->getPrices();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setPrice($price)
+    public function addPrice(PriceInterface $price)
     {
-        $this->getMasterVariant()->setPrice($price);
+        if (!$this->getMasterVariant()->getPrices()->contains($price)) {
+            $this->getMasterVariant()->getPrices()->add($price);
+        }
+    }
 
-        return $this;
+    /**
+     * {@inheritdoc}
+     */
+    public function removePrice(PriceInterface $price)
+    {
+        if ($this->getMasterVariant()->getPrices()->contains($price)) {
+            $this->getMasterVariant()->getPrices()->removeElement($price);
+        }
     }
 
     /**

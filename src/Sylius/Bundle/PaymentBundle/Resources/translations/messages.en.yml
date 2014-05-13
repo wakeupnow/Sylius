@@ -10,6 +10,7 @@ sylius:
         payment:
             amount: Payment amount
             method: Payment method
+            gateway: Payment gateway
             state:
                 0: Payment state
                 checkout: Checkout
@@ -21,7 +22,7 @@ sylius:
                 unknown: Unknown
                 void: Void
                 cancelled: Cancelled
-        payment_method:
+        payment_gateway:
             description: Description
             enabled: Enabled?
             gateway: Gateway

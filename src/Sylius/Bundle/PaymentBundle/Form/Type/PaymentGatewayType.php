@@ -16,11 +16,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Payment method form type.
+ * Payment gateway form type.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class PaymentMethodType extends AbstractType
+class PaymentGatewayType extends AbstractType
 {
     /**
      * Data class.
@@ -55,18 +55,18 @@ class PaymentMethodType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'label' => 'sylius.form.payment_method.name'
+                'label' => 'sylius.form.payment_gateway.name'
             ))
             ->add('description', 'textarea', array(
                 'required' => false,
-                'label'    => 'sylius.form.payment_method.description'
+                'label'    => 'sylius.form.payment_gateway.description'
             ))
             ->add('gateway', 'sylius_payment_gateway_choice', array(
-                'label' => 'sylius.form.payment_method.gateway'
+                'label' => 'sylius.form.payment_gateway.gateway'
             ))
             ->add('enabled', 'checkbox', array(
                 'required' => false,
-                'label'    => 'sylius.form.payment_method.enabled'
+                'label'    => 'sylius.form.payment_gateway.enabled'
             ))
         ;
     }
@@ -89,6 +89,6 @@ class PaymentMethodType extends AbstractType
      */
     public function getName()
     {
-        return 'sylius_payment_method';
+        return 'sylius_payment_gateway';
     }
 }

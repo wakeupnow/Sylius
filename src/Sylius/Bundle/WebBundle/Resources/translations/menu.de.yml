@@ -16,7 +16,7 @@ sylius:
         new_promotion: Neue Aktion
         options: Produktoptionen verwalten
         orders: Aktuelle Bestellungen
-        payment_methods: Bezahlmethoden
+        payment_gateways: Bezahlmethoden
         payments: Zahlungen
         products: Produkte
         promotions: Aktionen
@@ -47,7 +47,7 @@ sylius:
         options: Produktoptionen verwalten
         orders: Aktuelle Bestellungen
         pages: Seiten
-        payment_methods: Bezahlmethoden
+        payment_gateways: Bezahlmethoden
         payments: Zahlungen
         products: Produkte
         promotions: Aktionen

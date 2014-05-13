@@ -1,0 +1,8 @@
+.price-item-form-wrapper {
+    max-width: 700px;
+    margin-bottom: 90px;
+}
+
+.price-item-form-wrapper a.remove {
+    float: right;
+}

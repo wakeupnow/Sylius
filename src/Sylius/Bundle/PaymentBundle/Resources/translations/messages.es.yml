@@ -23,7 +23,7 @@ sylius:
         processing: Procesando
         unknown: Desconocido
         void: Vacío
-    payment_method:
+    payment_gateway:
       description: Descripción
       enabled: Activado?
       gateway: Puerta de Enlace
