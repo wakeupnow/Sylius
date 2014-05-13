@@ -19,6 +19,7 @@
     <parameters>
         <parameter key="sylius.form.type.payment_gateway_choice.class">Sylius\Bundle\PaymentBundle\Form\Type\PaymentGatewayChoiceType</parameter>
         <parameter key="sylius.form.type.credit_card.class">Sylius\Bundle\PaymentBundle\Form\Type\CreditCardType</parameter>
+        <parameter key="sylius.listener.payment.class">Sylius\Bundle\PaymentBundle\EventListener\PaymentListener</parameter>
     </parameters>
 
     <services>
@@ -41,6 +42,11 @@
             <argument>%sylius.model.credit_card.class%</argument>
             <argument>%sylius.validation_group.credit_card%</argument>
             <tag name="form.type" alias="sylius_credit_card" />
+        </service>
+
+        <service id="sylius.listener.payment" class="%sylius.listener.payment.class%">
+            <argument type="service" id="service_container" />
+            <tag name="doctrine.event_listener" event="prePersist" />
         </service>
     </services>
 
