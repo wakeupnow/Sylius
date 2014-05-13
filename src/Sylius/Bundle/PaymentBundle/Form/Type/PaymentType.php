@@ -12,12 +12,9 @@
 namespace Sylius\Bundle\PaymentBundle\Form\Type;
 
 use Sylius\Component\Payment\Model\PaymentState;
-use Sylius\Component\Payment\Model\PaymentInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 
 /**
  * Payment form type.
@@ -72,15 +69,6 @@ class PaymentType extends AbstractType
                 'label' => 'sylius.form.payment.state',
                 'class' => 'Sylius\Component\Payment\Model\PaymentState'
             ))
-            ->addEventListener(FormEvents::POST_SET_DATA, function(FormEvent $event) {
-                /** @var PaymentInterface $payment */
-                $payment = $event->getData();
-                $form = $event->getForm();
-
-                if ($form->get('gateway')->getViewData() == '') {
-                    $payment->removeGateway(null);
-                }
-            })
         ;
     }
 
