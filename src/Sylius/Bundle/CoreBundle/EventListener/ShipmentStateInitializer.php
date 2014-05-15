@@ -24,9 +24,11 @@ class ShipmentStateInitializer
 
         $em = $args->getEntityManager();
 
-        // init shipment state
-        $state = $em->getRepository('Sylius\Component\Shipping\Model\ShipmentState')
-                    ->findOneBy(['name' => ShipmentStateInterface::CHECKOUT]);
-        $shipment->setState($state);
+        // init shipment state if it's null
+        if (is_null($shipment->getState())) {
+            $state = $em->getRepository('Sylius\Component\Shipping\Model\ShipmentState')
+                        ->findOneBy(['name' => ShipmentStateInterface::CHECKOUT]);
+            $shipment->setState($state);
+        }
     }
 }
