@@ -24,14 +24,14 @@ class OrderListener
         $em = $args->getEntityManager();
 
         // init payment state if it's null
-        if ($order->getPaymentState()) {
+        if (is_null($order->getPaymentState())) {
             $paymentState = $em->getRepository('Sylius\Component\Payment\Model\PaymentState')
                                ->findOneBy(['name' => PaymentStateInterface::CREATED]);
             $order->setPaymentState($paymentState);
         }
 
         // init shipping state if it's null
-        if ($order->getShippingState()) {
+        if (is_null($order->getShippingState())) {
             $shippingState = $em->getRepository('Sylius\Component\Core\Model\OrderShippingState')
                                 ->findOneBy(['name' => OrderShippingStateInterface::CHECKOUT]);
             $order->setShippingState($shippingState);
