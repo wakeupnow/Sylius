@@ -15,6 +15,7 @@ use Sylius\Component\Inventory\Model\InventoryUnit as BaseInventoryUnit;
 use Sylius\Component\Shipping\Model\ShipmentState;
 use Sylius\Component\Shipping\Model\ShipmentInterface as BaseShipmentInterface;
 use Sylius\Component\Shipping\Model\ShippableInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Custom inventory unit class.
@@ -56,6 +57,8 @@ class InventoryUnit extends BaseInventoryUnit implements InventoryUnitInterface
      * Creation time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -63,6 +66,8 @@ class InventoryUnit extends BaseInventoryUnit implements InventoryUnitInterface
      * Last update time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
 

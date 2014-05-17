@@ -13,6 +13,7 @@ namespace Sylius\Component\Order\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Model for orders.
@@ -46,6 +47,8 @@ class Order implements OrderInterface
      * Items in order.
      *
      * @var Collection|OrderItemInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Order\Model\OrderItem>")
      */
     protected $items;
 
@@ -60,6 +63,8 @@ class Order implements OrderInterface
      * Adjustments.
      *
      * @var Collection|AdjustmentInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Order\Model\Adjustment>")
      */
     protected $adjustments;
 
@@ -82,6 +87,8 @@ class Order implements OrderInterface
      * Whether order was confirmed.
      *
      * @var Boolean
+     *
+     * @Serializer\Type("boolean")
      */
     protected $confirmed = true;
 
@@ -96,6 +103,8 @@ class Order implements OrderInterface
      * Creation time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -103,6 +112,8 @@ class Order implements OrderInterface
      * Modification time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
 
@@ -110,6 +121,8 @@ class Order implements OrderInterface
      * Deletion time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $deletedAt;
 
