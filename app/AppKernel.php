@@ -23,7 +23,8 @@ class AppKernel extends SyliusKernel
         return array_merge(parent::registerBundles(), [
             new \Wun\Shared\DomainModelsBundle\WunSharedDomainModelsBundle(),
             new \Wun\Shared\DomainModelsOrmBundle\WunSharedDomainModelsOrmBundle(),
-	    new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle()
+	        new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
+            new Sylius\Bundle\FulfillmentBundle\SyliusFulfillmentBundle()
         ]);
     }
 

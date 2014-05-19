@@ -92,6 +92,9 @@ sylius_payment:
         be2bill: Be2Bill
         gpg: GPG
 
+sylius_fulfillment:
+    driver: doctrine/orm
+
 sylius_payum: ~
 
 sylius_addressing:

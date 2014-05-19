@@ -2964,12 +2964,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/whiteoctober/Pagerfanta.git",
-                "reference": "869e4979a6c37a1300a96698a4a1ddebdef30c34"
+                "reference": "65d5447748865e8e6d48e810dc25ab5b4c699269"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/whiteoctober/Pagerfanta/zipball/869e4979a6c37a1300a96698a4a1ddebdef30c34",
-                "reference": "869e4979a6c37a1300a96698a4a1ddebdef30c34",
+                "url": "https://api.github.com/repos/whiteoctober/Pagerfanta/zipball/65d5447748865e8e6d48e810dc25ab5b4c699269",
+                "reference": "65d5447748865e8e6d48e810dc25ab5b4c699269",
                 "shasum": ""
             },
             "require": {
@@ -3023,7 +3023,7 @@
                 "paginator",
                 "paging"
             ],
-            "time": "2014-05-15 16:47:31"
+            "time": "2014-05-16 15:00:59"
         },
         {
             "name": "paypal/rest-api-sdk-php",
@@ -4917,16 +4917,16 @@
         },
         {
             "name": "willdurand/negotiation",
-            "version": "1.3.2",
+            "version": "1.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Negotiation.git",
-                "reference": "cda64e26a980f433ce98200ba1b2301850489aab"
+                "reference": "a98fb6b9808610c1aa326c736893d3d77d9383b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/cda64e26a980f433ce98200ba1b2301850489aab",
-                "reference": "cda64e26a980f433ce98200ba1b2301850489aab",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/a98fb6b9808610c1aa326c736893d3d77d9383b6",
+                "reference": "a98fb6b9808610c1aa326c736893d3d77d9383b6",
                 "shasum": ""
             },
             "require": {
@@ -4963,7 +4963,7 @@
                 "header",
                 "negotiation"
             ],
-            "time": "2014-02-26 13:56:25"
+            "time": "2014-05-16 12:34:51"
         }
     ],
     "packages-dev": [

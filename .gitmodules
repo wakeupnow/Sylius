@@ -1,6 +1,6 @@
 [submodule "src/Wun/Shared/DomainModelsBundle"]
 	path = src/Wun/Shared/DomainModelsBundle
-	url = https://github.com/wakeupnow/orchid-desis.git
+	url = git@github.com:wakeupnow/orchid-desis.git
 [submodule "src/Wun/Shared/DomainModelsOrmBundle"]
 	path = src/Wun/Shared/DomainModelsOrmBundle
-	url = https://github.com/wakeupnow/orchid-rrhaphy.git
+	url = git@github.com:wakeupnow/orchid-rrhaphy.git
