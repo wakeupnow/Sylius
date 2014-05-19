@@ -13,7 +13,15 @@ namespace Sylius\Component\Core\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Taxonomy\Model\Taxon as BaseTaxon;
+use JMS\Serializer\Annotation as Serializer;
 
+/**
+ * Class Taxon
+ *
+ * @package Sylius\Component\Core\Model
+ *
+ * @Serializer\ExclusionPolicy("all")
+ */
 class Taxon extends BaseTaxon implements ImageInterface, TaxonInterface
 {
     /**
@@ -23,6 +31,9 @@ class Taxon extends BaseTaxon implements ImageInterface, TaxonInterface
 
     /**
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $path;
 

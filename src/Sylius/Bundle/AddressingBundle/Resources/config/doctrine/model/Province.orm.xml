@@ -22,6 +22,9 @@
 
         <many-to-one field="country" target-entity="Sylius\Component\Addressing\Model\CountryInterface" inversed-by="provinces">
             <join-column name="country_id" referenced-column-name="id" />
+            <cascade>
+                <cascade-persist />
+            </cascade>
         </many-to-one>
     </mapped-superclass>
 

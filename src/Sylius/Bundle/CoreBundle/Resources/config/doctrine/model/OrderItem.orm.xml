@@ -19,6 +19,9 @@
     <mapped-superclass name="Sylius\Component\Core\Model\OrderItem" table="sylius_order_item">
         <many-to-one field="variant" target-entity="Sylius\Component\Product\Model\VariantInterface">
             <join-column name="variant_id" referenced-column-name="id" nullable="false" />
+            <cascade>
+                <cascade-persist />
+            </cascade>
         </many-to-one>
 
         <one-to-many field="inventoryUnits" target-entity="Sylius\Component\Inventory\Model\InventoryUnitInterface" mapped-by="orderItem" orphan-removal="true">

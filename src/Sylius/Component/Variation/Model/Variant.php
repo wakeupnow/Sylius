@@ -26,6 +26,8 @@ class Variant implements VariantInterface
      * Variant id.
      *
      * @var mixed
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -33,6 +35,8 @@ class Variant implements VariantInterface
      * Is master?
      *
      * @var Boolean
+     *
+     * @Serializer\Type("boolean")
      */
     protected $master = false;
 
@@ -40,6 +44,8 @@ class Variant implements VariantInterface
      * Variant presentation.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $presentation;
 

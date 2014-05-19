@@ -24,6 +24,7 @@ class Locale implements LocaleInterface
      * Id
      *
      * @var integer
+     *
      * @Serializer\Type("integer")
      */
     protected $id;
@@ -32,6 +33,7 @@ class Locale implements LocaleInterface
      * Code.
      *
      * @var string
+     *
      * @Serializer\Type("string")
      */
     protected $code;
@@ -40,6 +42,7 @@ class Locale implements LocaleInterface
      * Activation status.
      *
      * @var Boolean
+     *
      * @Serializer\Type("boolean")
      */
     protected $enabled = true;

@@ -13,6 +13,7 @@ namespace Sylius\Component\Order\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Model for order line items.
@@ -25,6 +26,8 @@ class OrderItem implements OrderItemInterface
      * Item id.
      *
      * @var mixed
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -32,6 +35,8 @@ class OrderItem implements OrderItemInterface
      * Order.
      *
      * @var OrderInterface
+     *
+     * @Serializer\Type("Sylius\Component\Order\Model\Order")
      */
     protected $order;
 
@@ -39,6 +44,8 @@ class OrderItem implements OrderItemInterface
      * Quantity.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $quantity = 1;
 
@@ -46,6 +53,8 @@ class OrderItem implements OrderItemInterface
      * Unit price.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $unitPrice = 0;
 
@@ -53,6 +62,8 @@ class OrderItem implements OrderItemInterface
      * Total adjustments.
      *
      * @var Collection|AdjustmentInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Order\Model\Adjustment>")
      */
     protected $adjustments;
 
@@ -60,6 +71,8 @@ class OrderItem implements OrderItemInterface
      * Adjustments total.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $adjustmentsTotal = 0;
 
@@ -67,6 +80,8 @@ class OrderItem implements OrderItemInterface
      * Order item total.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $total = 0;
 

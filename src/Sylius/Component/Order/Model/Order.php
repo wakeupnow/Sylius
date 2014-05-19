@@ -26,6 +26,8 @@ class Order implements OrderInterface
      * Id.
      *
      * @var mixed
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -33,6 +35,8 @@ class Order implements OrderInterface
      * Completion time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $completedAt;
 
@@ -40,6 +44,8 @@ class Order implements OrderInterface
      * Order number.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $number;
 
@@ -56,6 +62,8 @@ class Order implements OrderInterface
      * Items total.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $itemsTotal = 0;
 
@@ -72,6 +80,8 @@ class Order implements OrderInterface
      * Adjustments total.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $adjustmentsTotal = 0;
 
@@ -80,6 +90,8 @@ class Order implements OrderInterface
      * Items total + adjustments total.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $total = 0;
 
@@ -96,6 +108,8 @@ class Order implements OrderInterface
      * Confirmation token.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $confirmationToken;
 

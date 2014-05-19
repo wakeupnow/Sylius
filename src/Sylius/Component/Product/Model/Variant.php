@@ -13,6 +13,7 @@ namespace Sylius\Component\Product\Model;
 
 use Sylius\Component\Variation\Model\Variant as BaseVariant;
 use Sylius\Component\Variation\Model\VariantInterface as BaseVariantInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Model for product variants.
@@ -25,6 +26,8 @@ class Variant extends BaseVariant implements VariantInterface
      * Available on.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $availableOn;
 
