@@ -19,6 +19,8 @@ use JMS\Serializer\Annotation as Serializer;
  * Model for orders.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Order implements OrderInterface
 {
@@ -27,6 +29,7 @@ class Order implements OrderInterface
      *
      * @var mixed
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $id;
@@ -36,6 +39,7 @@ class Order implements OrderInterface
      *
      * @var \DateTime
      *
+     * @Serializer\Expose
      * @Serializer\Type("DateTime")
      */
     protected $completedAt;
@@ -45,6 +49,7 @@ class Order implements OrderInterface
      *
      * @var string
      *
+     * @Serializer\Expose
      * @Serializer\Type("string")
      */
     protected $number;
@@ -53,15 +58,6 @@ class Order implements OrderInterface
      * Items in order.
      *
      * @var Collection|OrderItemInterface[]
-     *
-     * WARNING
-     * -------------------------------------
-     * The "array" type is used instead of "ArrayCollection<Entity>" because of this serializer issue:
-     * https://github.com/schmittjoh/JMSSerializerBundle/issues/350 ArrayCollection causes this error when
-     * serializing the Sylius\Component\Cart\Model\Cart superclass
-     * -------------------------------------
-     *
-     * @Serializer\Type("array")
      */
     protected $items;
 
@@ -70,6 +66,7 @@ class Order implements OrderInterface
      *
      * @var integer
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $itemsTotal = 0;
@@ -78,15 +75,6 @@ class Order implements OrderInterface
      * Adjustments.
      *
      * @var Collection|AdjustmentInterface[]
-     *
-     * WARNING
-     * -------------------------------------
-     * The "array" type is used instead of "ArrayCollection<Entity>" because of this serializer issue:
-     * https://github.com/schmittjoh/JMSSerializerBundle/issues/350 ArrayCollection causes this error when
-     * serializing the Sylius\Component\Cart\Model\Cart superclass
-     * -------------------------------------
-     *
-     * @Serializer\Type("array")
      */
     protected $adjustments;
 
@@ -95,6 +83,7 @@ class Order implements OrderInterface
      *
      * @var integer
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $adjustmentsTotal = 0;
@@ -105,6 +94,7 @@ class Order implements OrderInterface
      *
      * @var integer
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $total = 0;
@@ -114,6 +104,7 @@ class Order implements OrderInterface
      *
      * @var Boolean
      *
+     * @Serializer\Expose
      * @Serializer\Type("boolean")
      */
     protected $confirmed = true;
@@ -123,6 +114,7 @@ class Order implements OrderInterface
      *
      * @var string
      *
+     * @Serializer\Expose
      * @Serializer\Type("string")
      */
     protected $confirmationToken;
@@ -131,8 +123,6 @@ class Order implements OrderInterface
      * Creation time.
      *
      * @var \DateTime
-     *
-     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -140,8 +130,6 @@ class Order implements OrderInterface
      * Modification time.
      *
      * @var \DateTime
-     *
-     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
 
@@ -149,8 +137,6 @@ class Order implements OrderInterface
      * Deletion time.
      *
      * @var \DateTime
-     *
-     * @Serializer\Type("DateTime")
      */
     protected $deletedAt;
 
@@ -158,8 +144,6 @@ class Order implements OrderInterface
      * State
      *
      * @var integer
-     *
-     * @Serializer\Type("integer")
      */
     protected $state = OrderInterface::STATE_CART;
 

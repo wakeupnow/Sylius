@@ -63,7 +63,7 @@ class Variant implements VariantInterface
      *
      * @var Collection|OptionValueInterface[]
      *
-     * @Serializer\Type("ArrayCollection<Sylius\Component\Variant\Model\OptionValue>")
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\OptionValue>")
      */
     protected $options;
 
