@@ -19,6 +19,10 @@
     <mapped-superclass name="Sylius\Component\Cart\Model\Cart" table="sylius_order">
         <field name="expiresAt" column="expires_at" type="datetime" />
         <field name="token" column="token" type="string" nullable="true" />
+
+        <many-to-one field="user" target-entity="Sylius\Component\Core\Model\UserInterface" inversed-by="orders">
+            <join-column name="user_id" referenced-column-name="id" nullable="true" />
+        </many-to-one>
     </mapped-superclass>
 
 </doctrine-mapping>

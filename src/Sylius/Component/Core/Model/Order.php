@@ -16,7 +16,6 @@ use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Addressing\Model\AddressInterface;
 use Sylius\Component\Cart\Model\Cart;
 use Sylius\Component\Order\Model\AdjustmentInterface;
-use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Sylius\Component\Promotion\Model\CouponInterface;
 use Sylius\Component\Promotion\Model\PromotionInterface;
@@ -29,13 +28,6 @@ use Sylius\Component\Payment\Model\PaymentStateInterface;
  */
 class Order extends Cart implements OrderInterface
 {
-    /**
-     * User.
-     *
-     * @var UserInterface
-     */
-     protected $user;
-
     /**
      * Order shipping address.
      *
@@ -109,24 +101,6 @@ class Order extends Cart implements OrderInterface
 
         $this->shipments = new ArrayCollection();
         $this->promotions = new ArrayCollection();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUser(UserInterface $user)
-    {
-        $this->user = $user;
-
-        return $this;
     }
 
     /**
