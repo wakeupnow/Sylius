@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ This file is part of the Sylius package.
+
+ (c) Wun
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <mapped-superclass name="Sylius\Component\AutoPay\Model\AutoPay" table="sylius_autoPay">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="nextDate" column="next_date" type="date" />
+
+        <many-to-one field="product" target-entity="Sylius\Component\Product\Model\ProductInterface">
+            <join-column name="product_id" referenced-column-name="id" />
+        </many-to-one>
+        <many-to-one field="order" target-entity="Sylius\Component\Order\Model\OrderInterface">
+            <join-column name="order_id" referenced-column-name="id" />
+        </many-to-one>
+        <many-to-one field="interval" target-entity="Sylius\Component\AutoPay\Model\Interval">
+            <join-column name="interval_id" referenced-column-name="id" />
+        </many-to-one>
+
+        
+        <field name="createdAt" column="created_at" type="datetime">
+            <gedmo:timestampable on="create"/>
+        </field>
+        <field name="updatedAt" column="updated_at" type="datetime" nullable="true">
+            <gedmo:timestampable on="update"/>
+        </field>
+    </mapped-superclass>
+
+</doctrine-mapping>

@@ -291,6 +291,12 @@ class BackendMenuBuilder extends MenuBuilder
             'labelAttributes' => array('icon' => 'glyphicon glyphicon-cog'),
         ))->setLabel($this->translate(sprintf('sylius.backend.menu.%s.shipping_methods', $section)));
 
+        //TODO: Have to add here interval route.
+        $child->addChild('intervals', array(
+            'route' => 'sylius_backend_interval_index',
+            'labelAttributes' => array('icon' => 'glyphicon glyphicon-cog'),
+        ))->setLabel($this->translate(sprintf('sylius.backend.menu.%s.intervals', $section)));
+
         $child->addChild('countries', array(
             'route' => 'sylius_backend_country_index',
             'labelAttributes' => array('icon' => 'glyphicon glyphicon-flag'),
