@@ -54,7 +54,14 @@ class Order implements OrderInterface
      *
      * @var Collection|OrderItemInterface[]
      *
-     * @Serializer\Type("ArrayCollection<Sylius\Component\Order\Model\OrderItem>")
+     * WARNING
+     * -------------------------------------
+     * The "array" type is used instead of "ArrayCollection<Entity>" because of this serializer issue:
+     * https://github.com/schmittjoh/JMSSerializerBundle/issues/350 ArrayCollection causes this error when
+     * serializing the Sylius\Component\Cart\Model\Cart superclass
+     * -------------------------------------
+     *
+     * @Serializer\Type("array")
      */
     protected $items;
 
@@ -72,7 +79,14 @@ class Order implements OrderInterface
      *
      * @var Collection|AdjustmentInterface[]
      *
-     * @Serializer\Type("ArrayCollection<Sylius\Component\Order\Model\Adjustment>")
+     * WARNING
+     * -------------------------------------
+     * The "array" type is used instead of "ArrayCollection<Entity>" because of this serializer issue:
+     * https://github.com/schmittjoh/JMSSerializerBundle/issues/350 ArrayCollection causes this error when
+     * serializing the Sylius\Component\Cart\Model\Cart superclass
+     * -------------------------------------
+     *
+     * @Serializer\Type("array")
      */
     protected $adjustments;
 
@@ -144,6 +158,8 @@ class Order implements OrderInterface
      * State
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $state = OrderInterface::STATE_CART;
 

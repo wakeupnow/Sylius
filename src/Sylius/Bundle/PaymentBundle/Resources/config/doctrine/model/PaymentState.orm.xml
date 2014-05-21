@@ -18,7 +18,7 @@
             <generator strategy="AUTO" />
         </id>
 
-        <field name="name" column="name" type="string" nullable="false" unique="true" />
+        <field name="name" column="name" type="string" nullable="false" />
 
         <one-to-many field="payments" target-entity="Sylius\Component\Payment\Model\Payment" mapped-by="state">
             <cascade>

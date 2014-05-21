@@ -12,6 +12,7 @@
 namespace Sylius\Component\Cart\Model;
 
 use Sylius\Component\Order\Model\Order;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Model for carts.
@@ -26,11 +27,15 @@ class Cart extends Order implements CartInterface
      * Expiration time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $expiresAt;
 
     /**
      * @var string A token is used to identify carts
+     *
+     * @Serializer\Type("string")
      */
     protected $token;
 
