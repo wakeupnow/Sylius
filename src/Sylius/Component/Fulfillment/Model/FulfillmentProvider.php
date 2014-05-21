@@ -10,6 +10,7 @@
  */
 
 namespace Sylius\Component\Fulfillment\Model;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Model for Fulfillment Providers.
@@ -56,6 +57,13 @@ class FulfillmentProvider implements FulfillmentProviderInterface
     protected $interval;
 
     /**
+     * Provider Parameters.
+     *
+     * @var ArrayCollection
+     */
+    protected $parameters;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -64,7 +72,7 @@ class FulfillmentProvider implements FulfillmentProviderInterface
     }
 
     /**
-     * @param int FileType
+     * @param int $fileType
      */
     public function setFileType($fileType)
     {
@@ -125,6 +133,22 @@ class FulfillmentProvider implements FulfillmentProviderInterface
     public function getProtocol()
     {
         return $this->protocol;
+    }
+
+    /**
+     * @param ArrayCollection $parameters
+     */
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 
 

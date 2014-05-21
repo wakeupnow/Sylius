@@ -2,6 +2,7 @@
 
 namespace Sylius\Bundle\FulfillmentBundle\DependencyInjection;
 
+use Sylius\Bundle\ResourceBundle\DependencyInjection\AbstractResourceExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -12,17 +13,25 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class SyliusFulfillmentExtension extends Extension
+class SyliusFulfillmentExtension extends AbstractResourceExtension
 {
     /**
      * {@inheritDoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    /*public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $classes = $config['classes'];
+        $container->setParameter( 'sylius.model.file_type.class', $classes['fulfillment']['model']);
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+    }*/
+
+    public function load(array $config, ContainerBuilder $container)
+    {
+        $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS /*| self::CONFIGURE_VALIDATORS*/);
     }
 }

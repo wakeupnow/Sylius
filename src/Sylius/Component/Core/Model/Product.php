@@ -14,6 +14,7 @@ namespace Sylius\Component\Core\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Addressing\Model\ZoneInterface;
+use Sylius\Component\Fulfillment\Model\FulfillmentProvider;
 use Sylius\Component\Product\Model\Product as BaseProduct;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
@@ -78,6 +79,13 @@ class Product extends BaseProduct implements ProductInterface
      * @var ZoneInterface
      */
     protected $restrictedZone;
+
+    /**
+     * Fulfillment Provider.
+     *
+     * @var FulfillmentProvider
+     */
+    protected $fulfillmentProvider;
 
     /**
      * Constructor.
@@ -283,6 +291,24 @@ class Product extends BaseProduct implements ProductInterface
     {
         return $this->getMasterVariant()->getImages()->first();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFulfillmentProvider($fulfillmentProvider)
+    {
+        $this->fulfillmentProvider = $fulfillmentProvider;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFulfillmentProvider()
+    {
+        return $this->fulfillmentProvider;
+    }
+
+
 
     /**
      * {@inheritdoc}

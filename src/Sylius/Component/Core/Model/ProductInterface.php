@@ -144,4 +144,17 @@ interface ProductInterface extends BaseProductInterface, PriceableInterface, Tax
      * @return ImageInterface
      */
     public function getImage();
+
+    /**
+     * Get fulfillment providers.
+     *
+     * @return
+     */
+    public function getFulfillmentProvider();
+
+    /**
+     * Set fulfillment provider.
+     *
+     */
+    public function setFulfillmentProvider($fulfillmentProvider);
 }

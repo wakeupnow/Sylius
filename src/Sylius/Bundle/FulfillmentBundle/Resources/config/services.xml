@@ -4,17 +4,25 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="sylius_fulfillment.example.class">Sylius\Bundle\FulfillmentBundle\Example</parameter>
+        <parameter key="sylius.model.file_type.class">Sylius\Bundle\FulfillmentBundle\FileType</parameter>
+        <parameter key="sylius.model.fulfillment_provider.class">Sylius\Component\Fulfillment\Model\FulfillmentProviderInterface</parameter>
+        <parameter key="sylius.model.order_item_tracking.class">Sylius\Component\Fulfillment\Model\OrderItemTrackingInterface</parameter>
+        <parameter key="sylius.model.parameter_type.class">Sylius\Component\Fulfillment\Model\ProtocolInterface</parameter>
+        <parameter key="sylius.model.provider_parameter.class">Sylius\Component\Fulfillment\Model\ProviderParameterInterface</parameter>
+        <parameter key="sylius.model.interval.class">Sylius\Component\Fulfillment\Model\IntervalInterface</parameter>
+        <parameter key="sylius_fulfillment.driver">doctrine/orm"</parameter>
     </parameters>
 
     <services>
-        <service id="sylius_fulfillment.example" class="%sylius_fulfillment.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
+        <service id="sylius_fulfillment.file_type" class="%sylius.model.file_type.class%" />
+        <service id="sylius_fulfillment.fulfillment_provider" class="%sylius.model.fulfillment_provider.class%" />
+        <service id="sylius_fulfillment.order_item_tracking" class="%sylius.model.order_item_tracking.class%" />
+        <service id="sylius_fulfillment.parameter_type" class="%sylius.model.parameter_type.class%" />
+        <service id="sylius_fulfillment.provider_parameter" class="%sylius.model.file_type.class%" />
+        <service id="sylius_fulfillment.interval" class="%sylius.model.interval.class%" />
+
+
     </services>
-    -->
+
 </container>

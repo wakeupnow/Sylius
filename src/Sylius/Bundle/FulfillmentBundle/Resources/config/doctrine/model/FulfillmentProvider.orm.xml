@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ This file is part of the Sylius package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Sylius\Component\Fulfillment\Model\FulfillmentProvider" table="sylius_fulfillment_provider">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+		<field name="name" column="name" type="string">
+        </field>
+		<one-to-one field="protocol" target-entity="Sylius\Component\Fulfillment\Model\ProtocolInterface" >
+            <join-column name="protocol_id" referenced-column-name="id" nullable="false" />
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+		<one-to-one field="fileType" target-entity="Sylius\Component\Fulfillment\Model\FileTypeInterface" >
+            <join-column name="file_type_id" referenced-column-name="id" nullable="false" />
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+		<one-to-one field="interval" target-entity="Sylius\Component\Fulfillment\Model\IntervalInterface" >
+            <join-column name="interval_id" referenced-column-name="id" nullable="false" />
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+        <many-to-many field="parameters" target-entity="Sylius\Component\Fulfillment\Model\ProviderParameter">
+            <join-table name="sylius_fulfillment_provider_parameter">
+                <join-columns>
+                    <join-column name="fulfillment_provider_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="provider_parameter_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+        <gedmo:versioned />
+    </mapped-superclass>
+
+</doctrine-mapping>

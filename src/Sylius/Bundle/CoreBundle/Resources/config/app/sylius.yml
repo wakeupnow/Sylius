@@ -82,6 +82,24 @@ sylius_inventory:
         stockable:
             model: %sylius.model.product_variant.class%
 
+sylius_fulfillment:
+    driver: doctrine/orm
+    classes:
+        file_type:
+            model: Sylius\Component\Fulfillment\Model\FileType
+        interval:
+            model: Sylius\Component\Fulfillment\Model\FulfillmentProvider
+        interval:
+            model: Sylius\Component\Fulfillment\Model\OrderItemTracking
+        interval:
+            model: Sylius\Component\Fulfillment\Model\ParameterType
+        interval:
+            model: Sylius\Component\Fulfillment\Model\Protocol
+        interval:
+            model: Sylius\Component\Fulfillment\Model\ProviderParameter
+        interval:
+            model: Sylius\Component\Fulfillment\Model\Interval
+
 sylius_payment:
     classes:
         payment:
@@ -91,9 +109,6 @@ sylius_payment:
         stripe: Stripe
         be2bill: Be2Bill
         gpg: GPG
-
-sylius_fulfillment:
-    driver: doctrine/orm
 
 sylius_payum: ~
 

@@ -10,8 +10,8 @@
  */
 
 namespace Sylius\Component\Fulfillment\Model;
+use Doctrine\Common\Collections\ArrayCollection;
 
-//use Sylius\Component\Order\Model\OrderInterface;
 
 /**
  * Cart model interface.
@@ -67,4 +67,14 @@ interface FulfillmentProviderInterface
      * @return Interval
      */
     public function getInterval();
+
+    /**
+     * @param ArrayCollection $parameters
+     */
+    public function setParameters($parameters);
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getParameters();
 }

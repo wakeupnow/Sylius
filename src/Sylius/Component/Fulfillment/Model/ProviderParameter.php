@@ -11,8 +11,6 @@
 
 namespace Sylius\Component\Fulfillment\Model;
 
-//use Sylius\Component\Order\Model\Order;
-
 /**
  * Model for Provider Parameters.
  * All driver entities and documents should extend this class or implement

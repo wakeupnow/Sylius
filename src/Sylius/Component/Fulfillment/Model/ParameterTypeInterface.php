@@ -11,8 +11,6 @@
 
 namespace Sylius\Component\Fulfillment\Model;
 
-//use Sylius\Component\Order\Model\OrderInterface;
-
 /**
  * Cart model interface.
  * All driver cart entities or documents should implement this interface.

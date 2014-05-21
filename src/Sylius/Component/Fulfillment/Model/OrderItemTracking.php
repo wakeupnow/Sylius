@@ -21,6 +21,13 @@ namespace Sylius\Component\Fulfillment\Model;
 class OrderItemTracking implements OrderItemTrackingInterface
 {
     /**
+     * Id.
+     *
+     * @var mixed
+     */
+    protected $id;
+
+    /**
      * Order Item.
      *
      * @var OrderItem
@@ -40,6 +47,14 @@ class OrderItemTracking implements OrderItemTrackingInterface
      * @var int
      */
     protected $shippingMethod;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @param OrderItem $orderItem

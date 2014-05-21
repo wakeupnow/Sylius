@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ This file is part of the Sylius package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Sylius\Component\Fulfillment\Model\Interval" table="sylius_interval">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+		<field name="minute" column="minute" type="string">
+        </field>
+		<field name="hour" column="hour" type="string">
+        </field>
+		<field name="dayMonth" column="day_month" type="string">
+        </field>
+		<field name="month" column="month" type="string">
+        </field>
+		<field name="dayWeek" column="day_week" type="string">
+        </field>
+        <gedmo:versioned />
+    </mapped-superclass>
+</doctrine-mapping>

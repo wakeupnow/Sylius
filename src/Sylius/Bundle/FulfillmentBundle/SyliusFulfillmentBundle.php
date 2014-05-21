@@ -2,6 +2,7 @@
 
 namespace Sylius\Bundle\FulfillmentBundle;
 
+
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Compiler\ResolveDoctrineTargetEntitiesPass;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -28,7 +29,14 @@ class SyliusFulfillmentBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $interfaces = array(
-            'Sylius\Component\Payment\Model\FileTypeInterface'      => 'sylius.model.file_type.class',
+            'Sylius\Component\Fulfillment\Model\FileTypeInterface'              => 'sylius.model.file_type.class',
+            'Sylius\Component\Fulfillment\Model\FulfillmentProviderInterface'   => 'sylius.model.fulfillment_provider.class',
+            'Sylius\Component\Fulfillment\Model\OrderItemTrackingInterface'     => 'sylius.model.order_item_tracking.class',
+            'Sylius\Component\Fulfillment\Model\ParameterTypeInterface'         => 'sylius.model.parameter_type.class',
+            'Sylius\Component\Fulfillment\Model\ProtocolInterface'              => 'sylius.model.Protocol.class',
+            'Sylius\Component\Fulfillment\Model\ProviderParameterInterface'     => 'sylius.model.provider_parameter.class',
+            'Sylius\Component\Fulfillment\Model\IntervalInterface'              => 'sylius.model.interval.class',
+
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('sylius_fulfillment', $interfaces));
