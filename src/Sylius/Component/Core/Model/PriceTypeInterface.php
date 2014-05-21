@@ -24,6 +24,13 @@ interface PriceTypeInterface
     public function setName($name);
 
     /**
+     * Get all available prices types names
+     *
+     * @return array
+     */
+    public static function getNames();
+
+    /**
      * @return string
      */
     public function __toString();
