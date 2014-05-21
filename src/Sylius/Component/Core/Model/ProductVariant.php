@@ -94,6 +94,13 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     protected $depth;
 
     /**
+     * Is variant available as autopay?
+     *
+     * @var Boolean
+     */
+    protected $autoPay = false;
+
+    /**
      * Override constructor to set on hand stock.
      */
     public function __construct()
@@ -418,4 +425,23 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     {
         return $this->getDepth();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isAutoPay()
+    {
+        return $this->autoPay;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAutoPay($autoPay)
+    {
+        $this->autoPay = (Boolean) $autoPay;
+
+        return $this;
+    }
+
 }

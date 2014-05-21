@@ -42,7 +42,7 @@ class SyliusCoreExtension extends AbstractResourceExtension implements PrependEx
         'sylius_attribute',
         'sylius_variation',
         'sylius_fulfillment'
-
+        'sylius_auto_pay',
     );
 
     private $emails = array(

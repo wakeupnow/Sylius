@@ -23,8 +23,13 @@ class AppKernel extends SyliusKernel
         return array_merge(parent::registerBundles(), [
             new \Wun\Shared\DomainModelsBundle\WunSharedDomainModelsBundle(),
             new \Wun\Shared\DomainModelsOrmBundle\WunSharedDomainModelsOrmBundle(),
-	        new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
+
+	    new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
             new Sylius\Bundle\FulfillmentBundle\SyliusFulfillmentBundle()
+
+            //Wun Custom Bundle for payment gateway
+            new \Wun\Iris\GPGBundle\WunIrisGPGBundle(),
+            new \Sylius\Bundle\AutoPayBundle\SyliusAutoPayBundle(),
         ]);
     }
 

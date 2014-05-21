@@ -41,6 +41,9 @@ class ProductVariantType extends BaseVariantType
             ->add('availableOnDemand', 'checkbox', array(
                 'label' => 'sylius.form.variant.available_on_demand'
             ))
+            ->add('autoPay', 'checkbox', array(
+                'label' => 'sylius.form.variant.auto_pay'
+            ))
             ->add('onHand', 'integer', array(
                 'label' => 'sylius.form.variant.on_hand'
             ))

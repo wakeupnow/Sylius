@@ -1095,12 +1095,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
+<<<<<<< HEAD
                 "reference": "3969d7fe39fd58398bf9a00110ca349c000fa05e"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/3969d7fe39fd58398bf9a00110ca349c000fa05e",
                 "reference": "3969d7fe39fd58398bf9a00110ca349c000fa05e",
+=======
+                "reference": "13c173ff60eef8e32c10f76225eacca00a430826"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/13c173ff60eef8e32c10f76225eacca00a430826",
+                "reference": "13c173ff60eef8e32c10f76225eacca00a430826",
+>>>>>>> autoPay
                 "shasum": ""
             },
             "require": {
@@ -1155,7 +1164,11 @@
             "keywords": [
                 "User management"
             ],
+<<<<<<< HEAD
             "time": "2014-05-18 21:15:38"
+=======
+            "time": "2014-05-07 23:51:03"
+>>>>>>> autoPay
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -2964,12 +2977,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/whiteoctober/Pagerfanta.git",
+<<<<<<< HEAD
                 "reference": "65d5447748865e8e6d48e810dc25ab5b4c699269"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/whiteoctober/Pagerfanta/zipball/65d5447748865e8e6d48e810dc25ab5b4c699269",
                 "reference": "65d5447748865e8e6d48e810dc25ab5b4c699269",
+=======
+                "reference": "182db172bde6b1db453dc7fd38d3b7a401ba1f37"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/whiteoctober/Pagerfanta/zipball/182db172bde6b1db453dc7fd38d3b7a401ba1f37",
+                "reference": "182db172bde6b1db453dc7fd38d3b7a401ba1f37",
+>>>>>>> autoPay
                 "shasum": ""
             },
             "require": {
@@ -3023,7 +3045,11 @@
                 "paginator",
                 "paging"
             ],
+<<<<<<< HEAD
             "time": "2014-05-16 15:00:59"
+=======
+            "time": "2014-05-12 09:06:10"
+>>>>>>> autoPay
         },
         {
             "name": "paypal/rest-api-sdk-php",
@@ -5202,6 +5228,7 @@
         },
         {
             "name": "behat/mink-extension",
+<<<<<<< HEAD
             "version": "v1.3.3",
             "source": {
                 "type": "git",
@@ -5212,11 +5239,27 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Behat/MinkExtension/zipball/b885b9407cba50a954f72c69ed1b2f8d3bc694f8",
                 "reference": "b885b9407cba50a954f72c69ed1b2f8d3bc694f8",
+=======
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behat/MinkExtension.git",
+                "reference": "0642b680b613fdd6cb774debacf65a0d0d1f08e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behat/MinkExtension/zipball/0642b680b613fdd6cb774debacf65a0d0d1f08e8",
+                "reference": "0642b680b613fdd6cb774debacf65a0d0d1f08e8",
+>>>>>>> autoPay
                 "shasum": ""
             },
             "require": {
                 "behat/behat": "~2.5.0",
+<<<<<<< HEAD
                 "behat/mink": "~1.5",
+=======
+                "behat/mink": ">=1.4.3,<1.6-dev",
+>>>>>>> autoPay
                 "php": ">=5.3.2",
                 "symfony/config": "~2.2"
             },
@@ -5249,7 +5292,11 @@
                 "test",
                 "web"
             ],
+<<<<<<< HEAD
             "time": "2014-05-15 19:27:39"
+=======
+            "time": "2014-04-27 11:55:27"
+>>>>>>> autoPay
         },
         {
             "name": "behat/mink-goutte-driver",
