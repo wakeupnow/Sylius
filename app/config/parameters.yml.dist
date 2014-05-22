@@ -6,6 +6,13 @@ parameters:
     sylius.database.user:             root
     sylius.database.password:         ~
 
+    legacy_database_driver: pdo_mysql
+    legacy_database_host: 127.0.0.1
+    legacy_database_port: ~
+    legacy_database_name: symfony_legacy
+    legacy_database_user: root
+    legacy_database_password: ~
+
     sylius.mailer.transport:          smtp
     sylius.mailer.host:               127.0.0.1
     sylius.mailer.user:               ~
