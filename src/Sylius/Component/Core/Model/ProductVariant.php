@@ -39,8 +39,9 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     /**
      * The variant prices.
      *
-     * @var PriceInterface[]
+     * @var ProductVariantPrice[]
      *
+     * @Serializer\Expose
      * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\ProductVariantPrice>")
      */
     protected $prices;
@@ -449,19 +450,5 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     public function getShippingDepth()
     {
         return $this->getDepth();
-    }
-
-    /**
-     * @Serializer\VirtualProperty
-     * @Serializer\SerializedName("prices")
-     */
-    public function getPriceByName()
-    {
-        $prices = [];
-        foreach ($this->prices as $price) {
-            $prices[$price->getType()->getName()] = $price->getAmount();
-        }
-
-        return $prices;
     }
 }

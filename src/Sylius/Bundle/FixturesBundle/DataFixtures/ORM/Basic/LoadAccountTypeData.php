@@ -12,20 +12,20 @@
 namespace Sylius\Bundle\FixturesBundle\DataFixtures\ORM\Basic;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Sylius\Component\Core\Model\PriceType;
+use Wun\Shared\DomainModelsBundle\Entity\AccountType;
 
-class LoadPriceTypeData extends \Sylius\Bundle\FixturesBundle\DataFixtures\ORM\DataFixture
+class LoadAccountTypeData extends \Sylius\Bundle\FixturesBundle\DataFixtures\ORM\DataFixture
 {
     public function load(ObjectManager $manager)
     {
-        $names = PriceType::getNames();
+        $names = AccountType::getNames();
         foreach ($names as $name) {
-            $priceType = new PriceType();
-            $priceType->setName($name);
+            $accountType = new AccountType();
+            $accountType->setName($name);
 
-            $this->setReference('Sylius.PriceType.' . $name, $priceType);
+            $this->setReference('Sylius.AccountType.' . $name, $accountType);
 
-            $manager->persist($priceType);
+            $manager->persist($accountType);
         }
 
         $manager->flush();
@@ -33,6 +33,6 @@ class LoadPriceTypeData extends \Sylius\Bundle\FixturesBundle\DataFixtures\ORM\D
 
     public function getOrder()
     {
-        return 2;
+        return 1;
     }
 }

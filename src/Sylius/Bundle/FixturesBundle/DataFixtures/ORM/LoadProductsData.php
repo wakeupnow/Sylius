@@ -248,7 +248,8 @@ class LoadProductsData extends DataFixture
 
             $price = new \Sylius\Component\Core\Model\ProductVariantPrice();
             $price->setType($this->getReference('Sylius.PriceType.MSRP'));
-            $price->setAmount(rand(1, 9999));
+            $price->setAmount(rand(100, 9999));
+            $price->setAccountTypes([$this->getReference('Sylius.AccountType.MSRP')]);
 
             $variant->addPrice($price);
 
