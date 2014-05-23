@@ -21,6 +21,8 @@ use JMS\Serializer\Annotation as Serializer;
  * Sylius core product variant entity.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class ProductVariant extends BaseVariant implements ProductVariantInterface
 {
@@ -29,6 +31,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      *
      * @var string
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $sku;
@@ -47,6 +50,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      *
      * @var integer
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $onHold = 0;
@@ -56,6 +60,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      *
      * @var integer
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $onHand = 0;
@@ -65,6 +70,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      *
      * @var Boolean
      *
+     * @Serializer\Expose
      * @Serializer\Type("boolean")
      */
     protected $availableOnDemand = true;
@@ -74,6 +80,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      *
      * @var Collection|VariantImageInterface[]
      *
+     * @Serializer\Expose
      * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\ProductVariantImage>")
      */
     protected $images;
@@ -83,6 +90,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      *
      * @var float
      *
+     * @Serializer\Expose
      * @Serializer\Type("double")
      */
     protected $weight;
@@ -92,6 +100,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      *
      * @var float
      *
+     * @Serializer\Expose
      * @Serializer\Type("double")
      */
     protected $width;
@@ -101,6 +110,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      *
      * @var float
      *
+     * @Serializer\Expose
      * @Serializer\Type("double")
      */
     protected $height;
@@ -110,6 +120,7 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      *
      * @var float
      *
+     * @Serializer\Expose
      * @Serializer\Type("double")
      */
     protected $depth;
@@ -438,5 +449,19 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     public function getShippingDepth()
     {
         return $this->getDepth();
+    }
+
+    /**
+     * @Serializer\VirtualProperty
+     * @Serializer\SerializedName("prices")
+     */
+    public function getPriceByName()
+    {
+        $prices = [];
+        foreach ($this->prices as $price) {
+            $prices[$price->getType()->getName()] = $price->getAmount();
+        }
+
+        return $prices;
     }
 }

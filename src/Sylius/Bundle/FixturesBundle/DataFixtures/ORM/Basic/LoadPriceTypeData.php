@@ -22,6 +22,9 @@ class LoadPriceTypeData extends \Sylius\Bundle\FixturesBundle\DataFixtures\ORM\D
         foreach ($names as $name) {
             $priceType = new PriceType();
             $priceType->setName($name);
+
+            $this->setReference('Sylius.PriceType.' . $name, $priceType);
+
             $manager->persist($priceType);
         }
 

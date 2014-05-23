@@ -246,6 +246,12 @@ class LoadProductsData extends DataFixture
             $variant->setSku($this->getUniqueSku());
             $variant->setOnHand($this->faker->randomNumber(1));
 
+            $price = new \Sylius\Component\Core\Model\ProductVariantPrice();
+            $price->setType($this->getReference('Sylius.PriceType.MSRP'));
+            $price->setAmount(rand(1, 9999));
+
+            $variant->addPrice($price);
+
             $this->setReference('Sylius.Variant-'.$this->totalVariants, $variant);
             $this->totalVariants++;
         }

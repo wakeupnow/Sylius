@@ -13,6 +13,10 @@ sylius_cart_clear:
     pattern: /clear
     defaults: { _controller: sylius.controller.cart:clearAction }
 
+sylius_cart_land_remote:
+    pattern: /land
+    defaults: { _controller: sylius.controller.cart:landRemoteAction }
+
 sylius_cart_item_add:
     pattern: /add
     defaults: { _controller: sylius.controller.cart_item:addAction }

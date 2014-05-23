@@ -27,6 +27,7 @@ class Variant implements VariantInterface
      *
      * @var mixed
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $id;
@@ -36,6 +37,7 @@ class Variant implements VariantInterface
      *
      * @var Boolean
      *
+     * @Serializer\Expose
      * @Serializer\Type("boolean")
      */
     protected $master = false;
@@ -63,6 +65,7 @@ class Variant implements VariantInterface
      *
      * @var Collection|OptionValueInterface[]
      *
+     * @Serializer\Expose
      * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\OptionValue>")
      */
     protected $options;

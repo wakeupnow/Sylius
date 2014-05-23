@@ -22,6 +22,8 @@ use Sylius\Component\Variation\Model\VariantInterface as BaseVariantInterface;
  * Sylius catalog product model.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Product implements ProductInterface
 {
@@ -29,6 +31,9 @@ class Product implements ProductInterface
      * Product id.
      *
      * @var mixed
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -36,6 +41,9 @@ class Product implements ProductInterface
      * Product name.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $name;
 
@@ -51,6 +59,9 @@ class Product implements ProductInterface
      * Product description.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $description;
 
@@ -67,6 +78,9 @@ class Product implements ProductInterface
      * Meta keywords.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $metaKeywords;
 
@@ -74,6 +88,9 @@ class Product implements ProductInterface
      * Meta description.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $metaDescription;
 
@@ -82,6 +99,7 @@ class Product implements ProductInterface
      *
      * @var Collection|BaseAttributeValueInterface[]
      *
+     * @Serializer\Expose
      * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\Attribute>")
      */
     protected $attributes;
@@ -91,7 +109,8 @@ class Product implements ProductInterface
      *
      * @var Collection|BaseVariantInterface[]
      *
-     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\Variant>")
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\ProductVariant>")
      */
     protected $variants;
 
@@ -100,6 +119,7 @@ class Product implements ProductInterface
      *
      * @var Collection|BaseOptionInterface[]
      *
+     * @Serializer\Expose
      * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\Option>")
      */
     protected $options;
