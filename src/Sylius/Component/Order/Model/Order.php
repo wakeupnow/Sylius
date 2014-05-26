@@ -57,7 +57,11 @@ class Order implements OrderInterface
     /**
      * Items in order.
      *
+     * @var
      * @var Collection|OrderItemInterface[]
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\OrderItem>")
      */
     protected $items;
 
@@ -65,9 +69,6 @@ class Order implements OrderInterface
      * Items total.
      *
      * @var integer
-     *
-     * @Serializer\Expose
-     * @Serializer\Type("integer")
      */
     protected $itemsTotal = 0;
 
@@ -82,9 +83,6 @@ class Order implements OrderInterface
      * Adjustments total.
      *
      * @var integer
-     *
-     * @Serializer\Expose
-     * @Serializer\Type("integer")
      */
     protected $adjustmentsTotal = 0;
 

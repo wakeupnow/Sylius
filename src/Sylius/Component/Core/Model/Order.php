@@ -35,6 +35,9 @@ class Order extends Cart implements OrderInterface
      * Order shipping address.
      *
      * @var AddressInterface
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("Sylius\Component\Addressing\Model\Address")
      */
     protected $shippingAddress;
 
@@ -42,6 +45,9 @@ class Order extends Cart implements OrderInterface
      * Order billing address.
      *
      * @var AddressInterface
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("Sylius\Component\Addressing\Model\Address")
      */
     protected $billingAddress;
 
