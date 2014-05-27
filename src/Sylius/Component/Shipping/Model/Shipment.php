@@ -20,6 +20,8 @@ use JMS\Serializer\Annotation as Serializer;
  * This model represents single shipment.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Shipment implements ShipmentInterface, TimestampableInterface
 {
@@ -28,6 +30,7 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      *
      * @var mixed
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $id;
@@ -37,6 +40,7 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      *
      * @var ShipmentState
      *
+     * @Serializer\Expose
      * @Serializer\Type("Sylius\Component\Shipping\Model\ShipmentState")
      */
     protected $state;
@@ -46,6 +50,7 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      *
      * @var ShippingMethodInterface
      *
+     * @Serializer\Expose
      * @Serializer\Type("Sylius\Component\Shipping\Model\ShippingMethod")
      */
     protected $method;
@@ -64,6 +69,7 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      *
      * @var string
      *
+     * @Serializer\Expose
      * @Serializer\Type("string")
      */
     protected $tracking;
@@ -100,7 +106,7 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      */
     public function __toString()
     {
-        return $this->id;
+        return (string) $this->id;
     }
 
     /**

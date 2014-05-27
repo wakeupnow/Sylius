@@ -18,6 +18,8 @@ use JMS\Serializer\Annotation as Serializer;
  * Shipment attached to order.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Shipment extends BaseShipment implements ShipmentInterface
 {
@@ -25,8 +27,6 @@ class Shipment extends BaseShipment implements ShipmentInterface
      * Order.
      *
      * @var OrderInterface
-     *
-     * @Serializer\Type("Sylius\Component\Core\Model\Order")
      */
     protected $order;
 
