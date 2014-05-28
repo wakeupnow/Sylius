@@ -22,6 +22,12 @@
                 <cascade-persist />
             </cascade>
         </many-to-one>
+
+        <many-to-one field="image_type" target-entity="Sylius\Component\Core\Model\ProductVariantImageTypeInterface">
+            <cascade>
+                <cascade-persist />
+            </cascade>
+        </many-to-one>
     </mapped-superclass>
 
 </doctrine-mapping>

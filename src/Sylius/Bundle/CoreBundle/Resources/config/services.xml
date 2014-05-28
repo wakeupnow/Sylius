@@ -95,6 +95,8 @@
 
         <parameter key="sylius.twig.restricted_zone_extension.class">Sylius\Bundle\CoreBundle\Twig\SyliusRestrictedZoneExtension</parameter>
         <parameter key="sylius.twig.money.class">Sylius\Bundle\CoreBundle\Twig\SyliusMoneyExtension</parameter>
+
+        <parameter key="sylius.model.product_variant_image_type.class">Sylius\Component\Core\Model\ProductVariantImageType</parameter>
     </parameters>
 
     <services>
@@ -509,6 +511,8 @@
             <argument>%sylius.money.locale%</argument>
             <tag name="twig.extension" />
         </service>
+
+        <service id="sylius_core.classes.product_variant_image_type" class="%sylius.model.product_variant_image_type.class%" />
     </services>
 
 </container>
