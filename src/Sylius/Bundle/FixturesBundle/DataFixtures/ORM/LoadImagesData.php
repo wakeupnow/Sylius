@@ -32,6 +32,7 @@ class LoadImagesData extends DataFixture
         foreach ($finder->files()->in($path) as $img) {
             $image = new ProductVariantImage();
             $image->setFile(new UploadedFile($img->getRealPath(), $img->getFilename()));
+            $image->setImageType($this->getReference('Sylius.ProductImageVariantType.Large'));
             $uploader->upload($image);
 
             $manager->persist($image);
@@ -44,6 +45,6 @@ class LoadImagesData extends DataFixture
 
     public function getOrder()
     {
-        return 5;
+        return 6;
     }
 }

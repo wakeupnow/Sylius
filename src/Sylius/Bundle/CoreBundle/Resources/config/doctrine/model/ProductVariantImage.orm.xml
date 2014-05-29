@@ -23,7 +23,8 @@
             </cascade>
         </many-to-one>
 
-        <many-to-one field="image_type" target-entity="Sylius\Component\Core\Model\ProductVariantImageTypeInterface">
+        <many-to-one field="imageType" target-entity="Sylius\Component\Core\Model\ProductVariantImageTypeInterface">
+            <join-column name="image_type_id" referenced-column-name="id" nullable="false" />
             <cascade>
                 <cascade-persist />
             </cascade>

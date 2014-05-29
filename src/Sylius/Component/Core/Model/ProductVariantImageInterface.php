@@ -29,5 +29,5 @@ interface ProductVariantImageInterface extends ImageInterface
 
     public function getImageType();
 
-    public function setImageType(ProductVariantImageType $image_type);
+    public function setImageType(ProductVariantImageType $imageType);
 }
