@@ -11,6 +11,7 @@
                 <th>{{ sylius_resource_sort('name', 'sylius.product_attribute.name'|trans) }}</th>
                 <th>{{ sylius_resource_sort('presentation', 'sylius.product_attribute.presentation'|trans) }}</th>
                 <th>{{ sylius_resource_sort('type', 'sylius.product_attribute.type'|trans) }}</th>
+                <th class="text-center">{{ sylius_resource_sort('isVisible', 'Visible') }}</th>
                 <th>{{ sylius_resource_sort('updatedAt', 'sylius.product_attribute.updated_at'|trans) }}</th>
                 <th></th>
             </tr>
@@ -22,6 +23,12 @@
                 <td>{{ attribute.name }}</td>
                 <td>{{ attribute.presentation }}</td>
                 <td><span class="label label-primary">{{ attribute.type|upper }}</span></td>
+                <td class="text-center">
+                    <input type="checkbox" disabled
+                        {% if attribute.isVisible %}
+                            checked
+                        {% endif %}>
+                </td>
                 <td>{{ attribute.updatedAt|date }}</td>
                 <td>
                     <div class="pull-right">

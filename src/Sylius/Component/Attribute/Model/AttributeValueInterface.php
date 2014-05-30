@@ -84,6 +84,13 @@ interface AttributeValueInterface
     public function getType();
 
     /**
+     * The visibility of the attribute.
+     *
+     * @return string
+     */
+    public function getIsVisible();
+
+    /**
      * Get attribute configuration.
      *
      * @return array

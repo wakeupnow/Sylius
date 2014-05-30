@@ -75,6 +75,9 @@ class AttributeType extends AbstractType
             ->add('type', 'choice', array(
                 'choices' => AttributeTypes::getChoices()
             ))
+            ->add('isVisible', 'checkbox', array(
+                'label' => 'Visible'
+            ))
             ->addEventSubscriber(new BuildAttributeFormChoicesListener($builder->getFormFactory()))
         ;
     }
