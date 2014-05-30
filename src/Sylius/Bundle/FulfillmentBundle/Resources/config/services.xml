@@ -5,22 +5,51 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <!-- Classes -->
         <parameter key="sylius.model.file_type.class">Sylius\Bundle\FulfillmentBundle\FileType</parameter>
         <parameter key="sylius.model.fulfillment_provider.class">Sylius\Component\Fulfillment\Model\FulfillmentProviderInterface</parameter>
         <parameter key="sylius.model.order_item_tracking.class">Sylius\Component\Fulfillment\Model\OrderItemTrackingInterface</parameter>
         <parameter key="sylius.model.parameter_type.class">Sylius\Component\Fulfillment\Model\ProtocolInterface</parameter>
         <parameter key="sylius.model.provider_parameter.class">Sylius\Component\Fulfillment\Model\ProviderParameterInterface</parameter>
-        <parameter key="sylius.model.interval.class">Sylius\Component\Fulfillment\Model\IntervalInterface</parameter>
+        <parameter key="sylius.model.fulfillment.class">Sylius\Component\Fulfillment\Model\Fulfillment</parameter>
+        <!--<parameter key="sylius.model.interval.class">Sylius\Component\Fulfillment\Model\IntervalInterface</parameter> -->
+        <!-- Form parameters -->
+        <parameter key="sylius.form.type.fulfillment.class">Sylius\Bundle\FulfillmentBundle\Form\Type\FulfillmentType</parameter>
+        <parameter key="sylius.form.type.fulfillment_provider.class">Sylius\Bundle\FulfillmentBundle\Form\Type\FulfillmentProviderType</parameter>
+        <parameter key="sylius.form.type.fulfillment_provider_filter.class">Sylius\Bundle\FulfillmentBundle\Form\Type\Filter\FulfillmentProviderFilterType</parameter>
+        <!-- Controllers -->
+
+        <!-- Driver -->
         <parameter key="sylius_fulfillment.driver">doctrine/orm"</parameter>
     </parameters>
 
     <services>
+        <!-- Class services -->
         <service id="sylius_fulfillment.file_type" class="%sylius.model.file_type.class%" />
         <service id="sylius_fulfillment.fulfillment_provider" class="%sylius.model.fulfillment_provider.class%" />
         <service id="sylius_fulfillment.order_item_tracking" class="%sylius.model.order_item_tracking.class%" />
         <service id="sylius_fulfillment.parameter_type" class="%sylius.model.parameter_type.class%" />
         <service id="sylius_fulfillment.provider_parameter" class="%sylius.model.file_type.class%" />
-        <service id="sylius_fulfillment.interval" class="%sylius.model.interval.class%" />
+        <service id="sylius_fulfillment.fulfillment" class="%sylius.model.fulfillment.class%">
+            <argument type="service" id="sylius.repository.fulfillment" />
+            <tag name="form.type" alias="sylius_fulfillment" />
+        </service>
+        <!-- Form Services -->
+        <service id="sylius.form.type.fulfillment" class="%sylius.form.type.fulfillment.class%">
+            <argument type="service" id="sylius.repository.fulfillment" />
+            <tag name="form.type" alias="sylius_fulfillment" />
+        </service>
+        <service id="sylius.form.type.fulfillment_provider" class="%sylius.form.type.fulfillment_provider.class%">
+            <argument>%sylius.model.fulfillment_provider.class%</argument>
+            <tag name="form.type" alias="sylius_fulfillment_provider" />
+        </service>
+        <service id="sylius.form.type.fulfillment_provider_filter" class="%sylius.form.type.fulfillment_provider_filter.class%">
+            <tag name="form.type" alias="sylius_fulfillment_provider_filter" />
+        </service>
+        <!-- Sylius Menu Extension Event Handler -->
+        <service id="sylius_fulfillment.menu_builder" class="Sylius\Bundle\FulfillmentBundle\EventListener\MenuBuilderListener">
+            <tag name="kernel.event_listener" event="sylius.menu_builder.backend.sidebar" method="addBackendMenuItems" />
+        </service>
 
 
     </services>

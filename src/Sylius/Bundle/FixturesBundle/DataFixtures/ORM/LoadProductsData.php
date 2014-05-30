@@ -11,10 +11,13 @@
 
 namespace Sylius\Bundle\FixturesBundle\DataFixtures\ORM;
 
+use Behat\Mink\Exception\Exception;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\Mapping\Driver\DatabaseDriver;
 use Sylius\Component\Core\Model\Product;
 use Sylius\Component\Core\Model\ProductInterface;
+
 
 /**
  * Default assortment products to play with Sylius.
@@ -106,6 +109,8 @@ class LoadProductsData extends DataFixture
         $product->setDescription($this->faker->paragraph);
         $product->setShortDescription($this->faker->sentence);
         $product->setVariantSelectionMethod(Product::VARIANT_SELECTION_MATCH);
+        $product->setFulfillment($this->getRandomFulfillment());
+
 
         $this->addMasterVariant($product);
 
@@ -147,6 +152,7 @@ class LoadProductsData extends DataFixture
         $product->setDescription($this->faker->paragraph);
         $product->setShortDescription($this->faker->sentence);
         $product->setVariantSelectionMethod(Product::VARIANT_SELECTION_MATCH);
+        $product->setFulfillment($this->getRandomFulfillment());
 
         $this->addMasterVariant($product);
 
@@ -182,6 +188,7 @@ class LoadProductsData extends DataFixture
         $product->setName(sprintf('Mug "%s"', $this->faker->word));
         $product->setDescription($this->faker->paragraph);
         $product->setShortDescription($this->faker->sentence);
+        $product->setFulfillment($this->getRandomFulfillment());
 
         $this->addMasterVariant($product);
 
@@ -215,6 +222,7 @@ class LoadProductsData extends DataFixture
         $product->setName(sprintf('Book "%s" by "%s"', ucfirst($this->faker->word), $author));
         $product->setDescription($this->faker->paragraph);
         $product->setShortDescription($this->faker->sentence);
+        $product->setFulfillment($this->getRandomFulfillment());
 
         $this->addMasterVariant($product, $isbn);
 
@@ -374,5 +382,13 @@ class LoadProductsData extends DataFixture
     protected function defineTotalVariants()
     {
         define('SYLIUS_FIXTURES_TOTAL_VARIANTS', $this->totalVariants);
+    }
+
+    /**
+     * Get a fulfillment provider with random values.
+     */
+    private function getRandomFulfillment()
+    {
+        return $this->getReference('Sylius.Fulfillment.0');
     }
 }

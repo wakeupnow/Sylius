@@ -1,0 +1,13 @@
+sylius:
+    form:
+        fulfillment:
+            file_type: File Type
+            provider: Provider
+            protocol: Protocol
+            fulfillment_providers: Fulfillment Providers
+            index_header: Fulfillment Providers
+            create: Create Fulfillment Provider
+            create_header: Create Fulfillment Provider
+            no_results: No Fulfillment Providers available
+            name: Name
+            update_header: Edit Fulfillment Provider

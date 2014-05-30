@@ -28,7 +28,7 @@
 		 <many-to-one field="shippingMethod" target-entity="Sylius\Component\Shipping\Model\ShippingMethodInterface">
             <join-column name="shipping_method_id" referenced-column-name="id" nullable="false" />
         </many-to-one>
-        <gedmo:versioned />
+        <!--<gedmo:versioned /> -->
     </mapped-superclass>
 
 </doctrine-mapping>

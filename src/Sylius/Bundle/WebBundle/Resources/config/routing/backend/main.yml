@@ -138,3 +138,7 @@ sylius_backend_security:
 sylius_backend_interval:
     resource: @SyliusWebBundle/Resources/config/routing/backend/interval.yml
     prefix: /interval
+
+sylius_backend_fulfillment_provider:
+    resource: @SyliusWebBundle/Resources/config/routing/backend/fulfillment_provider.yml
+    prefix: /fulfillment_provider

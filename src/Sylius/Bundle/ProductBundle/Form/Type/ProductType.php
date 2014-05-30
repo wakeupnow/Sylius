@@ -76,6 +76,10 @@ class ProductType extends AbstractType
                 'required' => false,
                 'label'    => 'sylius.form.product.meta_description'
             ))
+            ->add('fulfillment', 'sylius_fulfillment', array(
+                'data_class' => 'Sylius\Component\Fulfillment\Model\Fulfillment', //TO_DO: make this value configurable
+                'label'      => 'Fulfillment',
+            ))
         ;
     }
 

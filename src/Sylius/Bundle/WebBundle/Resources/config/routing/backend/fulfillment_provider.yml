@@ -1,0 +1,42 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+sylius_backend_fulfillment_provider_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.fulfillment_provider:indexAction
+        _sylius:
+            template: SyliusWebBundle:Backend/FulfillmentProvider:index.html.twig
+            sortable: true
+            sorting:
+                name: asc
+            method: createFilterPaginator
+            arguments: [$criteria, $sorting, $deleted]
+
+sylius_backend_fulfillment_provider_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: sylius.controller.fulfillment_provider:createAction
+        _sylius:
+            template: SyliusWebBundle:Backend/FulfillmentProvider:create.html.twig
+            redirect: sylius_backend_fulfillment_provider_index
+
+sylius_backend_fulfillment_provider_update:
+    pattern: /{id}/edit
+    methods: [GET, PUT, POST]
+    defaults:
+        _controller: sylius.controller.fulfillment_provider:updateAction
+        _sylius:
+            template: SyliusWebBundle:Backend/FulfillmentProvider:update.html.twig
+            redirect: sylius_backend_fulfillment_provider_index
+
+sylius_backend_fulfillment_provider_delete:
+    pattern: /{id}
+    methods: [DELETE]
+    defaults:
+        _controller: sylius.controller.fulfillment_provider:deleteAction
+        _sylius:
+            template: SyliusWebBundle:Backend/Misc:delete.html.twig
+            redirect: sylius_backend_fulfillment_provider_index

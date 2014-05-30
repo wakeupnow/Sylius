@@ -10,7 +10,6 @@
  */
 
 namespace Sylius\Component\Fulfillment\Model;
-use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -37,44 +36,4 @@ interface FulfillmentProviderInterface
      * @return string
      */
     public function getName();
-
-    /**
-     * @param Protocol $protocol
-     */
-    public function setProtocol($protocol);
-
-    /**
-     * @return Protocol
-     */
-    public function getProtocol();
-
-    /**
-     * @param FileType $fileType
-     */
-    public function setFileType($fileType);
-
-    /**
-     * @return FileType
-     */
-    public function getFileType();
-
-    /**
-     * @param Interval $interval
-     */
-    public function setInterval($interval);
-
-    /**
-     * @return Interval
-     */
-    public function getInterval();
-
-    /**
-     * @param ArrayCollection $parameters
-     */
-    public function setParameters($parameters);
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getParameters();
 }

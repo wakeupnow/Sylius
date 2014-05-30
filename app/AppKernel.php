@@ -25,7 +25,7 @@ class AppKernel extends SyliusKernel
             new \Wun\Shared\DomainModelsOrmBundle\WunSharedDomainModelsOrmBundle(),
 
 	    new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
-            new Sylius\Bundle\FulfillmentBundle\SyliusFulfillmentBundle()
+            new Sylius\Bundle\FulfillmentBundle\SyliusFulfillmentBundle(),
 
             //Wun Custom Bundle for payment gateway
             new \Wun\Iris\GPGBundle\WunIrisGPGBundle(),

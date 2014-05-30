@@ -150,11 +150,12 @@ interface ProductInterface extends BaseProductInterface, PriceableInterface, Tax
      *
      * @return
      */
-    public function getFulfillmentProvider();
+    public function getFulfillment();
 
     /**
      * Set fulfillment provider.
      *
      */
-    public function setFulfillmentProvider($fulfillmentProvider);
+    public function setFulfillment($fulfillment);
+
 }

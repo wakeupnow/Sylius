@@ -35,7 +35,7 @@ class SyliusFulfillmentBundle extends Bundle
             'Sylius\Component\Fulfillment\Model\ParameterTypeInterface'         => 'sylius.model.parameter_type.class',
             'Sylius\Component\Fulfillment\Model\ProtocolInterface'              => 'sylius.model.Protocol.class',
             'Sylius\Component\Fulfillment\Model\ProviderParameterInterface'     => 'sylius.model.provider_parameter.class',
-            'Sylius\Component\Fulfillment\Model\IntervalInterface'              => 'sylius.model.interval.class',
+            'Sylius\Component\Fulfillment\Model\FulfillmentInterface'           => 'sylius.model.fulfillment.class',
 
         );
 

@@ -87,18 +87,24 @@ sylius_fulfillment:
     classes:
         file_type:
             model: Sylius\Component\Fulfillment\Model\FileType
-        interval:
+            form: Sylius\Bundle\FulfillmentBundle\Form\Type\FileTypeType
+        fulfillment_provider:
             model: Sylius\Component\Fulfillment\Model\FulfillmentProvider
-        interval:
+            form: Sylius\Bundle\FulfillmentBundle\Form\Type\FulfillmentProviderType
+            controller: Sylius\Bundle\FulfillmentBundle\Controller\FulfillmentProviderController
+            repository: Sylius\Bundle\FulfillmentBundle\Doctrine\ORM\FulfillmentProviderRepository
+        order_item_tracking:
             model: Sylius\Component\Fulfillment\Model\OrderItemTracking
-        interval:
+        parameter_type:
             model: Sylius\Component\Fulfillment\Model\ParameterType
-        interval:
+        protocol:
             model: Sylius\Component\Fulfillment\Model\Protocol
-        interval:
+            form: Sylius\Bundle\FulfillmentBundle\Form\Type\ProtocolType
+        provider_parameter:
             model: Sylius\Component\Fulfillment\Model\ProviderParameter
-        interval:
-            model: Sylius\Component\Fulfillment\Model\Interval
+        fulfillment:
+            model: Sylius\Component\Fulfillment\Model\Fulfillment
+            form: Sylius\Bundle\FulfillmentBundle\Form\Type\FulfillmentType
 
 sylius_payment:
     classes:

@@ -20,9 +20,9 @@
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
-		<field name="name" column="name" type="string">
+		<field name="name" column="name" type="string" unique="true">
 
         </field>
-        <gedmo:versioned />
+        <!--<gedmo:versioned /> -->
     </mapped-superclass>
 </doctrine-mapping>

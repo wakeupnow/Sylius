@@ -105,6 +105,8 @@ sylius:
         edit: Edit
         exchange_rate:
             index: Exchange Rates
+        fulfillment:
+            index: Fulfillment Providers
         general_settings: General Settings
         generate: Generate
         group:

@@ -1,8 +1,3 @@
-sylius_fulfillment:
-    resource: "@SyliusFulfillmentBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 sylius_installer:
     resource: @SyliusInstallerBundle/Resources/config/routing.yml
 

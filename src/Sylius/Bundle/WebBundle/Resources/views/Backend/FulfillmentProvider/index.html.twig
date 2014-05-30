@@ -1,0 +1,28 @@
+{% extends 'SyliusWebBundle:Backend:layout.html.twig' %}
+
+{% import 'SyliusResourceBundle:Macros:buttons.html.twig' as buttons %}
+{% from 'SyliusWebBundle:Backend/Macros:misc.html.twig' import pagination %}
+{% from 'SyliusWebBundle:Backend/FulfillmentProvider:macros.html.twig' import list %}
+
+{% block topbar %}
+    <ol class="breadcrumb">
+        <li>{{ 'sylius.breadcrumb.configuration'|trans }}</li>
+        <li>{{ 'sylius.breadcrumb.fulfillment.index'|trans }}</a></li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <div class="actions-menu">
+            {{ buttons.create(path('sylius_backend_fulfillment_provider_create'), 'sylius.form.fulfillment.create'|trans) }}
+        </div>
+        <h1><i class="glyphicon glyphicon-th-list"></i> {{ 'sylius.form.fulfillment.index_header'|trans|raw }}</h1>
+    </div>
+
+    {% render(controller('sylius.controller.backend.form:filterAction', {'type': 'sylius_fulfillment_provider_filter', 'template': 'SyliusWebBundle:Backend/FulfillmentProvider:filterForm.html.twig'})) %}
+
+    {{ pagination(fulfillment_providers) }}
+    {{ list(fulfillment_providers) }}
+    {{ pagination(fulfillment_providers) }}
+
+{% endblock %}
