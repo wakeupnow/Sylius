@@ -137,4 +137,17 @@ class Cart extends Order implements CartInterface
 
         return $this;
     }
+
+    /**
+     * @return void
+     */
+    public function calculateTotals()
+    {die('ok');
+        $cartTotal = 0;
+        foreach ($this->getItems() as $item) {
+            $item->setTotal($item->getQuantity() * $item->getUnitPrice());
+            $cartTotal += $item->getTotal();
+        }
+        $this->setTotal($cartTotal);
+    }
 }
