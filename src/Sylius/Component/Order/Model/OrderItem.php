@@ -256,6 +256,7 @@ class OrderItem implements OrderItemInterface
      */
     public function calculateTotal()
     {
+        $this->determineUnitPrice();
         $this->calculateAdjustmentsTotal();
 
         $this->total = ($this->quantity * $this->unitPrice) + $this->adjustmentsTotal;
@@ -289,5 +290,36 @@ class OrderItem implements OrderItemInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @param null $accountTypeName
+     */
+    public function determineUnitPrice($accountTypeName = null)
+    {
+        if (is_null($accountTypeName)) {
+
+            // MSRP is used by default
+            $accountTypeName = 'MSRP';
+
+            /** @var \Sylius\Component\Core\Model\User $user */
+            if (!is_null($user = $this->getOrder()->getUser())) {
+                if (!is_null($member = $user->getMember())) {
+                    if (!is_null($accountType = $member->getType())) {
+                        $accountTypeName = $accountType->getName();
+                    }
+                }
+            }
+        }
+
+        /** @var \Sylius\Component\Core\Model\ProductVariant $variant */
+        $variant = $this->getVariant();
+        foreach ($variant->getPrices() as $price) {
+            foreach ($price->getAccountTypes() as $at) {
+                if ($at->getName() == $accountTypeName) {
+                    $this->unitPrice = $price->getAmount();
+                }
+            }
+        }
     }
 }

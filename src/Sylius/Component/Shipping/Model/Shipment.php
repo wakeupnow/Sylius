@@ -128,7 +128,7 @@ class Shipment implements ShipmentInterface, TimestampableInterface
     /**
      * {@inheritdoc}
      */
-    public function setState(ShipmentState $state)
+    public function setState(ShipmentState $state = null)
     {
         $this->state = $state;
 
