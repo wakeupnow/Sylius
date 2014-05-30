@@ -67,7 +67,8 @@ class LoadMetadataSubscriber implements EventSubscriber
                     'referencedColumnName' => 'id',
                     'nullable'             => false,
                     'onDelete'             => 'CASCADE'
-                ))
+                )),
+                'cascade' => ['persist']
             );
 
             $metadata->mapManyToOne($subjectMapping);
@@ -81,7 +82,8 @@ class LoadMetadataSubscriber implements EventSubscriber
                     'referencedColumnName' => 'id',
                     'nullable'             => false,
                     'onDelete'             => 'CASCADE'
-                ))
+                )),
+                'cascade' => ['persist']
             );
 
             $metadata->mapManyToOne($attributeMapping);

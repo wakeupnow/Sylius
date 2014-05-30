@@ -1,6 +1,6 @@
 <?php
 
-namespace Wun\iris\GPGBundle\DependencyInjection;
+namespace Wun\Iris\GPGBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('wuniris_gpg');
+        $rootNode = $treeBuilder->root('wun_iris_gpg');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

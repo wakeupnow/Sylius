@@ -13,6 +13,7 @@ namespace Sylius\Component\Product\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 use Sylius\Component\Attribute\Model\AttributeValueInterface as BaseAttributeValueInterface;
 use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 use Sylius\Component\Variation\Model\VariantInterface as BaseVariantInterface;
@@ -57,6 +58,8 @@ class Product implements ProductInterface
      * Available on.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $availableOn;
 
@@ -78,6 +81,8 @@ class Product implements ProductInterface
      * Attributes.
      *
      * @var Collection|BaseAttributeValueInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\Attribute>")
      */
     protected $attributes;
 
@@ -85,6 +90,8 @@ class Product implements ProductInterface
      * Product variants.
      *
      * @var Collection|BaseVariantInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\Variant>")
      */
     protected $variants;
 
@@ -92,6 +99,8 @@ class Product implements ProductInterface
      * Product options.
      *
      * @var Collection|BaseOptionInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\Option>")
      */
     protected $options;
 
@@ -99,6 +108,8 @@ class Product implements ProductInterface
      * Creation time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -106,6 +117,8 @@ class Product implements ProductInterface
      * Last update time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
 
@@ -113,6 +126,8 @@ class Product implements ProductInterface
      * Deletion time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $deletedAt;
 

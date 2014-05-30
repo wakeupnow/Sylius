@@ -44,6 +44,13 @@ class ProductVariantType extends BaseVariantType
             ->add('autoPay', 'checkbox', array(
                 'label' => 'sylius.form.variant.auto_pay'
             ))
+            ->add('interval', 'entity', array(
+                'class' => 'Sylius\Component\AutoPay\Model\Interval',
+                'property' => 'noOfDay',
+                'label' => 'sylius.form.variant.interval',
+                'empty_value' => '---',
+                'required' => false,
+            ))
             ->add('onHand', 'integer', array(
                 'label' => 'sylius.form.variant.on_hand'
             ))

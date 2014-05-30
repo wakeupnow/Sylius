@@ -99,6 +99,7 @@ class PurchaseStep extends CheckoutStep
 
         //Dispatch shipping step events
         $this->dispatchCheckoutEvent(SyliusCheckoutEvents::SHIPPING_COMPLETE, $order);
+        $this->dispatchCheckoutEvent(SyliusAutoPayEvents::POST_CREATE, $order);
 
         if ($event->hasResponse()) {
             return $event->getResponse();

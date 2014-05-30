@@ -30,7 +30,7 @@ class SyliusAutoPayBundle extends Bundle
     {
         $interfaces = array(
             'Sylius\Component\AutoPay\Model\AutoPayInterface'    => 'sylius.model.auto_pay.class',
-//            'Sylius\Component\AutoPay\Model\Interval'    => 'sylius.model.interval.class',
+            'Sylius\Component\AutoPay\Model\IntervalInterface'    => 'sylius.model.interval.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('sylius_auto_pay', $interfaces));

@@ -121,6 +121,12 @@
                         {{ misc.state_label(product.masterVariant.availableOnDemand) }}
                     </td>
                 </tr>
+                <tr>
+                    <td>{{ 'sylius.product.auto_pay'|trans }}</td>
+                    <td>
+                        {{ misc.state_label(product.masterVariant.autoPay) }}
+                    </td>
+                </tr>
                 {% if product.restrictedZone %}
                     <tr>
                         <td>{{ 'sylius.product.restricted_zone'|trans }}</td>

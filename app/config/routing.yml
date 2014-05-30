@@ -45,3 +45,8 @@ facebook_login:
 
 google_login:
     pattern: /login/check-google
+
+#BCCCronManager routing
+BCCCronManagerBundle:
+    resource: "@BCCCronManagerBundle/Resources/config/routing.xml"
+    prefix:   /cron-manager

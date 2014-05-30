@@ -11,6 +11,8 @@
 
 namespace Sylius\Component\Variation\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Option value.
  *
@@ -22,6 +24,8 @@ class OptionValue implements OptionValueInterface
      * Option value id.
      *
      * @var mixed
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -29,6 +33,8 @@ class OptionValue implements OptionValueInterface
      * Value.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $value;
 
@@ -36,6 +42,8 @@ class OptionValue implements OptionValueInterface
      * Option.
      *
      * @var OptionInterface
+     *
+     * @Serializer\Type("Sylius\Component\Variation\Model\Option")
      */
     protected $option;
 

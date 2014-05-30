@@ -8,26 +8,27 @@
     <parameters>
        <parameter key="sylius.controller.interval.class">Sylius\Bundle\AutoPayBundle\Controller\IntervalController</parameter>
        <parameter key="sylius.form.type.interval.class">Sylius\Bundle\AutoPayBundle\Form\Type\IntervalType</parameter>
+       <parameter key="sylius.auto_pay.manager.class">Sylius\Bundle\AutoPayBundle\Manager\AutoPayManager</parameter>
+       <parameter key="sylius.listener.init_auto_pay.class">Sylius\Bundle\AutoPayBundle\EventListener\AutoPayListener</parameter>
     </parameters>
 
-    <services>
-       <!-- <service id="sylius.controller.interval" class="%sylius.controller.interval.class%">
-            <argument type="service">
-                <service factory-service="sylius.controller.configuration_factory" factory-method="createConfiguration" class="Sylius\Bundle\ResourceBundle\Controller\Configuration">
-                    <argument>sylius</argument>
-                    <argument>interval</argument>
-                    <argument>SyliusAutoPayBundle:Cart</argument>
-                </service>
-            </argument>
-            <call method="setContainer">
-                <argument type="service" id="service_container" />
-            </call>
-        </service> -->
+    <services>       
         <service id="sylius.form.type.interval" class="%sylius.form.type.interval.class%">
             <argument>%sylius.model.interval.class%</argument>
-           <!-- <argument>%sylius.validation_group.cart_item%</argument>-->
+            <argument>%sylius.validation_group.interval%</argument>
             <tag name="form.type" alias="sylius_interval" />
         </service>
+        <service id="sylius.auto_pay.manager" class="%sylius.auto_pay.manager.class%">
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="sylius.manager.autoPay" />
+            <argument type="service" id="sylius.repository.autoPay" />
+        </service>
+        
+        <service id="sylius.listener.init_auto_pay" class="%sylius.listener.init_auto_pay.class%">
+            <argument type="service" id="service_container"/>
+            <tag name="kernel.event_listener" event="sylius.auto_pay.pre_create" method="initAutoPay" />
+        </service>
+
     </services> 
     
 </container>

@@ -20,7 +20,7 @@ class SyliusAutoPayExtension extends AbstractResourceExtension
      */
     public function load(array $config, ContainerBuilder $container)
     {     
-        list($config) = $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS);
+        list($config) = $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS| self::CONFIGURE_VALIDATORS);
         $classes = $config['classes'];
         $container->setParameter('sylius.model.auto_pay.class', $classes['autoPay']['model']);
         $container->setParameter('sylius.model.interval.class', $classes['interval']['model']);

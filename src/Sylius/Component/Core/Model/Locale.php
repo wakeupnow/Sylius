@@ -11,6 +11,8 @@
 
 namespace Sylius\Component\Core\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Locale model.
  *
@@ -22,6 +24,8 @@ class Locale implements LocaleInterface
      * Id
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -29,6 +33,8 @@ class Locale implements LocaleInterface
      * Code.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $code;
 
@@ -36,6 +42,8 @@ class Locale implements LocaleInterface
      * Activation status.
      *
      * @var Boolean
+     *
+     * @Serializer\Type("boolean")
      */
     protected $enabled = true;
 
@@ -43,6 +51,8 @@ class Locale implements LocaleInterface
      * Creation date
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -50,8 +60,11 @@ class Locale implements LocaleInterface
      * Update date
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
+
 
     public function __construct()
     {

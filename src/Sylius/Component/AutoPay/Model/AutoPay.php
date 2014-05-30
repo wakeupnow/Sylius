@@ -128,6 +128,24 @@ class AutoPay implements AutoPayInterface
     /**
      * {@inheritdoc}
      */
+    public function getNextDaye()
+    {
+        return $this->nextDaye;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setNextDaye($nextDaye)
+    {
+        $this->nextDaye = $nextDaye;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getCreatedAt()
     {
         return $this->createdAt;

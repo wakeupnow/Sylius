@@ -13,6 +13,7 @@ namespace Sylius\Component\Order\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Model for orders.
@@ -25,6 +26,8 @@ class Order implements OrderInterface
      * Id.
      *
      * @var mixed
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -32,6 +35,8 @@ class Order implements OrderInterface
      * Completion time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $completedAt;
 
@@ -39,6 +44,8 @@ class Order implements OrderInterface
      * Order number.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $number;
 
@@ -46,6 +53,8 @@ class Order implements OrderInterface
      * Items in order.
      *
      * @var Collection|OrderItemInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Order\Model\OrderItem>")
      */
     protected $items;
 
@@ -53,6 +62,8 @@ class Order implements OrderInterface
      * Items total.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $itemsTotal = 0;
 
@@ -60,6 +71,8 @@ class Order implements OrderInterface
      * Adjustments.
      *
      * @var Collection|AdjustmentInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Order\Model\Adjustment>")
      */
     protected $adjustments;
 
@@ -67,6 +80,8 @@ class Order implements OrderInterface
      * Adjustments total.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $adjustmentsTotal = 0;
 
@@ -75,6 +90,8 @@ class Order implements OrderInterface
      * Items total + adjustments total.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $total = 0;
 
@@ -82,6 +99,8 @@ class Order implements OrderInterface
      * Whether order was confirmed.
      *
      * @var Boolean
+     *
+     * @Serializer\Type("boolean")
      */
     protected $confirmed = true;
 
@@ -89,6 +108,8 @@ class Order implements OrderInterface
      * Confirmation token.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $confirmationToken;
 
@@ -96,6 +117,8 @@ class Order implements OrderInterface
      * Creation time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -103,6 +126,8 @@ class Order implements OrderInterface
      * Modification time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
 
@@ -110,6 +135,8 @@ class Order implements OrderInterface
      * Deletion time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $deletedAt;
 

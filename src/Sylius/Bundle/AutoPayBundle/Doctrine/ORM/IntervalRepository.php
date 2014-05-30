@@ -29,10 +29,21 @@ class IntervalRepository extends EntityRepository
      */
     public function findForDetailsPage($id)
     {
-        $qb = $this->getEntityManager()->createQueryBuilder();
+       $queryBuilder = $this->getQueryBuilder();
 
-//        $qb->select('i')
-//           ->from()
+        $this->_em->getFilters()->disable('softdeleteable');
+
+        $queryBuilder
+            ->andWhere($queryBuilder->expr()->eq('interval.id', ':id'))
+            ->setParameter('id', $id)
+        ;
+
+        $result = $queryBuilder
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+
+        return $result;
     }
 
     /**
@@ -50,6 +61,6 @@ class IntervalRepository extends EntityRepository
      */
     protected function getAlias()
     {
-        return 'product';
+        return 'interval';
     }
 }

@@ -29,7 +29,7 @@ class Configuration implements ConfigurationInterface
         ;
 
         $this->addClassesSection($rootNode);
-//        $this->addValidationGroupsSection($rootNode);
+        $this->addValidationGroupsSection($rootNode);
 
         return $treeBuilder;
     }
@@ -39,26 +39,26 @@ class Configuration implements ConfigurationInterface
      *
      * @param ArrayNodeDefinition $node
      */
-//    private function addValidationGroupsSection(ArrayNodeDefinition $node)
-//    {
-//        $node
-//            ->children()
-//                ->arrayNode('validation_groups')
-//                    ->addDefaultsIfNotSet()
-//                    ->children()
-//                        ->arrayNode('autoPay')
-//                            ->prototype('scalar')->end()
-//                            ->defaultValue(array('sylius'))
-//                        ->end()
-////                        ->arrayNode('product_prototype')
-////                            ->prototype('scalar')->end()
-////                            ->defaultValue(array('sylius'))
-////                        ->end()
-////                    ->end()
-//                ->end()
-//            ->end()
-//        ;
-//    }
+    private function addValidationGroupsSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('validation_groups')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('autoPay')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('sylius'))
+                        ->end()
+                        ->arrayNode('interval')
+                            ->prototype('scalar')->end()
+                            ->defaultValue(array('sylius'))
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+    }
 
     /**
      * Adds `classes` section.
@@ -76,8 +76,8 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('model')->defaultValue('Sylius\Component\AutoPay\Model\AutoPay')->end()
-                                ->scalarNode('controller')->defaultValue('Sylius\\Bundle\\AutoPayBundle\\Controller\\IntervalController')->end()
-//                                ->scalarNode('repository')->cannotBeEmpty()->end()
+                                ->scalarNode('controller')->defaultValue('Sylius\\Bundle\\AutoPayBundle\\Controller\\AutoPayController')->end()
+                                ->scalarNode('repository')->cannotBeEmpty()->end()
 //                                ->scalarNode('form')->defaultValue('Sylius\Bundle\ProductBundle\Form\Type\ProductType')->end()
                             ->end()
                         ->end()

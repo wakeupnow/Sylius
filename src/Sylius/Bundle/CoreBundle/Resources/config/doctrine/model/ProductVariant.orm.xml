@@ -41,6 +41,13 @@
                 <cascade-all />
             </cascade>
         </one-to-many>
+
+        <many-to-one field="interval" target-entity="Sylius\Component\AutoPay\Model\IntervalInterface">
+            <join-column name="interval_id" referenced-column-name="id" nullable="true" />
+            <cascade>
+                <cascade-persist />
+            </cascade>
+        </many-to-one>
     </mapped-superclass>
 
 </doctrine-mapping>

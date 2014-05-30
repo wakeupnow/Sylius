@@ -15,6 +15,7 @@ use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Inventory\Model\StockableInterface;
 use Sylius\Component\Product\Model\VariantInterface as BaseVariantInterface;
 use Sylius\Component\Shipping\Model\ShippableInterface;
+use Sylius\Component\AutoPay\Model\IntervalInterface;
 
 /**
  * Sylius core product Variant interface.
@@ -92,4 +93,30 @@ interface ProductVariantInterface extends BaseVariantInterface, PriceableInterfa
      * @param integer $depth
      */
     public function setDepth($depth);
+
+    /**
+     * Check if this variation have autopay option
+     */
+    public function isAutoPay();
+
+    /**
+     * Set the autopay
+     *
+     * @param boolean
+     */
+    public function setAutoPay($autoPay);
+
+    /**
+     * Get the autopay interval for this variation
+     *
+     * @return IntervalInterface
+     */
+    public function getInterval();
+
+    /**
+     * Set the autopay interval for this variation
+     *
+     * @param IntervalInterface $interval
+     */
+    public function setInterval(IntervalInterface $interval = null);
 }

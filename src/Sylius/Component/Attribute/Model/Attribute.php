@@ -11,6 +11,8 @@
 
 namespace Sylius\Component\Attribute\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Model for object attributes.
  *
@@ -22,6 +24,8 @@ class Attribute implements AttributeInterface
      * Attribute id.
      *
      * @var mixed
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -29,6 +33,8 @@ class Attribute implements AttributeInterface
      * Internal name.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $name;
 
@@ -36,6 +42,8 @@ class Attribute implements AttributeInterface
      * Type.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $type = AttributeTypes::TEXT;
 
@@ -44,6 +52,8 @@ class Attribute implements AttributeInterface
      * Displayed to user.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $presentation;
 
@@ -51,6 +61,8 @@ class Attribute implements AttributeInterface
      * Attribute configuration.
      *
      * @var array
+     *
+     * @Serializer\Type("array")
      */
     protected $configuration = array();
 
@@ -58,6 +70,8 @@ class Attribute implements AttributeInterface
      * Creation time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -65,8 +79,11 @@ class Attribute implements AttributeInterface
      * Last update time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
+
 
     public function __construct()
     {

@@ -81,6 +81,9 @@ abstract class SyliusKernel extends Kernel
             new \JMS\TranslationBundle\JMSTranslationBundle(),
             new \Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new \Payum\Bundle\PayumBundle\PayumBundle(),
+
+            // Cron manager bundle
+            new \BCC\CronManagerBundle\BCCCronManagerBundle(),
         );
 
         if (in_array($this->environment, array('dev', 'test')) && class_exists('Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle')) {

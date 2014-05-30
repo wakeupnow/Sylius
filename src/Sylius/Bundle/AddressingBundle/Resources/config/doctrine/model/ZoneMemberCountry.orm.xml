@@ -16,6 +16,9 @@
     <entity name="Sylius\Component\Addressing\Model\ZoneMemberCountry">
         <many-to-one field="country" target-entity="Sylius\Component\Addressing\Model\CountryInterface">
             <join-column name="country_id" referenced-column-name="id" />
+            <cascade>
+                <cascade-persist />
+            </cascade>
         </many-to-one>
     </entity>
 

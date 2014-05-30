@@ -10,15 +10,13 @@
 
 namespace Sylius\Component\AutoPay\Model;
 
-use Sylius\Component\Resource\Model\TimestampableInterface;
-
 /**
  * AutoPay Interface.
  *
  * @author Abdullah Kiser <kiser.bd@gmail.com>
  */
 
-class Interval implements TimestampableInterface
+class Interval implements IntervalInterface
 {
     /**
      * AutoPay id.
@@ -28,39 +26,11 @@ class Interval implements TimestampableInterface
     protected $id;
 
     /**
-     * Minute
+     * NoOfDay
      *
-     * @var mixed
+     * @var integer
      */
-    private $minute;
-
-    /**
-     * Hour
-     *
-     * @var mixed
-     */
-    private $hour;
-
-    /**
-     * Day Of month
-     *
-     * @var string
-     */
-    private $dayMonth;
-
-    /**
-     * Month
-     *
-     * @var string
-     */
-    private $month;
-
-    /**
-     * Day Of week
-     *
-     * @var string
-     */
-    private $dayWeek;
+    private $noOfDay;    
 
     /**
      * Creation time.
@@ -85,100 +55,19 @@ class Interval implements TimestampableInterface
     }
 
     /**
-     * Set Interval minute
-     *
-     * @param string $minute
+     * {@inheritdoc}
      */
-    public function setMinute($minute)
+    public function setNoOfDay($noOfDay)
     {
-        $this->minute = $minute;
+        $this->noOfDay = $noOfDay;
     }
 
     /**
-     * Get the minute of the Interval
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public function getMinute()
+    public function getNoOfDay()
     {
-        return $this->minute;
-    }
-
-    /**
-     * Set the hour of Interval
-     *
-     * @param string $hour
-     */
-    public function setHour($hour)
-    {
-        $this->hour = $hour;
-    }
-
-    /**
-     * Get the hour of Interval
-     *
-     * @return string
-     */
-    public function getHour()
-    {
-        return $this->hour;
-    }
-
-    /**
-     * Set the day of the month of Interval
-     *
-     * @param string $dayMonth
-     */
-    public function setDayMonth($dayMonth)
-    {
-        $this->dayMonth = $dayMonth;
-    }
-
-    /**
-     * Get the day of the month of Interval
-     * @return string
-     */
-    public function getDayMonth()
-    {
-        return $this->dayMonth;
-    }
-
-    /**
-     * Set the month of the Interval
-     * @param string $month
-     */
-    public function setMonth($month)
-    {
-        $this->month = $month;
-    }
-
-    /**
-     * Get the month of the Interval
-     * @return string
-     */
-    public function getMonth()
-    {
-        return $this->month;
-    }
-
-    /**
-     * Set the day of the week of Interval
-     *
-     * @param string $dayWeek
-     */
-    public function setDayWeek($dayWeek)
-    {
-        $this->dayWeek = $dayWeek;
-    }
-
-    /**
-     * Get the day of the week of Interval
-     *
-     * @return string
-     */
-    public function getDayWeek()
-    {
-        return $this->dayWeek;
+        return $this->noOfDay;
     }
 
     /**

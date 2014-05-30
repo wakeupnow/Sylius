@@ -22,11 +22,7 @@
             <generator strategy="AUTO" />
         </id>
 
-        <field name="minute" column="minute" type="string" />
-        <field name="hour" column="hour" type="string" />
-        <field name="dayMonth" column="day_month" type="string" />
-        <field name="month" column="month" type="string" />
-        <field name="dayWeek" column="day_week" type="string" />
+        <field name="noOfDay" column="no_of_day" type="integer" />
         
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>

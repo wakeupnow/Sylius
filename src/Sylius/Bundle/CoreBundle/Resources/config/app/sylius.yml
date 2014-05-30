@@ -135,21 +135,17 @@ sylius_resource:
             classes:
                 model: Symfony\Cmf\Bundle\ContentBundle\Doctrine\Phpcr\StaticContent
                 repository: Sylius\Bundle\CoreBundle\Doctrine\ODM\PHPCR\PageRepository
-#        sylius.interval:
-#            driver: doctrine/orm
-#            classes:
-#                model: Sylius\Component\AutoPay\Model\Interval
-#                controller: Sylius\Bundle\AutoPayBundle\Controller\IntervalController
 
 sylius_auto_pay:
     driver: doctrine/orm
     classes:
         autoPay:
             model: Sylius\Component\AutoPay\Model\AutoPay
-#            controller: Sylius\Bundle\AutoPayBundle\Controller\AutoPayController
-#            repository: Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository
+            controller: Sylius\Bundle\AutoPayBundle\Controller\AutoPayController
+            repository: Sylius\Bundle\AutoPayBundle\Doctrine\ORM\AutoPayRepository
 #            form: Sylius\Bundle\CoreBundle\Form\Type\ProductType
         interval:
             model: Sylius\Component\AutoPay\Model\Interval
             controller: Sylius\Bundle\AutoPayBundle\Controller\IntervalController
+            repository: Sylius\Bundle\AutoPayBundle\Doctrine\ORM\IntervalRepository
             form: Sylius\Bundle\AutoPayBundle\Form\Type\IntervalType

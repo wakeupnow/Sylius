@@ -15,6 +15,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Product\Model\Variant as BaseVariant;
 use Sylius\Component\Variation\Model\VariantInterface as BaseVariantInterface;
+use Sylius\Component\AutoPay\Model\IntervalInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Sylius core product variant entity.
@@ -27,6 +29,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Variant SKU.
      *
      * @var string
+     *
+     * @Serializer\Type("integer")
      */
     protected $sku;
 
@@ -34,6 +38,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * The variant prices.
      *
      * @var PriceInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\ProductVariantPrice>")
      */
     protected $prices;
 
@@ -41,6 +47,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * On hold.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $onHold = 0;
 
@@ -48,6 +56,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * On hand stock.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $onHand = 0;
 
@@ -55,6 +65,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Is variant available on demand?
      *
      * @var Boolean
+     *
+     * @Serializer\Type("boolean")
      */
     protected $availableOnDemand = true;
 
@@ -62,6 +74,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Images.
      *
      * @var Collection|VariantImageInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\ProductVariantImage>")
      */
     protected $images;
 
@@ -69,6 +83,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Weight.
      *
      * @var float
+     *
+     * @Serializer\Type("double")
      */
     protected $weight;
 
@@ -76,6 +92,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Width.
      *
      * @var float
+     *
+     * @Serializer\Type("double")
      */
     protected $width;
 
@@ -83,6 +101,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Height.
      *
      * @var float
+     *
+     * @Serializer\Type("double")
      */
     protected $height;
 
@@ -90,6 +110,8 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Depth.
      *
      * @var float
+     *
+     * @Serializer\Type("double")
      */
     protected $depth;
 
@@ -99,6 +121,13 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * @var Boolean
      */
     protected $autoPay = false;
+
+    /**
+     * Product interval.
+     *
+     * @var IntervalInterface
+     */
+    protected $interval;
 
     /**
      * Override constructor to set on hand stock.
@@ -440,6 +469,24 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
     public function setAutoPay($autoPay)
     {
         $this->autoPay = (Boolean) $autoPay;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getInterval()
+    {
+        return $this->interval;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setInterval(IntervalInterface $interval = null)
+    {
+        $this->interval = $interval;
 
         return $this;
     }

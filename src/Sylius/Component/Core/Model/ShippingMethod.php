@@ -13,6 +13,7 @@ namespace Sylius\Component\Core\Model;
 
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Shipping\Model\ShippingMethod as BaseShippingMethod;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Shipping method available for selected zone.
@@ -25,6 +26,8 @@ class ShippingMethod extends BaseShippingMethod implements ShippingMethodInterfa
      * Geographical zone.
      *
      * @var ZoneInterface
+     *
+     * @Serializer\Type("Sylius\Component\Addressing\Model\Zone")
      */
     protected $zone;
 

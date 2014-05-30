@@ -26,6 +26,9 @@
 
         <many-to-one field="stockable" target-entity="Sylius\Component\Inventory\Model\StockableInterface">
             <join-column name="stockable_id" referenced-column-name="id" nullable="false" />
+            <cascade>
+                <cascade-persist/>
+            </cascade>
         </many-to-one>
 
         <field name="createdAt" column="created_at" type="datetime">

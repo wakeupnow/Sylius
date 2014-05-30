@@ -13,6 +13,7 @@ namespace Sylius\Component\Variation\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Object variant model.
@@ -25,6 +26,8 @@ class Variant implements VariantInterface
      * Variant id.
      *
      * @var mixed
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -32,6 +35,8 @@ class Variant implements VariantInterface
      * Is master?
      *
      * @var Boolean
+     *
+     * @Serializer\Type("boolean")
      */
     protected $master = false;
 
@@ -39,6 +44,8 @@ class Variant implements VariantInterface
      * Variant presentation.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $presentation;
 
@@ -46,6 +53,8 @@ class Variant implements VariantInterface
      * Product.
      *
      * @var VariableInterface
+     *
+     * @Serializer\Type("Sylius\Component\Core\Model\Product")
      */
     protected $object;
 
@@ -53,6 +62,8 @@ class Variant implements VariantInterface
      * Option values.
      *
      * @var Collection|OptionValueInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Variant\Model\OptionValue>")
      */
     protected $options;
 
@@ -60,6 +71,8 @@ class Variant implements VariantInterface
      * Creation time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -67,6 +80,8 @@ class Variant implements VariantInterface
      * Last update time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
 
@@ -74,6 +89,8 @@ class Variant implements VariantInterface
      * Deletion time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $deletedAt;
 

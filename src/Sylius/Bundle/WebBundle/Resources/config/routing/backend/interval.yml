@@ -10,7 +10,7 @@ sylius_backend_interval_index:
             template: SyliusWebBundle:Backend/Interval:index.html.twig
             sortable: true
             sorting:
-                name: desc
+                id: desc
 
 sylius_backend_interval_create:
     pattern: /new

@@ -20,6 +20,7 @@ use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Sylius\Component\Promotion\Model\CouponInterface;
 use Sylius\Component\Promotion\Model\PromotionInterface;
+use Sylius\Component\Payment\Model\PaymentStateInterface;
 
 /**
  * Order entity.
@@ -286,7 +287,7 @@ class Order extends Cart implements OrderInterface
     public function setPayment(PaymentInterface $payment)
     {
         $this->payment = $payment;
-        $this->paymentState = $payment->getState();
+        $this->setPaymentState($payment->getState());
 
         return $this;
     }
@@ -302,7 +303,7 @@ class Order extends Cart implements OrderInterface
     /**
      * {@inheritdoc}
      */
-    public function setPaymentState($paymentState)
+    public function setPaymentState(PaymentStateInterface $paymentState)
     {
         $this->paymentState = $paymentState;
 

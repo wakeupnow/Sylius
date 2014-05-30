@@ -13,11 +13,14 @@ namespace Sylius\Component\Taxonomy\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Model for taxons.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Taxon implements TaxonInterface
 {
@@ -25,6 +28,9 @@ class Taxon implements TaxonInterface
      * Taxon id.
      *
      * @var mixed
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -32,6 +38,9 @@ class Taxon implements TaxonInterface
      * The taxonomy of this taxon.
      *
      * @var TaxonomyInterface
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("Sylius\Component\Taxonomy\Model\Taxonomy")
      */
     protected $taxonomy;
 
@@ -39,6 +48,9 @@ class Taxon implements TaxonInterface
      * Parent taxon.
      *
      * @var TaxonInterface
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("Sylius\Component\Taxonomy\Model\Taxon")
      */
     protected $parent;
 
@@ -46,6 +58,9 @@ class Taxon implements TaxonInterface
      * Child taxons.
      *
      * @var Collection
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Taxonomy\Model\Taxon>")
      */
     protected $children;
 
@@ -53,6 +68,9 @@ class Taxon implements TaxonInterface
      * Taxon name.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $name;
 
@@ -60,6 +78,9 @@ class Taxon implements TaxonInterface
      * Taxon slug.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $slug;
 
@@ -67,6 +88,9 @@ class Taxon implements TaxonInterface
      * Taxon permalink.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $permalink;
 
@@ -74,6 +98,9 @@ class Taxon implements TaxonInterface
      * Taxon description.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $description;
 

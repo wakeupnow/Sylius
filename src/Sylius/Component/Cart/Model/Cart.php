@@ -30,13 +30,18 @@ class Cart extends Order implements CartInterface
     protected $expiresAt;
 
     /**
-     * Constructor.
+     * @var string A token is used to identify carts
      */
-    public function __construct()
+    protected $token;
+
+    /**
+     * @param string $expiresIn http://php.net/manual/en/dateinterval.construct.php
+     */
+    public function __construct($expiresIn = 'P1D')
     {
         parent::__construct();
 
-        $this->incrementExpiresAt();
+        $this->incrementExpiresAt($expiresIn);
     }
 
     /**
@@ -74,12 +79,28 @@ class Cart extends Order implements CartInterface
     }
 
     /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public function incrementExpiresAt()
+    public function incrementExpiresAt($intervalSpec)
     {
         $expiresAt = new \DateTime();
-        $expiresAt->add(new \DateInterval('PT3H'));
+        $expiresAt->add(new \DateInterval($intervalSpec));
 
         $this->expiresAt = $expiresAt;
 

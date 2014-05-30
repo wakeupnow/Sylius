@@ -94,21 +94,21 @@ class Promotion implements PromotionInterface
     /**
      * Associated coupons
      *
-     * @var Collection|CouponInterface[]
+     * @var CouponInterface[]
      */
     protected $coupons;
 
     /**
      * Associated rules
      *
-     * @var Collection|RuleInterface[]
+     * @var RuleInterface[]
      */
     protected $rules;
 
     /**
      * Associated actions
      *
-     * @var Collection|ActionInterface[]
+     * @var ActionInterface[]
      */
     protected $actions;
 

@@ -18,6 +18,7 @@
 
     <mapped-superclass name="Sylius\Component\Cart\Model\Cart" table="sylius_cart">
         <field name="expiresAt" column="expires_at" type="datetime" />
+        <field name="token" column="token" type="string" />
     </mapped-superclass>
 
 </doctrine-mapping>

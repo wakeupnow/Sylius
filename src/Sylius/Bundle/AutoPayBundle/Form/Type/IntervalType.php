@@ -55,20 +55,8 @@ class IntervalType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('minute', 'text', array(
-                'label' => 'sylius.form.interval.minute'
-            ))
-            ->add('hour', 'text', array(
-                'label' => 'sylius.form.interval.hour'
-            ))
-            ->add('dayMonth', 'text', array(
-                'label' => 'sylius.form.interval.day_month',
-            ))
-            ->add('month', 'text', array(
-                'label' => 'sylius.form.interval.month'
-            ))
-            ->add('dayWeek', 'text', array(
-                'label' => 'sylius.form.interval.day_week'
+            ->add('noOfDay', 'text', array(
+                'label' => 'sylius.form.interval.no_of_day'
             ))
         ;
     }
@@ -92,5 +80,22 @@ class IntervalType extends AbstractType
     public function getName()
     {
         return 'sylius_interval';
+    }
+
+    /**
+     * Get months to add as choices in expiryMonth
+     *
+     * @return array
+     */
+    private function getMonthChoices()
+    {
+        $monthChoices = array();
+
+        foreach (range(1, 12) as $month) {
+
+            $monthChoices[$month] = \date('F', mktime(0,0,0,$month));
+        }
+
+        return $monthChoices;
     }
 }

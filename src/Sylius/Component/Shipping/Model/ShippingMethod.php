@@ -13,6 +13,7 @@ namespace Sylius\Component\Shipping\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Shipping method model.
@@ -24,7 +25,9 @@ class ShippingMethod implements ShippingMethodInterface
     /**
      * Shipping method identifier.
      *
-     * @var mixed
+     * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -32,6 +35,8 @@ class ShippingMethod implements ShippingMethodInterface
      * Category.
      *
      * @var ShippingCategoryInterface
+     *
+     * @Serializer\Type("Sylius\Component\Shipping\Model\ShippingCategory")
      */
     protected $category;
 
@@ -39,13 +44,17 @@ class ShippingMethod implements ShippingMethodInterface
      * The one of 3 requirement variants.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $categoryRequirement = ShippingMethodInterface::CATEGORY_REQUIREMENT_MATCH_ANY;
 
     /**
      * Is method enabled?
      *
-     * @var Boolean
+     * @var boolean
+     *
+     * @Serializer\Type("boolean")
      */
     protected $enabled = true;
 
@@ -53,6 +62,8 @@ class ShippingMethod implements ShippingMethodInterface
      * Name.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $name;
 
@@ -60,6 +71,8 @@ class ShippingMethod implements ShippingMethodInterface
      * Calculator name.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $calculator;
 
@@ -67,6 +80,8 @@ class ShippingMethod implements ShippingMethodInterface
      * All extra configuration.
      *
      * @var array
+     *
+     * @Serializer\Type("array")
      */
     protected $configuration = array();
 
@@ -74,6 +89,8 @@ class ShippingMethod implements ShippingMethodInterface
      * Shipping method rules.
      *
      * @var Collection|RuleInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Shipping\Model\Rule>")
      */
     protected $rules;
 
@@ -81,6 +98,8 @@ class ShippingMethod implements ShippingMethodInterface
      * Creation date.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -88,6 +107,8 @@ class ShippingMethod implements ShippingMethodInterface
      * Last update time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
 
