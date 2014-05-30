@@ -12,6 +12,8 @@
 namespace Sylius\Component\Cart\Model;
 
 use Sylius\Component\Order\Model\Order;
+use Sylius\Component\Core\Model\UserInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Model for carts.
@@ -23,20 +25,36 @@ use Sylius\Component\Order\Model\Order;
 class Cart extends Order implements CartInterface
 {
     /**
+     * User.
+     *
+     * @var UserInterface
+     */
+    protected $user;
+
+    /**
      * Expiration time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $expiresAt;
 
     /**
-     * Constructor.
+     * @var string A token is used to identify carts
+     *
+     * @Serializer\Type("string")
      */
-    public function __construct()
+    protected $token;
+
+    /**
+     * @param string $expiresIn http://php.net/manual/en/dateinterval.construct.php
+     */
+    public function __construct($expiresIn = 'P1D')
     {
         parent::__construct();
 
-        $this->incrementExpiresAt();
+        $this->incrementExpiresAt($expiresIn);
     }
 
     /**
@@ -74,12 +92,46 @@ class Cart extends Order implements CartInterface
     }
 
     /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public function incrementExpiresAt()
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUser(UserInterface $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function incrementExpiresAt($intervalSpec)
     {
         $expiresAt = new \DateTime();
-        $expiresAt->add(new \DateInterval('PT3H'));
+        $expiresAt->add(new \DateInterval($intervalSpec));
 
         $this->expiresAt = $expiresAt;
 

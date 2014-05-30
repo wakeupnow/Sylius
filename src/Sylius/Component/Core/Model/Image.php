@@ -11,12 +11,16 @@
 
 namespace Sylius\Component\Core\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 class Image implements ImageInterface
 {
     /**
      * Id
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -24,6 +28,8 @@ class Image implements ImageInterface
      * File
      *
      * @var \SplFileInfo
+     *
+     * @Serializer\Type("SplFileInfo")
      */
     protected $file;
 
@@ -31,6 +37,8 @@ class Image implements ImageInterface
      * Path to file
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $path;
 
@@ -38,6 +46,8 @@ class Image implements ImageInterface
      * Creation date
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -45,8 +55,11 @@ class Image implements ImageInterface
      * Update date
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
+
 
     public function __construct()
     {

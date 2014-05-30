@@ -18,11 +18,14 @@ use Sylius\Component\Fulfillment\Model\Fulfillment;
 use Sylius\Component\Product\Model\Product as BaseProduct;
 use Sylius\Component\Shipping\Model\ShippingCategoryInterface;
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Sylius core product entity.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Product extends BaseProduct implements ProductInterface
 {
@@ -42,6 +45,9 @@ class Product extends BaseProduct implements ProductInterface
      * For lists displaying.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $shortDescription;
 
@@ -49,6 +55,9 @@ class Product extends BaseProduct implements ProductInterface
      * Variant selection method.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $variantSelectionMethod;
 

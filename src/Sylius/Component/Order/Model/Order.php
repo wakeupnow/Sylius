@@ -13,11 +13,14 @@ namespace Sylius\Component\Order\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Model for orders.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Order implements OrderInterface
 {
@@ -25,6 +28,9 @@ class Order implements OrderInterface
      * Id.
      *
      * @var mixed
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -32,6 +38,9 @@ class Order implements OrderInterface
      * Completion time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("DateTime")
      */
     protected $completedAt;
 
@@ -39,13 +48,20 @@ class Order implements OrderInterface
      * Order number.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $number;
 
     /**
      * Items in order.
      *
+     * @var
      * @var Collection|OrderItemInterface[]
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\OrderItem>")
      */
     protected $items;
 
@@ -75,6 +91,9 @@ class Order implements OrderInterface
      * Items total + adjustments total.
      *
      * @var integer
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $total = 0;
 
@@ -82,6 +101,9 @@ class Order implements OrderInterface
      * Whether order was confirmed.
      *
      * @var Boolean
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("boolean")
      */
     protected $confirmed = true;
 
@@ -89,6 +111,9 @@ class Order implements OrderInterface
      * Confirmation token.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $confirmationToken;
 

@@ -12,6 +12,7 @@
 namespace Sylius\Component\Core\Model;
 
 use Sylius\Component\Shipping\Model\Shipment as BaseShipment;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Shipment attached to order.
@@ -24,6 +25,8 @@ class Shipment extends BaseShipment implements ShipmentInterface
      * Order.
      *
      * @var OrderInterface
+     *
+     * @Serializer\Type("Sylius\Component\Core\Model\Order")
      */
     protected $order;
 

@@ -30,6 +30,9 @@
                     <join-column name="attribute_id" referenced-column-name="id" nullable="false" unique="false" />
                 </inverse-join-columns>
             </join-table>
+            <cascade>
+                <cascade-persist />
+            </cascade>
         </many-to-many>
 
         <many-to-many field="options" target-entity="Sylius\Component\Product\Model\OptionInterface">
@@ -41,6 +44,9 @@
                     <join-column name="option_id" referenced-column-name="id" nullable="false" unique="false" />
                 </inverse-join-columns>
             </join-table>
+            <cascade>
+                <cascade-persist />
+            </cascade>
         </many-to-many>
 
         <field name="createdAt" column="created_at" type="datetime">

@@ -16,6 +16,9 @@
     <entity name="Sylius\Component\Addressing\Model\ZoneMemberProvince">
         <many-to-one field="province" target-entity="Sylius\Component\Addressing\Model\ProvinceInterface">
             <join-column name="province_id" referenced-column-name="id" />
+            <cascade>
+                <cascade-persist />
+            </cascade>
         </many-to-one>
     </entity>
 

@@ -11,6 +11,8 @@
 
 namespace Sylius\Component\Attribute\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
  * Attribute to subject relation.
  *
@@ -22,6 +24,8 @@ class AttributeValue implements AttributeValueInterface
      * Id.
      *
      * @var integer
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -29,6 +33,8 @@ class AttributeValue implements AttributeValueInterface
      * Subject.
      *
      * @var SubjectInterface
+     *
+     * @Serializer\Type("Sylius\Component\Core\Model\Product")
      */
     protected $subject;
 
@@ -36,6 +42,8 @@ class AttributeValue implements AttributeValueInterface
      * Attribute.
      *
      * @var AttributeInterface
+     *
+     * @Serializer\Type("Sylius\Component\Attribute\Model\Attribute")
      */
     protected $attribute;
 
@@ -43,6 +51,8 @@ class AttributeValue implements AttributeValueInterface
      * Attribute value.
      *
      * @var mixed
+     *
+     * @Serializer\Type("string")
      */
     protected $value;
 
@@ -51,7 +61,7 @@ class AttributeValue implements AttributeValueInterface
      */
     public function __toString()
     {
-        return $this->value;
+        return (string) $this->value;
     }
 
     /**

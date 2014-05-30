@@ -13,11 +13,14 @@ namespace Sylius\Component\Addressing\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Default zone model.
  *
  * @author Saša Stamenković <umpirsky@gmail.com>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Zone implements ZoneInterface
 {
@@ -25,6 +28,9 @@ class Zone implements ZoneInterface
      * Zone id.
      *
      * @var mixed
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -32,6 +38,9 @@ class Zone implements ZoneInterface
      * Zone name.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $name;
 
@@ -39,6 +48,9 @@ class Zone implements ZoneInterface
      * Zone type.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $type;
 

@@ -1,7 +1,8 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
     "hash": "c3373778b7ba61f66245fedfb86cfd27",
     "packages": [
@@ -252,16 +253,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "v2.4.1",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "ceb18cf9b0230f3ea208b6238130fd415abda0a7"
+                "reference": "5db6ab40e4c531f14dad4ca96a394dfce5d4255b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/ceb18cf9b0230f3ea208b6238130fd415abda0a7",
-                "reference": "ceb18cf9b0230f3ea208b6238130fd415abda0a7",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/5db6ab40e4c531f14dad4ca96a394dfce5d4255b",
+                "reference": "5db6ab40e4c531f14dad4ca96a394dfce5d4255b",
                 "shasum": ""
             },
             "require": {
@@ -271,6 +272,9 @@
                 "doctrine/inflector": "1.*",
                 "doctrine/lexer": "1.*",
                 "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7"
             },
             "type": "library",
             "extra": {
@@ -291,7 +295,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -322,7 +327,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-09-07 10:20:34"
+            "time": "2014-05-21 19:28:51"
         },
         {
             "name": "doctrine/dbal",
@@ -1095,21 +1100,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-<<<<<<< HEAD
                 "reference": "3969d7fe39fd58398bf9a00110ca349c000fa05e"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/3969d7fe39fd58398bf9a00110ca349c000fa05e",
                 "reference": "3969d7fe39fd58398bf9a00110ca349c000fa05e",
-=======
-                "reference": "13c173ff60eef8e32c10f76225eacca00a430826"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/13c173ff60eef8e32c10f76225eacca00a430826",
-                "reference": "13c173ff60eef8e32c10f76225eacca00a430826",
->>>>>>> autoPay
                 "shasum": ""
             },
             "require": {
@@ -1164,11 +1160,7 @@
             "keywords": [
                 "User management"
             ],
-<<<<<<< HEAD
             "time": "2014-05-18 21:15:38"
-=======
-            "time": "2014-05-07 23:51:03"
->>>>>>> autoPay
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1450,17 +1442,17 @@
         },
         {
             "name": "hwi/oauth-bundle",
-            "version": "0.3.4",
+            "version": "0.3.5",
             "target-dir": "HWI/Bundle/OAuthBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hwi/HWIOAuthBundle.git",
-                "reference": "e1d4332a8e2b40c939fa1e4b131b47b8e4e3681c"
+                "reference": "7bd777505175d159205a4e6c5452a4e8803b94db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/e1d4332a8e2b40c939fa1e4b131b47b8e4e3681c",
-                "reference": "e1d4332a8e2b40c939fa1e4b131b47b8e4e3681c",
+                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/7bd777505175d159205a4e6c5452a4e8803b94db",
+                "reference": "7bd777505175d159205a4e6c5452a4e8803b94db",
                 "shasum": ""
             },
             "require": {
@@ -1559,7 +1551,7 @@
                 "yahoo",
                 "yandex"
             ],
-            "time": "2014-05-12 14:37:08"
+            "time": "2014-05-30 10:38:27"
         },
         {
             "name": "imagine/imagine",
@@ -2977,21 +2969,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/whiteoctober/Pagerfanta.git",
-<<<<<<< HEAD
-                "reference": "65d5447748865e8e6d48e810dc25ab5b4c699269"
+                "reference": "e7bb39bb45ecf64a5fa09a546f1d8007fd292359"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/whiteoctober/Pagerfanta/zipball/65d5447748865e8e6d48e810dc25ab5b4c699269",
-                "reference": "65d5447748865e8e6d48e810dc25ab5b4c699269",
-=======
-                "reference": "182db172bde6b1db453dc7fd38d3b7a401ba1f37"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/whiteoctober/Pagerfanta/zipball/182db172bde6b1db453dc7fd38d3b7a401ba1f37",
-                "reference": "182db172bde6b1db453dc7fd38d3b7a401ba1f37",
->>>>>>> autoPay
+                "url": "https://api.github.com/repos/whiteoctober/Pagerfanta/zipball/e7bb39bb45ecf64a5fa09a546f1d8007fd292359",
+                "reference": "e7bb39bb45ecf64a5fa09a546f1d8007fd292359",
                 "shasum": ""
             },
             "require": {
@@ -3045,11 +3028,7 @@
                 "paginator",
                 "paging"
             ],
-<<<<<<< HEAD
-            "time": "2014-05-16 15:00:59"
-=======
-            "time": "2014-05-12 09:06:10"
->>>>>>> autoPay
+            "time": "2014-05-23 10:20:31"
         },
         {
             "name": "paypal/rest-api-sdk-php",
@@ -3145,16 +3124,16 @@
         },
         {
             "name": "payum/payum",
-            "version": "0.8.7",
+            "version": "0.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "22c05a9108f40be244c5f183d116e3079d82340e"
+                "reference": "023cc952b8be72c4c80d53a866b9ad68a8942a0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/22c05a9108f40be244c5f183d116e3079d82340e",
-                "reference": "22c05a9108f40be244c5f183d116e3079d82340e",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/023cc952b8be72c4c80d53a866b9ad68a8942a0e",
+                "reference": "023cc952b8be72c4c80d53a866b9ad68a8942a0e",
                 "shasum": ""
             },
             "require": {
@@ -3247,21 +3226,21 @@
                 "paypal rest",
                 "recurring payment"
             ],
-            "time": "2014-05-05 15:28:10"
+            "time": "2014-05-29 13:48:04"
         },
         {
             "name": "payum/payum-bundle",
-            "version": "0.8.4",
+            "version": "0.8.5",
             "target-dir": "Payum/Bundle/PayumBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/PayumBundle.git",
-                "reference": "89627c34d276e5c0588bb30b19e84f2d97d5b344"
+                "reference": "476e684fc5161521e5bc17a50c87bcb25118bc1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/89627c34d276e5c0588bb30b19e84f2d97d5b344",
-                "reference": "89627c34d276e5c0588bb30b19e84f2d97d5b344",
+                "url": "https://api.github.com/repos/Payum/PayumBundle/zipball/476e684fc5161521e5bc17a50c87bcb25118bc1b",
+                "reference": "476e684fc5161521e5bc17a50c87bcb25118bc1b",
                 "shasum": ""
             },
             "require": {
@@ -3321,6 +3300,7 @@
                 "authorize.net",
                 "be2bill",
                 "instant notifications",
+                "klarna",
                 "offline",
                 "omnipay",
                 "payex",
@@ -3330,7 +3310,7 @@
                 "paypal pro checkout",
                 "recurring payment"
             ],
-            "time": "2014-05-08 10:23:28"
+            "time": "2014-05-26 13:29:20"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -4423,17 +4403,17 @@
         },
         {
             "name": "symfony/expression-language",
-            "version": "v2.4.4",
+            "version": "v2.4.5",
             "target-dir": "Symfony/Component/ExpressionLanguage",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/expression-language.git",
-                "reference": "4e594166125432c8595086c6dc78e2f54131cf1d"
+                "reference": "c6da1c6c22d9c17a09f8db809c2e306c443610b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/expression-language/zipball/4e594166125432c8595086c6dc78e2f54131cf1d",
-                "reference": "4e594166125432c8595086c6dc78e2f54131cf1d",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/c6da1c6c22d9c17a09f8db809c2e306c443610b8",
+                "reference": "c6da1c6c22d9c17a09f8db809c2e306c443610b8",
                 "shasum": ""
             },
             "require": {
@@ -4468,7 +4448,7 @@
             ],
             "description": "Symfony ExpressionLanguage Component",
             "homepage": "http://symfony.com",
-            "time": "2014-04-16 10:34:42"
+            "time": "2014-04-28 09:05:23"
         },
         {
             "name": "symfony/icu",
@@ -4635,16 +4615,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.3.13",
+            "version": "v2.3.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "9c4b11915d7409a9cecd155d954f2ade273f3359"
+                "reference": "424a567d2c1fb918a32f302b5c2bcb67d2661e76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/9c4b11915d7409a9cecd155d954f2ade273f3359",
-                "reference": "9c4b11915d7409a9cecd155d954f2ade273f3359",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/424a567d2c1fb918a32f302b5c2bcb67d2661e76",
+                "reference": "424a567d2c1fb918a32f302b5c2bcb67d2661e76",
                 "shasum": ""
             },
             "require": {
@@ -4741,7 +4721,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-04-27 08:34:33"
+            "time": "2014-05-22 17:23:49"
         },
         {
             "name": "twig/extensions",
@@ -5228,7 +5208,6 @@
         },
         {
             "name": "behat/mink-extension",
-<<<<<<< HEAD
             "version": "v1.3.3",
             "source": {
                 "type": "git",
@@ -5239,27 +5218,11 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Behat/MinkExtension/zipball/b885b9407cba50a954f72c69ed1b2f8d3bc694f8",
                 "reference": "b885b9407cba50a954f72c69ed1b2f8d3bc694f8",
-=======
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Behat/MinkExtension.git",
-                "reference": "0642b680b613fdd6cb774debacf65a0d0d1f08e8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkExtension/zipball/0642b680b613fdd6cb774debacf65a0d0d1f08e8",
-                "reference": "0642b680b613fdd6cb774debacf65a0d0d1f08e8",
->>>>>>> autoPay
                 "shasum": ""
             },
             "require": {
                 "behat/behat": "~2.5.0",
-<<<<<<< HEAD
                 "behat/mink": "~1.5",
-=======
-                "behat/mink": ">=1.4.3,<1.6-dev",
->>>>>>> autoPay
                 "php": ">=5.3.2",
                 "symfony/config": "~2.2"
             },
@@ -5292,11 +5255,7 @@
                 "test",
                 "web"
             ],
-<<<<<<< HEAD
             "time": "2014-05-15 19:27:39"
-=======
-            "time": "2014-04-27 11:55:27"
->>>>>>> autoPay
         },
         {
             "name": "behat/mink-goutte-driver",

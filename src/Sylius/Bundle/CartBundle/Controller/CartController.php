@@ -17,6 +17,7 @@ use Sylius\Component\Cart\SyliusCartEvents;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Default cart controller.
@@ -99,6 +100,23 @@ class CartController extends Controller
 
         // Write flash message
         $eventDispatcher->dispatch(SyliusCartEvents::CART_CLEAR_COMPLETED, new FlashEvent());
+
+        return $this->redirectToCartSummary();
+    }
+
+    /**
+     * Remote cart users landing
+     *
+     * Assign a cart identified by its' token to the current user's session
+     */
+    public function landRemoteAction(Request $request)
+    {
+        /** @var \Sylius\Component\Cart\Model\CartInterface $cart */
+        if (!$cart = $this->get('sylius.repository.cart')->findOneBy(['token' => $request->get('token')])) {
+            throw new NotFoundHttpException();
+        }
+
+        $this->getProvider()->setCart($cart);
 
         return $this->redirectToCartSummary();
     }

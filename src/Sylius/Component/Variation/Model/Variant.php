@@ -13,11 +13,14 @@ namespace Sylius\Component\Variation\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Object variant model.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Variant implements VariantInterface
 {
@@ -25,6 +28,9 @@ class Variant implements VariantInterface
      * Variant id.
      *
      * @var mixed
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -32,6 +38,9 @@ class Variant implements VariantInterface
      * Is master?
      *
      * @var Boolean
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("boolean")
      */
     protected $master = false;
 
@@ -46,6 +55,9 @@ class Variant implements VariantInterface
      * Product.
      *
      * @var VariableInterface
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("Sylius\Component\Core\Model\Product")
      */
     protected $object;
 
@@ -53,6 +65,9 @@ class Variant implements VariantInterface
      * Option values.
      *
      * @var Collection|OptionValueInterface[]
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\OptionValue>")
      */
     protected $options;
 

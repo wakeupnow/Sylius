@@ -14,6 +14,7 @@ namespace Sylius\Component\Shipping\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\TimestampableInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * This model represents single shipment.
@@ -26,6 +27,8 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      * Shipment identifier.
      *
      * @var mixed
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -33,6 +36,8 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      * Shipment state.
      *
      * @var ShipmentState
+     *
+     * @Serializer\Type("Sylius\Component\Shipping\Model\ShipmentState")
      */
     protected $state;
 
@@ -40,6 +45,8 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      * Shipping method.
      *
      * @var ShippingMethodInterface
+     *
+     * @Serializer\Type("Sylius\Component\Shipping\Model\ShippingMethod")
      */
     protected $method;
 
@@ -47,6 +54,8 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      * Shipment items.
      *
      * @var Collection|ShipmentItemInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Shipping\Model\ShipmentItem>")
      */
     protected $items;
 
@@ -54,6 +63,8 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      * Tracking code for this shipment, if any required.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $tracking;
 
@@ -61,6 +72,8 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      * Creation time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -68,6 +81,8 @@ class Shipment implements ShipmentInterface, TimestampableInterface
      * Last update time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
 

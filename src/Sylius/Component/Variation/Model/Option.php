@@ -13,6 +13,7 @@ namespace Sylius\Component\Variation\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Product option default implementation.
@@ -25,6 +26,8 @@ class Option implements OptionInterface
      * Property id.
      *
      * @var mixed
+     *
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -33,6 +36,8 @@ class Option implements OptionInterface
      * See description in interface.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $name;
 
@@ -41,6 +46,8 @@ class Option implements OptionInterface
      * Displayed to user.
      *
      * @var string
+     *
+     * @Serializer\Type("string")
      */
     protected $presentation;
 
@@ -48,6 +55,8 @@ class Option implements OptionInterface
      * Values that option can have.
      *
      * @var Collection|OptionValueInterface[]
+     *
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Variation\Model\OptionValue>")
      */
     protected $values;
 
@@ -55,6 +64,8 @@ class Option implements OptionInterface
      * Creation time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -62,8 +73,11 @@ class Option implements OptionInterface
      * Last update time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
+
 
     /**
      * Constructor.

@@ -19,6 +19,7 @@ use Sylius\Component\Payment\Model\PaymentState;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Sylius\Component\Promotion\Model\CouponInterface;
 use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
+use Sylius\Component\Payment\Model\PaymentStateInterface;
 
 /**
  * Sylius core Order model.
@@ -155,9 +156,9 @@ interface OrderInterface extends CartInterface, PromotionSubjectInterface
     /**
      * Set the payment state.
      *
-     * @param string $paymentState
+     * @param PaymentStateInterface $paymentState
      */
-    public function setPaymentState($paymentState);
+    public function setPaymentState(PaymentStateInterface $paymentState);
 
     /**
      * Get all inventory units.

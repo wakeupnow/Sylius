@@ -22,6 +22,28 @@ class DefaultPriceCalculator implements PriceCalculatorInterface
 {
     public function calculate(PriceableInterface $priceable)
     {
-        return $priceable->getPrices();
+        $amount = $priceable->getPrices();
+
+        if ($amount instanceof \Doctrine\ORM\PersistentCollection) {
+            $amount = $amount->toArray();
+        }
+
+        if (is_array($amount)) {
+            if (count($amount)) {
+                foreach ($amount as $price) {
+
+                    /** @var \Sylius\Component\Core\Model\ProductVariantPriceInterface $price */
+                    if ($price->getType() == 'MSRP') {
+                        $amount = $price->getAmount();
+                        break;
+                    }
+                }
+            }
+            else {
+                $amount = 0;
+            }
+        }
+
+        return $amount;
     }
 }

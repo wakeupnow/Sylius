@@ -11,12 +11,16 @@
 
 namespace Sylius\Component\Core\Model;
 
+use JMS\Serializer\Annotation as Serializer;
+
 class ProductVariantImage extends Image implements ProductVariantImageInterface
 {
     /**
      * The associated product variant.
      *
      * @var ProductVariantInterface
+     *
+     * @Serializer\Type("Sylius\Component\Core\Model\ProductVariant")
      */
     protected $variant;
 

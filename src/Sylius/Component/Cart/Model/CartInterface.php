@@ -12,6 +12,7 @@
 namespace Sylius\Component\Cart\Model;
 
 use Sylius\Component\Order\Model\OrderInterface;
+use Sylius\Component\Core\Model\UserInterface;
 
 /**
  * Cart model interface.
@@ -44,9 +45,8 @@ interface CartInterface extends OrderInterface
 
     /**
      * Bumps the expiration time.
-     * Default is +3 hours.
      */
-    public function incrementExpiresAt();
+    public function incrementExpiresAt($intervalSpec);
 
     /**
      * Checks whether the cart is expired or not.
@@ -54,4 +54,28 @@ interface CartInterface extends OrderInterface
      * @return Boolean
      */
     public function isExpired();
+
+    /**
+     * Set token for remote identification
+     *
+     * @param string $token
+     */
+    public function setToken($token);
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUser(UserInterface $user);
 }

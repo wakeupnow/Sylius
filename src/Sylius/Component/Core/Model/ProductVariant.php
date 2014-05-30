@@ -15,11 +15,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Product\Model\Variant as BaseVariant;
 use Sylius\Component\Variation\Model\VariantInterface as BaseVariantInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Sylius core product variant entity.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class ProductVariant extends BaseVariant implements ProductVariantInterface
 {
@@ -27,13 +30,19 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Variant SKU.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $sku;
 
     /**
      * The variant prices.
      *
-     * @var PriceInterface[]
+     * @var ProductVariantPrice[]
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\ProductVariantPrice>")
      */
     protected $prices;
 
@@ -41,6 +50,9 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * On hold.
      *
      * @var integer
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $onHold = 0;
 
@@ -48,6 +60,9 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * On hand stock.
      *
      * @var integer
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $onHand = 0;
 
@@ -55,6 +70,9 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Is variant available on demand?
      *
      * @var Boolean
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("boolean")
      */
     protected $availableOnDemand = true;
 
@@ -62,6 +80,9 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Images.
      *
      * @var Collection|VariantImageInterface[]
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\ProductVariantImage>")
      */
     protected $images;
 
@@ -69,6 +90,9 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Weight.
      *
      * @var float
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("double")
      */
     protected $weight;
 
@@ -76,6 +100,9 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Width.
      *
      * @var float
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("double")
      */
     protected $width;
 
@@ -83,6 +110,9 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Height.
      *
      * @var float
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("double")
      */
     protected $height;
 
@@ -90,6 +120,9 @@ class ProductVariant extends BaseVariant implements ProductVariantInterface
      * Depth.
      *
      * @var float
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("double")
      */
     protected $depth;
 

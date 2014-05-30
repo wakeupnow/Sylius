@@ -13,6 +13,7 @@ namespace Sylius\Component\Product\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use JMS\Serializer\Annotation as Serializer;
 use Sylius\Component\Attribute\Model\AttributeValueInterface as BaseAttributeValueInterface;
 use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 use Sylius\Component\Variation\Model\VariantInterface as BaseVariantInterface;
@@ -21,6 +22,8 @@ use Sylius\Component\Variation\Model\VariantInterface as BaseVariantInterface;
  * Sylius catalog product model.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Product implements ProductInterface
 {
@@ -28,6 +31,9 @@ class Product implements ProductInterface
      * Product id.
      *
      * @var mixed
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $id;
 
@@ -35,6 +41,9 @@ class Product implements ProductInterface
      * Product name.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $name;
 
@@ -50,6 +59,9 @@ class Product implements ProductInterface
      * Product description.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $description;
 
@@ -57,6 +69,8 @@ class Product implements ProductInterface
      * Available on.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $availableOn;
 
@@ -64,6 +78,9 @@ class Product implements ProductInterface
      * Meta keywords.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $metaKeywords;
 
@@ -71,6 +88,9 @@ class Product implements ProductInterface
      * Meta description.
      *
      * @var string
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("string")
      */
     protected $metaDescription;
 
@@ -78,6 +98,9 @@ class Product implements ProductInterface
      * Attributes.
      *
      * @var Collection|BaseAttributeValueInterface[]
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\Attribute>")
      */
     protected $attributes;
 
@@ -85,6 +108,9 @@ class Product implements ProductInterface
      * Product variants.
      *
      * @var Collection|BaseVariantInterface[]
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\ProductVariant>")
      */
     protected $variants;
 
@@ -92,6 +118,9 @@ class Product implements ProductInterface
      * Product options.
      *
      * @var Collection|BaseOptionInterface[]
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\Option>")
      */
     protected $options;
 
@@ -99,6 +128,8 @@ class Product implements ProductInterface
      * Creation time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -106,6 +137,8 @@ class Product implements ProductInterface
      * Last update time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
 
@@ -113,6 +146,8 @@ class Product implements ProductInterface
      * Deletion time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $deletedAt;
 
