@@ -35,12 +35,13 @@ class SyliusCoreBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $interfaces = array(
-            'Sylius\Component\Core\Model\UserInterface'                => 'sylius.model.user.class',
-            'Sylius\Component\Core\Model\GroupInterface'               => 'sylius.model.group.class',
-            'Sylius\Component\Core\Model\ProductVariantImageInterface' => 'sylius.model.product_variant_image.class',
-            'Sylius\Component\Core\Model\OrderShippingStateInterface'  => 'sylius.model.order_shipping_state.class',
-            'Sylius\Component\Core\Model\PriceTypeInterface'           => 'sylius.model.price_type.class',
-            'Sylius\Component\Core\Model\ProductVariantPriceInterface' => 'sylius.model.product_variant_price.class',
+            'Sylius\Component\Core\Model\UserInterface'                    => 'sylius.model.user.class',
+            'Sylius\Component\Core\Model\GroupInterface'                   => 'sylius.model.group.class',
+            'Sylius\Component\Core\Model\ProductVariantImageInterface'     => 'sylius.model.product_variant_image.class',
+            'Sylius\Component\Core\Model\OrderShippingStateInterface'      => 'sylius.model.order_shipping_state.class',
+            'Sylius\Component\Core\Model\PriceTypeInterface'               => 'sylius.model.price_type.class',
+            'Sylius\Component\Core\Model\ProductVariantPriceInterface'     => 'sylius.model.product_variant_price.class',
+            'Sylius\Component\Core\Model\ProductVariantImageTypeInterface' => 'sylius.model.product_variant_image_type.class',
         );
 
         $container->addCompilerPass(new ResolveDoctrineTargetEntitiesPass('sylius_core', $interfaces));

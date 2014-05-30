@@ -163,6 +163,16 @@ class AttributeValue implements AttributeValueInterface
     /**
      * {@inheritdoc}
      */
+    public function getIsVisible()
+    {
+        $this->assertAttributeIsSet();
+
+        return $this->attribute->getIsVisible();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getConfiguration()
     {
         $this->assertAttributeIsSet();

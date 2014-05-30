@@ -63,6 +63,20 @@ interface AttributeInterface extends TimestampableInterface
     public function setType($type);
 
     /**
+     * Get attribute visibility
+     *
+     * @return boolean
+     */
+    public function getIsVisible();
+
+    /**
+     * Set attribute visibility
+     *
+     * @param boolean $isVisible
+     */
+    public function setIsVisible($isVisible);
+
+    /**
      * Get attribute configuration.
      *
      * @return array

@@ -27,8 +27,14 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('file', 'file', array(
-            'label' => 'sylius.form.image.file'
-        ));
+                'label' => 'sylius.form.image.file'
+            ))
+            ->add('imageType', 'entity', array(
+                'class'    => 'Sylius\Component\Core\Model\ProductVariantImageType',
+                'property' => 'name',
+                'label'    => 'Type'
+            ))
+        ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -24,6 +24,8 @@ class ProductVariantImage extends Image implements ProductVariantImageInterface
      */
     protected $variant;
 
+    protected $imageType;
+
     /**
      * {@inheritdoc}
      */
@@ -39,6 +41,17 @@ class ProductVariantImage extends Image implements ProductVariantImageInterface
     {
         $this->variant = $variant;
 
+        return $this;
+    }
+
+    public function getImageType()
+    {
+        return $this->imageType;
+    }
+
+    public function setImageType(ProductVariantImageType $imageType)
+    {
+        $this->imageType = $imageType;
         return $this;
     }
 }
