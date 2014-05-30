@@ -48,6 +48,16 @@ class Attribute implements AttributeInterface
     protected $type = AttributeTypes::TEXT;
 
     /**
+     * Visibility
+     * on front end.
+     *
+     * @var boolean
+     *
+     * @Serializer\Type("boolean")
+     */
+    protected $isVisible = true;
+
+    /**
      * Presentation.
      * Displayed to user.
      *
@@ -156,6 +166,24 @@ class Attribute implements AttributeInterface
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIsVisible()
+    {
+        return $this->isVisible;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setIsVisible($isVisible)
+    {
+        $this->isVisible = $isVisible;
 
         return $this;
     }
