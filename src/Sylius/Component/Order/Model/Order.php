@@ -231,6 +231,7 @@ class Order implements OrderInterface
     public function setItems(Collection $items)
     {
         $this->items = $items;
+        $this->calculateTotal();
 
         return $this;
     }
@@ -273,6 +274,8 @@ class Order implements OrderInterface
         $item->setOrder($this);
         $this->items->add($item);
 
+        $this->calculateTotal();
+
         return $this;
     }
 
@@ -285,6 +288,8 @@ class Order implements OrderInterface
             $item->setOrder(null);
             $this->items->removeElement($item);
         }
+
+        $this->calculateTotal();
 
         return $this;
     }
