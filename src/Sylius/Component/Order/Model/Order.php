@@ -29,6 +29,7 @@ class Order implements OrderInterface
      *
      * @var mixed
      *
+     * @Serializer\Groups({"CartBasics"})
      * @Serializer\Expose
      * @Serializer\Type("integer")
      */
@@ -49,6 +50,7 @@ class Order implements OrderInterface
      *
      * @var string
      *
+     * @Serializer\Groups({"CartBasics"})
      * @Serializer\Expose
      * @Serializer\Type("string")
      */
@@ -69,6 +71,10 @@ class Order implements OrderInterface
      * Items total.
      *
      * @var integer
+     *
+     * @Serializer\Groups({"CartBasics"})
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $itemsTotal = 0;
 
@@ -92,6 +98,7 @@ class Order implements OrderInterface
      *
      * @var integer
      *
+     * @Serializer\Groups({"CartBasics"})
      * @Serializer\Expose
      * @Serializer\Type("integer")
      */
@@ -102,7 +109,6 @@ class Order implements OrderInterface
      *
      * @var Boolean
      *
-     * @Serializer\Expose
      * @Serializer\Type("boolean")
      */
     protected $confirmed = true;

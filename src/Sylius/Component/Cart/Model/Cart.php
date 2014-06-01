@@ -21,6 +21,8 @@ use JMS\Serializer\Annotation as Serializer;
  * proper interface.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Cart extends Order implements CartInterface
 {
@@ -36,6 +38,8 @@ class Cart extends Order implements CartInterface
      *
      * @var \DateTime
      *
+     * @Serializer\Groups({"CartBasics"})
+     * @Serializer\Expose
      * @Serializer\Type("DateTime")
      */
     protected $expiresAt;
@@ -43,6 +47,8 @@ class Cart extends Order implements CartInterface
     /**
      * @var string A token is used to identify carts
      *
+     * @Serializer\Groups({"CartBasics"})
+     * @Serializer\Expose
      * @Serializer\Type("string")
      */
     protected $token;
