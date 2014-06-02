@@ -35,6 +35,7 @@ class User extends BaseUser implements UserInterface
     protected $billingAddress;
     protected $shippingAddress;
     protected $addresses;
+    protected $member;
 
     public function __construct()
     {
@@ -348,5 +349,24 @@ class User extends BaseUser implements UserInterface
         $this->setUsernameCanonical($emailCanonical);
 
         return $this;
+    }
+
+    /**
+     * @param $member
+     * @return $this
+     */
+    public function setMember($member)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * @return \Wun\Shared\DomainModelsBundle\Entity\Member
+     */
+    public function getMember()
+    {
+        return $this->member;
     }
 }

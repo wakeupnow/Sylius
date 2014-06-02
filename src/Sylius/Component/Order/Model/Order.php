@@ -29,6 +29,7 @@ class Order implements OrderInterface
      *
      * @var mixed
      *
+     * @Serializer\Groups({"CartBasics"})
      * @Serializer\Expose
      * @Serializer\Type("integer")
      */
@@ -49,6 +50,7 @@ class Order implements OrderInterface
      *
      * @var string
      *
+     * @Serializer\Groups({"CartBasics"})
      * @Serializer\Expose
      * @Serializer\Type("string")
      */
@@ -69,6 +71,10 @@ class Order implements OrderInterface
      * Items total.
      *
      * @var integer
+     *
+     * @Serializer\Groups({"CartBasics"})
+     * @Serializer\Expose
+     * @Serializer\Type("integer")
      */
     protected $itemsTotal = 0;
 
@@ -92,6 +98,7 @@ class Order implements OrderInterface
      *
      * @var integer
      *
+     * @Serializer\Groups({"CartBasics"})
      * @Serializer\Expose
      * @Serializer\Type("integer")
      */
@@ -102,7 +109,6 @@ class Order implements OrderInterface
      *
      * @var Boolean
      *
-     * @Serializer\Expose
      * @Serializer\Type("boolean")
      */
     protected $confirmed = true;
@@ -231,6 +237,7 @@ class Order implements OrderInterface
     public function setItems(Collection $items)
     {
         $this->items = $items;
+        $this->calculateTotal();
 
         return $this;
     }
@@ -273,6 +280,8 @@ class Order implements OrderInterface
         $item->setOrder($this);
         $this->items->add($item);
 
+        $this->calculateTotal();
+
         return $this;
     }
 
@@ -285,6 +294,8 @@ class Order implements OrderInterface
             $item->setOrder(null);
             $this->items->removeElement($item);
         }
+
+        $this->calculateTotal();
 
         return $this;
     }

@@ -26,4 +26,8 @@ interface ProductVariantImageInterface extends ImageInterface
      * @param ProductVariantInterface $variant
      */
     public function setVariant(ProductVariantInterface $variant = null);
+
+    public function getImageType();
+
+    public function setImageType(ProductVariantImageType $imageType);
 }

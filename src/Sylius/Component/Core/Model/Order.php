@@ -55,6 +55,9 @@ class Order extends Cart implements OrderInterface
      * Shipments for this order.
      *
      * @var Collection|ShipmentInterface[]
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Core\Model\Shipment>")
      */
     protected $shipments;
 
@@ -62,6 +65,9 @@ class Order extends Cart implements OrderInterface
      * Payment.
      *
      * @var PaymentInterface
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("Sylius\Component\Payment\Model\Payment")
      */
     protected $payment;
 
@@ -82,7 +88,10 @@ class Order extends Cart implements OrderInterface
     /**
      * Order payment state.
      *
-     * @var string
+     * @var PaymentStateInterface
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("Sylius\Component\Payment\Model\PaymentState")
      */
     protected $paymentState;
 
@@ -90,7 +99,10 @@ class Order extends Cart implements OrderInterface
      * Order shipping state.
      * It depends on the status of all order shipments.
      *
-     * @var string
+     * @var OrderShippingStateInterface
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("Sylius\Component\Core\Model\OrderShippingState")
      */
     protected $shippingState;
 
@@ -286,7 +298,7 @@ class Order extends Cart implements OrderInterface
     /**
      * {@inheritdoc}
      */
-    public function setPaymentState(PaymentStateInterface $paymentState)
+    public function setPaymentState(PaymentStateInterface $paymentState = null)
     {
         $this->paymentState = $paymentState;
 
