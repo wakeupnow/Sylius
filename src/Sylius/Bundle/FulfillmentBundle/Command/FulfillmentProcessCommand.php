@@ -16,12 +16,13 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
-use Sylius\Component\Fulfillment\Model\FulfillmentProvider;
+use Sylius\Component\Fulfillment\Model\Fulfillment;
+use Sylius\Component\AutoPay\Model\Interval;
 
 /**
- * Command to purge expired carts
+ * Command to run fulfillment batch job
  *
- * @author Alexandre Bacco <alexandre.bacco@gmail.com>
+ * @author Tony Rocha <tony.rocha@wakeupnow.com>
  */
 class FulfillmentProcessCommand extends ContainerAwareCommand
 {
@@ -36,17 +37,81 @@ class FulfillmentProcessCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var FulfillmentProvider $fp */
-        $fp = $this->getContainer()->get('sylius_fulfillment.fulfillment_provider');
-        /** @var EntityMan $fp */
-        $em = $this->getHelper('em')->getEntityManager();
-        //$em = $this->get
-        var_dump($em);
+        $repo = $this->getContainer()->get('sylius.repository.fulfillment');
+        $orderRepo = $this->getContainer()->get('sylius.repository.order');
 
-        die;
-        //$cartsPurger = $this->getContainer()->get('sylius.cart.purger');
-        //cartsPurger->purge();
 
-        $output->writeln('Expired carts purged.');
+        $fulfillments = $repo->findAll();
+        /** @var Fulfillment $fulfillment */
+        foreach($fulfillments as $fulfillment)
+        {
+            $interval = $fulfillment->getInterval();
+            $isEligible = $this->getFulfillmentEligibility($interval);
+//            $orders = $orderRepo->findBy()
+            var_dump($isEligible); die;
+        }
+    }
+
+    /**
+     * Determines whether or not an interval is eligible for fulfillment on today's date.
+     *
+     * @param Interval $interval
+     *
+     * @return boolean
+     */
+
+    private function getFulfillmentEligibility(Interval $interval)
+    {
+        $minute = date('i');
+        $hour = date('g');
+        $day_month = date('j');
+        $day_week = (date('N') % 7) + 1 . ''; //Adjust day of the week such that 1 = Sun, 2 = Mon, etc.
+        $month = date('n');
+
+        $res = $this->isTimePartEqual($minute, $interval->getMinute())
+            && $this->isTimePartEqual($hour, $interval->getHour())
+            && $this->isTimePartEqual($day_month, $interval->getDayMonth())
+            && $this->isTimePartEqual($day_week, $interval->getDayWeek())
+            && $this->isTimePartEqual($month, $interval->getMonth())
+        ;
+
+        return $res;
+    }
+
+    /**
+     * Returns whether the time part is equal to the interval part.
+     * If the interval part is null or empty, it should return true.
+     *
+     * @param string $datePartValue
+     * @param string $intervalPartValue
+     *
+     * @return boolean
+     */
+    private function isTimePartEqual($datePartValue, $intervalPartValue)
+    {
+        if($intervalPartValue == null)
+        {
+            return true;
+        }
+        else if(is_string($datePartValue) == true && is_string($intervalPartValue) == true)
+        {
+            $datePartValue = ltrim(trim($datePartValue), '0');
+            $intervalPartValue = ltrim($intervalPartValue, '0');
+
+            if($intervalPartValue == '')
+            {
+                return true;
+            }
+
+            if(strcmp($datePartValue,$intervalPartValue) == 0)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            //log?? in this case the parameters were not a string, nor null...unlikely scenario
+        }
+        return false;
     }
 }

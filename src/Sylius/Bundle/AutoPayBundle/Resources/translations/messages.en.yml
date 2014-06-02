@@ -1,0 +1,8 @@
+sylius:
+    form:
+        interval:
+            minute: Minute
+            hour: Hour
+            day_month: Day Month
+            month: Month
+            day_week: Day Week
