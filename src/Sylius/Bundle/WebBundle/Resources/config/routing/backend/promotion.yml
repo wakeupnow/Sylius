@@ -23,7 +23,7 @@ sylius_backend_promotion_create:
 
 sylius_backend_promotion_update:
     pattern: /{id}/edit
-    methods: [GET, PUT]
+    methods: [GET, PUT, POST]
     defaults:
         _controller: sylius.controller.promotion:updateAction
         _sylius:

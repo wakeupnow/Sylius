@@ -61,12 +61,40 @@
         }
     };
 
+    $.fn.getFormFields = function(type) {
+        this.change(function() {
+            var $form = $(this).closest('form'),
+                data  = {},
+                name  = $(this).attr('name');
+
+            data[name] = $(this).val();
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: $form.attr('method'),
+                data: data,
+                success: function(html) {
+                    // updates CSRF token just in case
+                    var $token = $('#sylius_promotion__token', $(html)).val();
+                    $('#sylius_promotion__token').val($token);
+
+                    var $oldDiv = $('#sylius_promotion_' + type).children('div').has('select[name="' + name + '"]').next('div');
+                    var $newDiv = $('#sylius_promotion_' + type, $(html)).children('div').has('select[name="' + name + '"]').next('div');
+
+                    $oldDiv.replaceWith($newDiv);
+                }
+            });
+        });
+    }
+
     $(document).ready(function() {
         $('select[name^="sylius_promotion[rules]"][name$="[type]"]').livequery(function() {
             $(this).handlePrototypes({prototypePrefix: 'rules'});
+            $(this).getFormFields('rules');
         });
         $('select[name^="sylius_promotion[actions]"][name$="[type]"]').livequery(function() {
             $(this).handlePrototypes({prototypePrefix: 'actions'});
+            $(this).getFormFields('actions');
         });
     });
 })(jQuery);
