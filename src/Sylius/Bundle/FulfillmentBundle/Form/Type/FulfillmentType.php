@@ -74,6 +74,10 @@ class FulfillmentType extends AbstractType
                 'property'  => 'name',
                 'label'     => 'sylius.form.fulfillment.protocol',
             ))
+            ->add('interval', 'sylius_interval', array(
+                'data_class' => 'Sylius\Component\AutoPay\Model\Interval', //TO_DO: make this value configurable
+                'label'      => 'Interval',
+            ))
         ;
     }
 

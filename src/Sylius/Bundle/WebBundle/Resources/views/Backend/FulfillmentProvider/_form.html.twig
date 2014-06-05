@@ -3,5 +3,7 @@
 <fieldset>
     {{ form_row(form.name, {'attr': {'class': 'input-lg'}}) }}
     {{ form_widget(form._token) }}
+    {% include 'SyliusWebBundle:Backend/FulfillmentProvider/Form:_parameters.html.twig' with {'parametersForm': form.parameters } %}
+
     <br>
 </fieldset>

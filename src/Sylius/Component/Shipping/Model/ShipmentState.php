@@ -102,6 +102,8 @@ class ShipmentState implements ShipmentStateInterface
             self::READY,
             self::RETURNED,
             self::CANCELLED,
+            self::FULFILLED,
+
         );
     }
 

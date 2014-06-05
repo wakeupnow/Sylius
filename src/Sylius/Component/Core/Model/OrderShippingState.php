@@ -92,7 +92,6 @@ class OrderShippingState implements OrderShippingStateInterface
             self::READY,
             self::BACKORDER,
             self::PARTIALLY_SHIPPED,
-            self::FULFILLED,
             self::SHIPPED,
             self::RETURNED,
             self::CANCELLED,

@@ -24,6 +24,7 @@ interface ShipmentStateInterface
     const SHIPPED    = 'shipped';
     const RETURNED   = 'returned';
     const CANCELLED  = 'cancelled';
+    const FULFILLED  = 'fulfilled';
 
     /**
      * @return mixed

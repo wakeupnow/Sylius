@@ -1,0 +1,36 @@
+{% macro widget_prototype(parameter, providerId) %}
+    {#{% if parameter.get('prototype') %}#}
+        {#{% set form = parameter.get('prototype') %}#}
+        {#{% set name = parameter.get('prototype').get('name') %}#}
+    {#{% else %}#}
+        {#{% set form = parameter %}#}
+        {#{% set name = parameter.get('full_name') %}#}
+    {#{% endif %}#}
+
+    <div class="provider-parameter-form-wrapper">
+        {{ form_widget(parameter) }}
+        {#{{ form_widget(parameter.value) }}#}
+        {#{{ form_widget(providerId) }}#}
+
+        <a href="javascript:void(null)" onclick="$(this).parent().remove();"
+               class="btn btn-danger btn-sm remove">Remove</a>
+    </div>
+
+
+    {#<div data-content="{{ name }}">#}
+        {#<a class="btn-remove" data-related="{{ name }}">{{ remove_text }}</a>#}
+        {#{{ form_widget(form) }}#}
+    {#</div>#}
+{% endmacro %}
+
+{#<div id="provider-multi-parameters" data-prototype="{{ form_widget(form.parameters.vars.prototype)|e }} <a href='javascript:void(null)' onclick='$(this).parent().remove();' class='btn btn-danger btn-sm remove'>Remove</a>">#}
+<div id="provider-multi-parameters" data-prototype="{{ _self.widget_prototype(parametersForm.vars.prototype, fulfillment_provider.id)|e }}">
+    {% for parameter in parametersForm %}
+        {{ _self.widget_prototype(parameter, fulfillment_provider.id) }}
+    {% endfor %}
+</div>
+<div>
+    <a href="#" class="btn btn-success" data-collection-button="add" data-prototype="provider-multi-parameters" data-collection="provider-multi-parameters">
+        {{ 'sylius.fulfillment.add_parameter'|trans }}
+    </a>
+</div>

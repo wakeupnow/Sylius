@@ -43,6 +43,13 @@ class ProviderParameter implements ProviderParameterInterface
     protected $value;
 
     /**
+     * Fulfillment Provider.
+     *
+     * @var string
+     */
+    protected $fulfillmentProvider;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -80,5 +87,21 @@ class ProviderParameter implements ProviderParameterInterface
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * @param string $fulfillmentProvider
+     */
+    public function setFulfillmentProvider($fulfillmentProvider)
+    {
+        $this->fulfillmentProvider = $fulfillmentProvider;
+    }
+
+    /**
+     * @return FulfillmentProvider
+     */
+    public function getFulfillmentProvider()
+    {
+        return $this->fulfillmentProvider;
     }
 }

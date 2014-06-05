@@ -94,7 +94,7 @@ class Product extends BaseProduct implements ProductInterface
      *
      * @var Fulfillment
      */
-    protected $fulfillment;
+    protected $fulfillment = null;
 
     /**
      * Constructor.

@@ -11,6 +11,7 @@
 
 namespace Sylius\Component\Fulfillment\Model;
 
+use Doctrine\Common\Collections\Collection;
 use Sylius\Component\AutoPay\Model\Interval;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -38,6 +39,18 @@ class FulfillmentProvider implements FulfillmentProviderInterface
     protected $name;
 
     /**
+     * Fulfillment Provider Parameters.
+     *
+     * @var ArrayCollection
+     */
+    protected $parameters;
+
+    public function __construct()
+    {
+        $this->parameters = new ArrayCollection();
+    }
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -59,6 +72,22 @@ class FulfillmentProvider implements FulfillmentProviderInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param Collection|ProviderParameterInterface[] $parameters
+     */
+    public function setParameters($parameters)
+    {
+        $this->parameters = $parameters;
+    }
+
+    /**
+     * @return Collection|ProviderParameterInterface[]
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 
 }

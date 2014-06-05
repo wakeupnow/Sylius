@@ -21,6 +21,8 @@
 <form action="{{ path('sylius_backend_fulfillment_provider_update', {'id': fulfillment_provider.id, '_method': 'PUT'}) }}" method="post" class="form-horizontal" {{ form_enctype(form) }} novalidate>
     <input type="hidden" name="_method" value="PUT">
     {% include 'SyliusWebBundle:Backend/FulfillmentProvider:_form.html.twig' %}
+    <div class="tab-pane" id="parameters">
+    </div>
     {{ update() }}
 </form>
 {% endblock %}

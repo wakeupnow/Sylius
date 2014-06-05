@@ -44,4 +44,14 @@ interface ProviderParameterInterface
      */
     public function getValue();
 
+    /**
+     * @param FulfillmentProvider $value
+     */
+    public function setFulfillmentProvider($value);
+
+    /**
+     * @return FulfillmentProvider
+     */
+    public function getFulfillmentProvider();
+
 }

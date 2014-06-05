@@ -16,8 +16,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 
-use Sylius\Component\Fulfillment\Model\Fulfillment;
-use Sylius\Component\AutoPay\Model\Interval;
+use Sylius\Bundle\FulfillmentBundle\Service\FulfillmentJobService;
+
+//use Sylius\Component\AutoPay\Model\Interval;
+//use Sylius\Component\Core\Model\Product;
+//use Sylius\Component\Core\Model\OrderItem;
+//use Sylius\Component\Core\Model\Order;
+//use Sylius\Component\Core\Model\ProductVariant;
+//use Sylius\Component\Shipping\Model\ShipmentState;
 
 /**
  * Command to run fulfillment batch job
@@ -37,19 +43,11 @@ class FulfillmentProcessCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $repo = $this->getContainer()->get('sylius.repository.fulfillment');
-        $orderRepo = $this->getContainer()->get('sylius.repository.order');
+        /** @var FulfillmentJobService $jobClass */
+        $jobClass = $this->getContainer()->get('sylius_fulfillment.fulfillment_job');
+        $jobClass->execute([]);
 
-
-        $fulfillments = $repo->findAll();
-        /** @var Fulfillment $fulfillment */
-        foreach($fulfillments as $fulfillment)
-        {
-            $interval = $fulfillment->getInterval();
-            $isEligible = $this->getFulfillmentEligibility($interval);
-//            $orders = $orderRepo->findBy()
-            var_dump($isEligible); die;
-        }
+        die;
     }
 
     /**

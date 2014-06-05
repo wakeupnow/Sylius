@@ -28,6 +28,9 @@
         </many-to-one>
 		<many-to-one field="interval" target-entity="Sylius\Component\AutoPay\Model\Interval" >
             <join-column name="interval_id" referenced-column-name="id" nullable="false" />
+            <cascade>
+                <cascade-persist/>
+            </cascade>
         </many-to-one>
         <many-to-one field="fulfillmentProvider" target-entity="Sylius\Component\Fulfillment\Model\FulfillmentProvider" >
             <join-column name="fulfillment_provider_id" referenced-column-name="id" />
@@ -43,6 +46,7 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
+        <one-to-many field="products" target-entity="Sylius\Component\Core\Model\Product" mapped-by="fulfillment" />
         <!--<gedmo:versioned /> -->
     </mapped-superclass>
 

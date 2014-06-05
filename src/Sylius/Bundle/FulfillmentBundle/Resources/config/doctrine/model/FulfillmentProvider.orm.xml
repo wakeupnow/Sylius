@@ -22,6 +22,11 @@
         </id>
 		<field name="name" column="name" type="string">
         </field>
+        <one-to-many field="parameters" target-entity="Sylius\Component\Fulfillment\Model\ProviderParameter" mapped-by="fulfillmentProvider">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
         <!--<gedmo:versioned /> -->
     </mapped-superclass>
 

@@ -35,6 +35,13 @@ class ParameterType implements ParameterTypeInterface
     protected $name;
 
     /**
+     * Name.
+     *
+     * @var FulfillmentProvider
+     */
+    protected $fulfillmentProvider;
+
+    /**
      * @return mixed
      */
     public function getId()

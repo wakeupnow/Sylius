@@ -27,15 +27,7 @@ class FulfillmentProviderController extends ResourceController
      */
     public function createNew()
     {
-        /*if (null === $taxonomyId = $this->getRequest()->get('taxonomyId')) {
-            throw new NotFoundHttpException('No taxonomy id given.');
-        }
-
-        if (!$taxonomy = $this->getTaxonomyRepository()->find($taxonomyId)) {
-            throw new NotFoundHttpException('Requested taxonomy does not exist.');
-        }*/
         $fulfillment = parent::createNew();
-        //$fulfillment->setTaxonomy($taxonomy);
 
         return $fulfillment;
     }
@@ -49,31 +41,4 @@ class FulfillmentProviderController extends ResourceController
     {
         return $this->get('sylius.repository.fulfillment_provider');
     }
-
-    /**
-     * Create new fulfillment provider.
-     */
-    /*public function createAction(Request $request)
-    {
-        $user = $this->getUser();
-        $address = $this->getAddressRepository()->createNew();
-        $form = $this->getAddressForm($address);
-
-        if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
-            $user->addAddress($address);
-
-            $manager = $this->getUserManager();
-            $manager->persist($user);
-            $manager->flush();
-
-            $this->addFlash('success', 'sylius.account.address.create');
-
-            return $this->redirectToIndex();
-        }
-
-        return $this->render('SyliusWebBundle:Frontend/Account:Address/create.html.twig', array(
-            'user' => $this->getUser(),
-            'form' => $form->createView()
-        ));
-    }*/
 }

@@ -10,6 +10,7 @@
  */
 
 namespace Sylius\Component\Fulfillment\Model;
+use Doctrine\Common\Collections\Collection;
 
 
 /**
@@ -36,4 +37,14 @@ interface FulfillmentProviderInterface
      * @return string
      */
     public function getName();
+
+    /**
+     * @param Collection|ProviderParameterInterface[] $parameters
+     */
+    public function setParameters($parameters);
+
+    /**
+     * @return Collection|ProviderParameterInterface[]
+     */
+    public function getParameters();
 }

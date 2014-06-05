@@ -92,7 +92,7 @@ class LoadProductsData extends DataFixture
      */
     public function getOrder()
     {
-        return 6;
+        return 7;
     }
 
     /**
@@ -285,6 +285,7 @@ class LoadProductsData extends DataFixture
         $variant->setOnHand($this->faker->randomNumber(1));
 
         $productName = explode(' ', $product->getName());
+
         $image = clone $this->getReference(
             'Sylius.Image.'.strtolower($productName[0])
         );

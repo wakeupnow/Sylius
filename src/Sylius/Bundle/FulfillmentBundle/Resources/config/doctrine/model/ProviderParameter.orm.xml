@@ -23,6 +23,9 @@
 		<many-to-one field="parameterType" target-entity="Sylius\Component\Fulfillment\Model\ParameterTypeInterface">
             <join-column name="parameter_type_id" referenced-column-name="id" nullable="false" />
         </many-to-one>
+        <many-to-one field="fulfillmentProvider" target-entity="Sylius\Component\Fulfillment\Model\FulfillmentProvider" inversed-by="parameters">
+            <join-column name="fulfillment_provider_id" referenced-column-name="id" nullable="false" />
+        </many-to-one>
 		<field name="value" column="value" type="string">
         </field>
         <!--<gedmo:versioned /> -->

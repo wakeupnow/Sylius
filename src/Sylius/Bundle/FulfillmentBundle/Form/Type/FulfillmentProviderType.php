@@ -60,7 +60,13 @@ class FulfillmentProviderType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'label'     => 'Provider Name',
+                    'label'     => 'Provider Name',
+            ))
+            ->add('parameters', 'collection', array(
+                'type'         => 'sylius_provider_parameter',
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'by_reference' => false,
             ))
         ;
     }

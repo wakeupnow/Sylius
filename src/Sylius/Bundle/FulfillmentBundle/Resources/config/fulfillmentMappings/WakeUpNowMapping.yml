@@ -1,0 +1,14 @@
+#format is class, member, header name
+
+product:
+    Name: name
+    Description: description
+
+order_item:
+    Quantity: quantity
+    Total: total
+    UnitPrice: unit_price
+
+order:
+    Number: number
+    State: state

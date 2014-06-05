@@ -80,6 +80,11 @@ class Fulfillment implements FulfillmentInterface
         return $this->id;
     }
 
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+
     /**
      * @param FileType $fulfillmentProvider
      */
