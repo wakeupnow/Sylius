@@ -12,6 +12,8 @@
 namespace Sylius\Component\Cart\Model;
 
 use Sylius\Component\Order\Model\Order;
+use Sylius\Component\Core\Model\UserInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Model for carts.
@@ -23,14 +25,25 @@ use Sylius\Component\Order\Model\Order;
 class Cart extends Order implements CartInterface
 {
     /**
+     * User.
+     *
+     * @var UserInterface
+     */
+    protected $user;
+
+    /**
      * Expiration time.
      *
      * @var \DateTime
+     *
+     * @Serializer\Type("DateTime")
      */
     protected $expiresAt;
 
     /**
      * @var string A token is used to identify carts
+     *
+     * @Serializer\Type("string")
      */
     protected $token;
 
@@ -92,6 +105,24 @@ class Cart extends Order implements CartInterface
     public function getToken()
     {
         return $this->token;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUser(UserInterface $user)
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
     /**

@@ -12,6 +12,7 @@
 namespace Sylius\Component\Cart\Model;
 
 use Sylius\Component\Order\Model\OrderInterface;
+use Sylius\Component\Core\Model\UserInterface;
 
 /**
  * Cart model interface.
@@ -67,4 +68,14 @@ interface CartInterface extends OrderInterface
      * @return string
      */
     public function getToken();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser();
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUser(UserInterface $user);
 }

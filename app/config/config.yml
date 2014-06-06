@@ -33,18 +33,29 @@ assetic:
 
 doctrine:
     dbal:
-        driver:   %sylius.database.driver%
-        host:     %sylius.database.host%
-        port:     %sylius.database.port%
-        dbname:   %sylius.database.name%
-        user:     %sylius.database.user%
-        password: %sylius.database.password%
-        charset:  UTF8
+        default_connection: default
+        connections:
+            default:
+                driver:   %sylius.database.driver%
+                host:     %sylius.database.host%
+                port:     %sylius.database.port%
+                dbname:   %sylius.database.name%
+                user:     %sylius.database.user%
+                password: %sylius.database.password%
+                charset:  UTF8
+            legacy:
+                driver:   "%legacy_database_driver%"
+                host:     "%legacy_database_host%"
+                port:     "%legacy_database_port%"
+                dbname:   "%legacy_database_name%"
+                user:     "%legacy_database_user%"
+                password: "%legacy_database_password%"
+                charset:  UTF8
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         entity_managers:
             default:
-#                auto_mapping: true
+                connection: default
                 mappings:
                     gedmo_loggable:
                         type: annotation
@@ -58,6 +69,14 @@ doctrine:
                     softdeleteable:
                         class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                         enabled: true
+                dql:
+                  datetime_functions:
+                    date_format: Sylius\Bundle\CoreBundle\Doctrine\ORM\Query\AST\Functions\DateFormatFunction
+
+            legacy:
+                connection: legacy
+                mappings:
+                    WunIrisLegacyBundle: ~
 
 doctrine_phpcr:
     session:

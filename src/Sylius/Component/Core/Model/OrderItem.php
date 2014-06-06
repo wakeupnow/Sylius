@@ -14,18 +14,23 @@ namespace Sylius\Component\Core\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Component\Cart\Model\CartItem;
 use Sylius\Component\Order\Model\OrderItemInterface as BaseOrderItemInterface;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Order item model.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class OrderItem extends CartItem implements OrderItemInterface
 {
     /**
      * Product variant.
-     *
      * @var ProductVariantInterface
+     *
+     * @Serializer\Expose
+     * @Serializer\Type("Sylius\Component\Core\Model\ProductVariant")
      */
     protected $variant;
 

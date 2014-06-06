@@ -43,6 +43,14 @@ class PriceType implements PriceTypeInterface
     }
 
     /**
+     * @return array
+     */
+    public static function getNames()
+    {
+        return ['MSRP'];
+    }
+
+    /**
      * @return string
      */
     public function __toString()

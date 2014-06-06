@@ -1533,17 +1533,17 @@
         },
         {
             "name": "hwi/oauth-bundle",
-            "version": "0.3.4",
+            "version": "0.3.5",
             "target-dir": "HWI/Bundle/OAuthBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hwi/HWIOAuthBundle.git",
-                "reference": "e1d4332a8e2b40c939fa1e4b131b47b8e4e3681c"
+                "reference": "7bd777505175d159205a4e6c5452a4e8803b94db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/e1d4332a8e2b40c939fa1e4b131b47b8e4e3681c",
-                "reference": "e1d4332a8e2b40c939fa1e4b131b47b8e4e3681c",
+                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/7bd777505175d159205a4e6c5452a4e8803b94db",
+                "reference": "7bd777505175d159205a4e6c5452a4e8803b94db",
                 "shasum": ""
             },
             "require": {
@@ -1642,7 +1642,7 @@
                 "yahoo",
                 "yandex"
             ],
-            "time": "2014-05-12 14:37:08"
+            "time": "2014-05-30 10:38:27"
         },
         {
             "name": "imagine/imagine",
@@ -3256,16 +3256,16 @@
         },
         {
             "name": "payum/payum",
-            "version": "0.8.7",
+            "version": "0.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Payum/Payum.git",
-                "reference": "22c05a9108f40be244c5f183d116e3079d82340e"
+                "reference": "023cc952b8be72c4c80d53a866b9ad68a8942a0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Payum/Payum/zipball/22c05a9108f40be244c5f183d116e3079d82340e",
-                "reference": "22c05a9108f40be244c5f183d116e3079d82340e",
+                "url": "https://api.github.com/repos/Payum/Payum/zipball/023cc952b8be72c4c80d53a866b9ad68a8942a0e",
+                "reference": "023cc952b8be72c4c80d53a866b9ad68a8942a0e",
                 "shasum": ""
             },
             "require": {
@@ -3358,7 +3358,7 @@
                 "paypal rest",
                 "recurring payment"
             ],
-            "time": "2014-05-05 15:28:10"
+            "time": "2014-05-29 13:48:04"
         },
         {
             "name": "payum/payum-bundle",

@@ -229,6 +229,7 @@
         <service id="sylius.order_processing.payment_processor" class="%sylius.order_processing.payment_processor.class%">
             <argument type="service" id="sylius.repository.payment" />
             <argument type="service" id="sylius.repository.payment_state" />
+            <argument type="service" id="sylius.repository.payment_gateway" />
         </service>
         <service id="sylius.order_processing.taxation_processor" class="%sylius.order_processing.taxation_processor.class%">
             <argument type="service" id="sylius.repository.adjustment" />

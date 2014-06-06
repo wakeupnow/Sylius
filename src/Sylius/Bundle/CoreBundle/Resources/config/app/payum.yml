@@ -104,25 +104,25 @@ payum:
                     doctrine:
                         driver: orm
 
-#        gpg:
-#          gpg:
-#            api:
-#              options:
-#                apiusername:  %gpg.apiusername%
-#                apipassword:  %gpg.apipassword%
-#                sandbox:      %gpg.sandbox%
-#
-#            actions:
-#              - sylius.payum.gpg.action.capture_order_using_credit_card
-#              - sylius.payum.action.obtain_credit_card
-#              - sylius.payum.action.order_status
-#              - sylius.payum.action.execute_same_request_with_payment_details
-#
-#          storages:
-#            Sylius\Component\Core\Model\Order:
-#              doctrine:
-#                driver: orm
-#
-#            Sylius\Component\Payment\Model\Payment:
-#              doctrine:
-#                driver: orm
+        gpg:
+          gpg:
+            api:
+              options:
+                apiusername:  %gpg.apiusername%
+                apipassword:  %gpg.apipassword%
+                sandbox:      %gpg.sandbox%
+
+            actions:
+              - sylius.payum.gpg.action.capture_order_using_credit_card
+              - sylius.payum.action.obtain_credit_card
+              - sylius.payum.action.order_status
+              - sylius.payum.action.execute_same_request_with_payment_details
+
+          storages:
+            Sylius\Component\Core\Model\Order:
+              doctrine:
+                driver: orm
+
+            Sylius\Component\Payment\Model\Payment:
+              doctrine:
+                driver: orm

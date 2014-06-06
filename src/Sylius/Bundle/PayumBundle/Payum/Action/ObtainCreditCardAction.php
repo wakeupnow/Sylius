@@ -72,7 +72,7 @@ class ObtainCreditCardAction implements ActionInterface
      * {@inheritDoc}
      */
     public function execute($request)
-    {
+    { 
         /** @var $request ObtainCreditCardRequest */
         if (!$this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
@@ -84,8 +84,9 @@ class ObtainCreditCardAction implements ActionInterface
         $order = $request->getOrder();
         $form = $this->createCreditCardForm($order);
         $shippingForm = $this->createCheckoutShippingForm($order);
-
-        if ($this->httpRequest->isMethod('POST') && $form->submit($this->httpRequest)->isValid()) {
+        
+        if ($this->httpRequest->isMethod('POST') && $form->isValid()) {
+            $form->submit($this->httpRequest);
             $request->setCreditCard($form->getData());
             //TODO: Have to add shipping with order object after changes the model.
             return;
@@ -112,20 +113,9 @@ class ObtainCreditCardAction implements ActionInterface
      * @return FormInterface
      */
     protected function createCreditCardForm($order)
-    {
-        $this->zones = $this->getZoneMatcher()->matchAll($order->getShippingAddress());
+    {        
 
-        if (empty($this->zones)) {
-            $this->container->get('session')->getFlashBag()->add('error', 'sylius.checkout.shipping.error');
-        }
-
-        return $this->formFactory->create('sylius_credit_card', null, array(
-            'criteria' => array('zone' => !empty($this->zones) ? array_map(function ($zone) {
-                return $zone->getId();
-            }, $this->zones) : null)
-        ));
-
-//        return $this->formFactory->create('sylius_credit_card');
+        return $this->formFactory->create('sylius_credit_card');
     }
 
     protected function createCheckoutShippingForm(OrderInterface $order)

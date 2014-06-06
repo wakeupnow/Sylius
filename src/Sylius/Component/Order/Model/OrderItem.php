@@ -19,6 +19,8 @@ use JMS\Serializer\Annotation as Serializer;
  * Model for order line items.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class OrderItem implements OrderItemInterface
 {
@@ -27,6 +29,7 @@ class OrderItem implements OrderItemInterface
      *
      * @var mixed
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $id;
@@ -35,8 +38,6 @@ class OrderItem implements OrderItemInterface
      * Order.
      *
      * @var OrderInterface
-     *
-     * @Serializer\Type("Sylius\Component\Order\Model\Order")
      */
     protected $order;
 
@@ -45,15 +46,17 @@ class OrderItem implements OrderItemInterface
      *
      * @var integer
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
-    protected $quantity = 1;
+    protected $quantity = 0;
 
     /**
      * Unit price.
      *
      * @var integer
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $unitPrice = 0;
@@ -62,8 +65,6 @@ class OrderItem implements OrderItemInterface
      * Total adjustments.
      *
      * @var Collection|AdjustmentInterface[]
-     *
-     * @Serializer\Type("ArrayCollection<Sylius\Component\Order\Model\Adjustment>")
      */
     protected $adjustments;
 
@@ -71,8 +72,6 @@ class OrderItem implements OrderItemInterface
      * Adjustments total.
      *
      * @var integer
-     *
-     * @Serializer\Type("integer")
      */
     protected $adjustmentsTotal = 0;
 
@@ -81,6 +80,7 @@ class OrderItem implements OrderItemInterface
      *
      * @var integer
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $total = 0;

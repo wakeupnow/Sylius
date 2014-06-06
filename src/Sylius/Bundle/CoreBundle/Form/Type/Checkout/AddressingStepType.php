@@ -57,14 +57,14 @@ class AddressingStepType extends AbstractType
                 'label'  => 'sylius.form.checkout.addressing.different_billing_address'
             ))
 
-            ->add('paymentMethod', 'sylius_payment_method_choice', array(
-                'label'         => 'sylius.form.checkout.payment_method',
-                'expanded'      => true,                
-                'property_path' => 'payment.method',
-                'constraints'   => array(
-                    $notBlank
-                )
-            ))
+//            ->add('gateway', 'sylius_payment_gateway_choice', array(
+//                'label'         => 'sylius.form.checkout.payment_gateway',
+//                'expanded'      => true,
+//                'property_path' => 'payment.method',
+//                'constraints'   => array(
+//                    $notBlank
+//                )
+//            ))
         ;
     }
 

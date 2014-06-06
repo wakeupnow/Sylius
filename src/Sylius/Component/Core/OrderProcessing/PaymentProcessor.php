@@ -35,13 +35,19 @@ class PaymentProcessor implements PaymentProcessorInterface
     protected $stateRepository;
 
     /**
+     * @var RepositoryInterface
+     */
+    protected $paymentGatewayRepository;
+
+    /**
      * @param RepositoryInterface $paymentRepository
      * @param RepositoryInterface $stateRepository
      */
-    public function __construct(RepositoryInterface $paymentRepository, RepositoryInterface $stateRepository)
+    public function __construct(RepositoryInterface $paymentRepository, RepositoryInterface $stateRepository, RepositoryInterface $paymentGatewayRepository)
     {
         $this->paymentRepository = $paymentRepository;
         $this->stateRepository = $stateRepository;
+        $this->paymentGatewayRepository = $paymentGatewayRepository;
     }
 
     /**
@@ -55,7 +61,12 @@ class PaymentProcessor implements PaymentProcessorInterface
         $payment->setAmount($order->getTotal());
 
         $state = $this->stateRepository->findOneBy(['name' => PaymentStateInterface::CREATED]);
+        
+        // Set he default payment gateway as right now here have only GPG gateway.
+        $gateway = $this->paymentGatewayRepository->findOneBy(['gateway' => 'gpg']);
+        
         $payment->setState($state);
+        $payment->setGateway($gateway);
 
         $order->setPayment($payment);
 

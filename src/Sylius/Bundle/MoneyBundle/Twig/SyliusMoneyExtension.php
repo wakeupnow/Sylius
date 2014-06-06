@@ -68,13 +68,33 @@ class SyliusMoneyExtension extends \Twig_Extension
     /**
      * Convert price between currencies and format the amount to nice display form.
      *
-     * @param integer     $amount
+     * @param integer|array     $amount
      * @param string|null $currency
      *
      * @return string
      */
     public function formatPrice($amount, $currency = null)
     {
+        if ($amount instanceof \Doctrine\ORM\PersistentCollection) {
+            $amount = $amount->toArray();
+        }
+
+        if (is_array($amount)) {
+            if (count($amount)) {
+                foreach ($amount as $price) {
+
+                    /** @var \Sylius\Component\Core\Model\ProductVariantPriceInterface $price */
+                    if ($price->getType() == 'MSRP') {
+                        $amount = $price->getAmount();
+                        break;
+                    }
+                }
+            }
+            else {
+                $amount = 0;
+            }
+        }
+
         $currency = $currency ?: $this->currencyContext->getCurrency();
         $amount   = $this->converter->convert($amount, $currency);
 

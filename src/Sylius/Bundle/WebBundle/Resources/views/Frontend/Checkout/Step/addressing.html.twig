@@ -103,16 +103,16 @@
             </div>
 
           
-            <div class="field" style="display: none;">
-                {% for paymentMethodForm in form.paymentMethod %}
+           <!-- <div class="field" style="display: none;">
+                {#% for paymentMethodForm in form.gateway %}
                     {{ form_label(paymentMethodForm) }}
                     {% if loop.index0 == 0 %}
                         {{ form_widget(paymentMethodForm, {'attr':{'checked': 'checked'}}) }}
                     {% else %}
                         {{ form_widget(paymentMethodForm) }}
                     {% endif %}
-                {% endfor %}
-            </div>
+                {% endfor %#}
+            </div>-->
             
         {{ form_widget(form._token) }}
         </div>

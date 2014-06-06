@@ -17,34 +17,50 @@
 namespace Sylius\Bundle\AutoPayBundle\Doctrine\ORM;
 
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+//use Doctrine\ORM\EntityRepository,
+//    Doctrine\ORM\Query\Expr,
+//    Doctrine\ORM\QueryBuilder;
 
 class AutoPayRepository extends EntityRepository
 {    
     public function getDueByDate($nextDate)
     {
-         $queryBuilder
-            ->andWhere("DATE_FORMAT(autoPay.nextDate,'%Y-%m-%d') = :nextDate")
-            ->setParameter('nextDate', $nextDate)
+        $qb = $this->getQueryBuilder();
+        $qb->select($this->getAlias())
+           ->andWhere("DATE_FORMAT(autoPay.nextDate,'%Y-%m-%d') = :nextDate")
+           ->setParameter('nextDate', $nextDate)
+           ->orderBy('autoPay.order')
         ;
 
-        $result = $queryBuilder
-            ->getQuery()
-            ->getOneOrNullResult()
+         $query = $qb->getQuery(); //print $query->getSQL(); exit;
+         return $query->getResult();
+    }
+
+    public function getOrdersOfDate($nextDate)
+    {
+        $qb = $this->getQueryBuilder();
+        $qb->select('autoPay.order')
+           ->andWhere("DATE_FORMAT(autoPay.nextDate,'%Y-%m-%d') = :nextDate")
+           ->setParameter('nextDate', $nextDate)
+           ->groupBy('autoPay.order')
         ;
 
-        return $result;
+        $query = $qb->getQuery(); //print $query->getSQL(); exit;
+        return $query->getArrayResult();
     }
 
     public function getByOrder($order)
     {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
         $queryBuilder
             ->andWhere("autoPay.order, = :order")
             ->setParameter('order', $order)
+            ->orderBy('autoPay.nextDate')
         ;
 
         $result = $queryBuilder
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
 
         return $result;

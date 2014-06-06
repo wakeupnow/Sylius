@@ -19,6 +19,8 @@ use JMS\Serializer\Annotation as Serializer;
  * Object variant model.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Variant implements VariantInterface
 {
@@ -27,6 +29,7 @@ class Variant implements VariantInterface
      *
      * @var mixed
      *
+     * @Serializer\Expose
      * @Serializer\Type("integer")
      */
     protected $id;
@@ -36,6 +39,7 @@ class Variant implements VariantInterface
      *
      * @var Boolean
      *
+     * @Serializer\Expose
      * @Serializer\Type("boolean")
      */
     protected $master = false;
@@ -44,8 +48,6 @@ class Variant implements VariantInterface
      * Variant presentation.
      *
      * @var string
-     *
-     * @Serializer\Type("string")
      */
     protected $presentation;
 
@@ -54,6 +56,7 @@ class Variant implements VariantInterface
      *
      * @var VariableInterface
      *
+     * @Serializer\Expose
      * @Serializer\Type("Sylius\Component\Core\Model\Product")
      */
     protected $object;
@@ -63,7 +66,8 @@ class Variant implements VariantInterface
      *
      * @var Collection|OptionValueInterface[]
      *
-     * @Serializer\Type("ArrayCollection<Sylius\Component\Variant\Model\OptionValue>")
+     * @Serializer\Expose
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\OptionValue>")
      */
     protected $options;
 
@@ -71,8 +75,6 @@ class Variant implements VariantInterface
      * Creation time.
      *
      * @var \DateTime
-     *
-     * @Serializer\Type("DateTime")
      */
     protected $createdAt;
 
@@ -80,8 +82,6 @@ class Variant implements VariantInterface
      * Last update time.
      *
      * @var \DateTime
-     *
-     * @Serializer\Type("DateTime")
      */
     protected $updatedAt;
 
@@ -89,8 +89,6 @@ class Variant implements VariantInterface
      * Deletion time.
      *
      * @var \DateTime
-     *
-     * @Serializer\Type("DateTime")
      */
     protected $deletedAt;
 

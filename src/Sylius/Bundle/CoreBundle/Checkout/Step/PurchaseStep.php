@@ -20,6 +20,7 @@ use Sylius\Bundle\PayumBundle\Payum\Request\StatusRequest;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\SyliusCheckoutEvents;
 use Sylius\Component\Payment\SyliusPaymentEvents;
+use Sylius\Component\AutoPay\SyliusAutoPayEvents;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sylius\Component\Payment\Model\PaymentState;
@@ -36,7 +37,7 @@ class PurchaseStep extends CheckoutStep
         $this->dispatchCheckoutEvent(SyliusCheckoutEvents::SHIPPING_INITIALIZE, $order);
 
         $captureToken = $this->getTokenFactory()->createCaptureToken(
-            $order->getPayment()->getMethod()->getName(),
+            $order->getPayment()->getGateway()->getGateway(),
             $order,
             'sylius_checkout_forward',
             array('stepName' => $this->getName())

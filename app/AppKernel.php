@@ -27,6 +27,7 @@ class AppKernel extends SyliusKernel
             //Wun Custom Bundle for payment gateway
             new \Wun\Iris\GPGBundle\WunIrisGPGBundle(),
             new \Sylius\Bundle\AutoPayBundle\SyliusAutoPayBundle(),
+            new Wun\Iris\LegacyBundle\WunIrisLegacyBundle(),
         ]);
     }
 
