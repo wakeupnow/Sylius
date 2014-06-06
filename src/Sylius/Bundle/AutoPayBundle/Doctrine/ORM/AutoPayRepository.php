@@ -27,9 +27,12 @@ class AutoPayRepository extends EntityRepository
     {
         $qb = $this->getQueryBuilder();
         $qb->select($this->getAlias())
+           ->innerJoin('autoPay.order', 'order')
+           ->innerJoin('order.user', 'user')
            ->andWhere("DATE_FORMAT(autoPay.nextDate,'%Y-%m-%d') = :nextDate")
            ->setParameter('nextDate', $nextDate)
-           ->orderBy('autoPay.order')
+           ->orderBy('user.id')
+           ->addOrderBy('order.id')
         ;
 
          $query = $qb->getQuery(); //print $query->getSQL(); exit;

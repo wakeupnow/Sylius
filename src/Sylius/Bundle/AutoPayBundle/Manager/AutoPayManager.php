@@ -235,20 +235,20 @@ class AutoPayManager {
 
 
     //TODO: After done with cart system and have data for autopay this method have to make some adjustment.
-    protected function createPayment(OrderInterface $order)
-    {
-        /* @var $payment PaymentInterface */
-        $payment = $this->getPaymentRepository()->createNew();
-        $payment->setMethod($this->getPaymentMethodRepository()->findOneBy(['name' => 'Credit Card']));
-        $payment->setGateway($this->getReference('Sylius.PaymentGateway.GPG'));
-        $payment->setAmount($order->getTotal());
-        $payment->setCurrency($order->getCurrency());
-        $payment->setState($this->getPaymentState());
-
-        $order->setPayment($payment);
-
-        $this->get('event_dispatcher')->dispatch(SyliusCheckoutEvents::FINALIZE_PRE_COMPLETE, new GenericEvent($order));
-    }
+//    protected function createPayment(OrderInterface $order)
+//    {
+//        /* @var $payment PaymentInterface */
+//        $payment = $this->getPaymentRepository()->createNew();
+//        $payment->setMethod($this->getPaymentMethodRepository()->findOneBy(['name' => 'Credit Card']));
+//        $payment->setGateway($this->getReference('Sylius.PaymentGateway.GPG'));
+//        $payment->setAmount($order->getTotal());
+//        $payment->setCurrency($order->getCurrency());
+//        $payment->setState($this->getPaymentState());
+//
+//        $order->setPayment($payment);
+//
+//        $this->get('event_dispatcher')->dispatch(SyliusCheckoutEvents::FINALIZE_PRE_COMPLETE, new GenericEvent($order));
+//    }
 
     protected function getPaymentState()
     {
