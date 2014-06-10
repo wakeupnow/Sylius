@@ -22,6 +22,8 @@ use Sylius\Component\Addressing\Model\AddressInterface;
  */
 class User extends BaseUser implements UserInterface
 {
+    use \Wun\Shared\DomainModelsBundle\Entity\UniqueContactTypeValidation;
+
     protected $amazonId;
     protected $facebookId;
     protected $googleId;
@@ -36,12 +38,14 @@ class User extends BaseUser implements UserInterface
     protected $shippingAddress;
     protected $addresses;
     protected $member;
+    protected $contacts;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->orders    = new ArrayCollection();
         $this->addresses = new ArrayCollection();
+        $this->contacts  = new ArrayCollection();
 
         parent::__construct();
     }
@@ -368,5 +372,48 @@ class User extends BaseUser implements UserInterface
     public function getMember()
     {
         return $this->member;
+    }
+
+    /**
+     * @param \Wun\Shared\DomainModelsBundle\Entity\Contact $contacts
+     * @return $this
+     */
+    public function addContact(\Wun\Shared\DomainModelsBundle\Entity\Contact $contacts)
+    {
+        $this->contacts[] = $contacts;
+
+        return $this;
+    }
+
+    /**
+     * @param \Wun\Shared\DomainModelsBundle\Entity\Contact $contacts
+     */
+    public function removeContact(\Wun\Shared\DomainModelsBundle\Entity\Contact $contacts)
+    {
+        $this->contacts->removeElement($contacts);
+    }
+
+    /**
+     * @param mixed $contacts
+     */
+    public function setContacts($contacts)
+    {
+        $this->contacts = $contacts;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getUniqueContactTypeProperties()
+    {
+        return ['contacts' => 'contact'];
     }
 }

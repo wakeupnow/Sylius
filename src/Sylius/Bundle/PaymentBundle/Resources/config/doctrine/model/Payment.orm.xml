@@ -29,7 +29,7 @@
             <gedmo:versioned />
         </field>
 
-        <many-to-one field="state" target-entity="Sylius\Component\Payment\Model\PaymentState">
+        <many-to-one field="state" target-entity="Sylius\Component\Payment\Model\PaymentState" inversed-by="payments">
             <join-column name="state_id" referenced-column-name="id" nullable="true" />
             <cascade>
                 <cascade-persist />
