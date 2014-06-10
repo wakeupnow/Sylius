@@ -11,166 +11,81 @@
 
 namespace Sylius\Component\Addressing\Model;
 
+use Wun\Shared\DomainModelsBundle\Entity\Address as WunAddress;
+
 /**
  * Default address model.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@sylius.pl>
  */
-class Address implements AddressInterface
+class Address extends WunAddress implements AddressInterface
 {
     /**
-     * Address id.
-     *
-     * @var mixed
-     */
-    protected $id;
-
-    /**
-     * First name.
-     *
-     * @var string
-     */
-    protected $firstName;
-
-    /**
-     * Last name.
-     *
-     * @var string
-     */
-    protected $lastName;
-
-    /**
-     * Company.
-     *
      * @var string
      */
     protected $company;
 
     /**
-     * Country.
-     *
-     * @var CountryInterface
-     */
-    protected $country;
-
-    /**
-     * Province.
-     *
-     * @var ProvinceInterface
-     */
-    protected $province;
-
-    /**
-     * Street.
-     *
-     * @var string
-     */
-    protected $street;
-
-    /**
-     * City.
-     *
-     * @var string
-     */
-    protected $city;
-
-    /**
-     * Postcode.
-     *
-     * @var string
-     */
-    protected $postcode;
-
-    /**
-     * State.
-     *
      * @var string
      */
     protected $state;
+
     /**
-     * Address1.
+     * Get first name.
      *
-     * @var string
-     */
-    protected $address1;
-
-    /**
-     * Address2.
-     *
-     * @var string
-     */
-    protected $address2;
-
-    /**
-     * Creation time.
-     *
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * Last update time.
-     *
-     * @var \DateTime
-     */
-    protected $updatedAt;
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getFirstName()
     {
-        return $this->firstName;
+        return $this->getContact() ? $this->getContact()->getFirstName() : null;
     }
 
     /**
-     * {@inheritdoc}
+     * Set first name.
+     *
+     * @param string $firstName
      */
     public function setFirstName($firstName)
     {
-        $this->firstName = $firstName;
-
-        return $this;
+        if (!$this->getContact()) {
+            $this->setContact(new \Wun\Shared\DomainModelsBundle\Entity\Contact());
+        }
+        $this->getContact()->setFirstName($firstName);
     }
 
     /**
-     * {@inheritdoc}
+     * Get last name.
+     *
+     * @return string
      */
     public function getLastName()
     {
-        return $this->lastName;
+        return $this->getContact() ? $this->getContact()->getLastName() : null;
     }
 
     /**
-     * {@inheritdoc}
+     * Set last name.
+     *
+     * @param string $lastName
      */
     public function setLastName($lastName)
     {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getFullName()
-    {
-        return $this->firstName.' '.$this->lastName;
+        if (!$this->getContact()) {
+            $this->setContact(new \Wun\Shared\DomainModelsBundle\Entity\Contact());
+        }
+        $this->getContact()->setLastName($lastName);
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $company
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+    }
+
+    /**
+     * @return string
      */
     public function getCompany()
     {
@@ -178,208 +93,90 @@ class Address implements AddressInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function setCompany($company)
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCountry(CountryInterface $country = null)
-    {
-        if (null === $country) {
-            $this->province = null;
-        }
-
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
+     * Get province.
+     *
+     * @return ProvinceInterface $province
      */
     public function getProvince()
     {
-        return $this->province;
+        return $this->getRegion();
     }
 
     /**
-     * {@inheritdoc}
+     * Set province.
+     *
+     * @param ProvinceInterface $province
      */
     public function setProvince(ProvinceInterface $province = null)
     {
-        if (null === $this->country) {
-            throw new \BadMethodCallException('Cannot define province on address without assigned country');
-        }
-
-        if (null !== $province && !$this->country->hasProvince($province)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Cannot set province "%s", because it does not belong to country "%s"',
-                $province->getName(),
-                $this->country->getName()
-            ));
-        }
-
-        $this->province = $province;
-
-        return $this;
+        $this->setRegion($province);
     }
 
     /**
-     * {@inheritdoc}
+     * Get street.
+     *
+     * @return string
      */
     public function getStreet()
     {
-        return $this->street;
+        $this->getStreet1();
     }
 
     /**
-     * {@inheritdoc}
+     * Set street.
+     *
+     * @param string $street
      */
     public function setStreet($street)
     {
-        $this->street = $street;
-
-        return $this;
+        $this->setStreet1($street);
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
-    public function getCity()
+    public function getAddress1()
     {
-        return $this->city;
+       return $this->getStreet1();
     }
 
     /**
-     * {@inheritdoc}
+     * @param $address
      */
-    public function setCity($city)
+    public function setAddress1($address)
     {
-        $this->city = $city;
-
-        return $this;
+        $this->setStreet1($address);
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
-    public function getPostcode()
+    public function getAddress2()
     {
-        return $this->postcode;
+       return $this->getStreet2();
     }
 
     /**
-     * {@inheritdoc}
+     * @param $address
      */
-    public function setPostcode($postcode)
+    public function setAddress2($address)
     {
-        $this->postcode = $postcode;
-
-        return $this;
+        $this->setStreet2($address);
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * {@inheritdoc}
+     * @param string $state
      */
     public function setState($state)
     {
         $this->state = $state;
-
-        return $this;
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
-    public function getAddress1()
+    public function getState()
     {
-        return $this->address1;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setAddress1($address1)
-    {
-        $this->address1 = $address1;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAddress2()
-    {
-        return $this->address2;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setAddress2($address2)
-    {
-        $this->address1 = $address2;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
+        return $this->state;
     }
 }

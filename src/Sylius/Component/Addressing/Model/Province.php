@@ -11,80 +11,14 @@
 
 namespace Sylius\Component\Addressing\Model;
 
+use Wun\Shared\DomainModelsBundle\Entity\Region as WunRegion;
+
 /**
  * Default province model.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@sylius.pl>
  */
-class Province implements ProvinceInterface
+class Province extends WunRegion
 {
-    /**
-     * Province id.
-     *
-     * @var mixed
-     */
-    protected $id;
 
-    /**
-     * Name.
-     *
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * Country.
-     *
-     * @var CountryInterface
-     */
-    protected $country;
-
-    public function __toString()
-    {
-        return $this->name;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCountry(CountryInterface $country = null)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
 }

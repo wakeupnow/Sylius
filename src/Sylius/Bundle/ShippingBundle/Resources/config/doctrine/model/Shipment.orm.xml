@@ -26,7 +26,7 @@
             </cascade>
         </many-to-one>
 
-        <many-to-one field="state" target-entity="Sylius\Component\Shipping\Model\ShipmentState">
+        <many-to-one field="state" target-entity="Sylius\Component\Shipping\Model\ShipmentState" inversed-by="shipments">
             <join-column name="state_id" referenced-column-name="id" nullable="true" />
             <cascade>
                 <cascade-persist />
