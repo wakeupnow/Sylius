@@ -46,7 +46,8 @@ class PercentageDiscountAction implements PromotionActionInterface
      */
     public function execute(PromotionSubjectInterface $subject, array $configuration, PromotionInterface $promotion)
     {
-        // Product promo -----------------------------------------------------------------------------------------------
+        // Product promo proof begin -----------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------------------------------------
 
         // this is a proof of what we can apply needed adjustments,
         // i used lambdas just to keep all this experiment code together
@@ -113,10 +114,51 @@ class PercentageDiscountAction implements PromotionActionInterface
 
         // DEBUG ------------------------------------------- (dump Adjustments created by product promotions)
         echo "Product adjustments applied:\n\n\n";
-        \Doctrine\Common\Util\Debug::dump($adjustments);die;
+        \Doctrine\Common\Util\Debug::dump($adjustments);die; // !!! dying here
         // -------------------------------------------------
 
-        // Product promo -----------------------------------------------------------------------------------------------
+        // this looks like a possible solution, to scale to other discount types we can introduce some
+        // BaseDiscountAction class which implements PromotionActionInterface and its' execute() method
+        // will be something like this:
+
+//        function execute(PromotionSubjectInterface $subject, array $configuration, PromotionInterface $promotion)
+//        {
+//            if ($this->isProductPromotion()) {
+//                $this->executeProductPromotion();
+//            }
+//            else {
+//                $this->executeNonProductPromotion();
+//            }
+//        }
+
+        // all execute() methods of children will be renamed to executeNonProductPromotion()
+
+        // executeProductPromotion() in BaseDiscountAction class will be something like
+
+//        function executeProductPromotion(PromotionSubjectInterface $subject, array $configuration, PromotionInterface $promotion)
+//        {
+//            foreach ($subject->getItems() as $orderItem) {
+//                if ($adjustment = $this->getProductPromotionAdjustment($orderItem)) {
+//                    $subject->addAdjustment($adjustment);
+//                    $adjustments[] = $adjustment;
+//                }
+//            }
+//        }
+
+        // and inside the getProductPromotionAdjustment() we will have some abstract method calculating the amount
+        // in all the children discount actions it's going to be something quite simple
+
+        // summary:
+        // 1. introduce BaseDiscountAction with generic execute()
+        // 2. implement executeProductPromotion() in the BaseDiscountAction class
+        // 3. define abstract getProductPromotionAmount() which is used by executeProductPromotion()
+        // 3. extend all action classes from BaseDiscountAction and implement getProductPromotionAmount()
+        // ---------------------------
+        // one new file, small additions to the four *DiscountAction classes
+
+
+        // Product promo end -------------------------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------------------------------------
 
         $adjustment = $this->repository->createNew();
 
