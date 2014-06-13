@@ -78,6 +78,7 @@
         <parameter key="sylius.form.type.promotion_rule.taxonomy_configuration.class">Sylius\Bundle\CoreBundle\Form\Type\Rule\TaxonomyConfigurationType</parameter>
         <parameter key="sylius.form.type.promotion_rule.product_configuration.class">Sylius\Bundle\CoreBundle\Form\Type\Rule\ProductConfigurationType</parameter>
         <parameter key="sylius.form.type.promotion_action.shipping_discount_configuration.class">Sylius\Bundle\CoreBundle\Form\Type\Action\ShippingDiscountConfigurationType</parameter>
+        <parameter key="sylius.form.type.promotion_action.change_cv_configuration.class">Sylius\Bundle\CoreBundle\Form\Type\Action\ChangeCVConfigurationType</parameter>
 
         <parameter key="sylius.promotion_rule_checker.nth_order.class">Sylius\Component\Core\Promotion\Checker\NthOrderRuleChecker</parameter>
         <parameter key="sylius.promotion_rule_checker.user_loyality.class">Sylius\Component\Core\Promotion\Checker\UserLoyalityRuleChecker</parameter>
@@ -87,6 +88,7 @@
         <parameter key="sylius.promotion_action.fixed_discount.class">Sylius\Component\Core\Promotion\Action\FixedDiscountAction</parameter>
         <parameter key="sylius.promotion_action.percentage_discount.class">Sylius\Component\Core\Promotion\Action\PercentageDiscountAction</parameter>
         <parameter key="sylius.promotion_action.shipping_discount.class">Sylius\Component\Core\Promotion\Action\ShippingDiscountAction</parameter>
+        <parameter key="sylius.promotion_action.change_cv.class">Sylius\Component\Core\Promotion\Action\ChangeCVAction</parameter>
         <parameter key="sylius.promotion_action.add_product.class">Sylius\Component\Core\Promotion\Action\AddProductAction</parameter>
 
         <parameter key="sylius.form.type.promotion_action.add_product_configuration.class">Sylius\Bundle\CoreBundle\Form\Type\Action\AddProductConfigurationType</parameter>
@@ -449,6 +451,11 @@
             <argument>%sylius.validation_group.promotion_action_shipping_discount_configuration%</argument>
             <tag name="form.type" alias="sylius_promotion_action_shipping_discount_configuration" />
         </service>
+        <service id="sylius.form.type.promotion_action.change_cv_configuration" class="%sylius.form.type.promotion_action.change_cv_configuration.class%">
+            <argument>%sylius.validation_group.promotion_action_change_cv_configuration%</argument>
+            <argument>%sylius.model.product_attribute.class%</argument>
+            <tag name="form.type" alias="sylius_promotion_action_change_cv_configuration" />
+        </service>
         <service id="sylius.promotion_rule_checker.nth_order" class="%sylius.promotion_rule_checker.nth_order.class%">
             <tag name="sylius.promotion_rule_checker" type="nth_order" label="Nth order" />
         </service>
@@ -475,6 +482,10 @@
         <service id="sylius.promotion_action.shipping_discount" class="%sylius.promotion_action.shipping_discount.class%">
             <argument type="service" id="sylius.repository.adjustment" />
             <tag name="sylius.promotion_action" type="shipping_discount" label="Shipping discount" />
+        </service>
+        <service id="sylius.promotion_action.change_cv" class="%sylius.promotion_action.change_cv.class%">
+            <argument type="service" id="sylius.repository.adjustment" />
+            <tag name="sylius.promotion_action" type="change_cv" label="Change CV" />
         </service>
         <service id="sylius.promotion_action.add_product" class="%sylius.promotion_action.add_product.class%">
             <argument type="service" id="sylius.repository.order_item" />
