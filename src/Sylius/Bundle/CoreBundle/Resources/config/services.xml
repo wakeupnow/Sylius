@@ -485,7 +485,7 @@
         </service>
         <service id="sylius.promotion_action.change_cv" class="%sylius.promotion_action.change_cv.class%">
             <argument type="service" id="sylius.repository.adjustment" />
-            <tag name="sylius.promotion_action" type="change_cv" label="Change CV" />
+            <tag name="sylius.promotion_action" type="change_cv" label="Change CV *" />
         </service>
         <service id="sylius.promotion_action.add_product" class="%sylius.promotion_action.add_product.class%">
             <argument type="service" id="sylius.repository.order_item" />

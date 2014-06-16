@@ -86,6 +86,13 @@ class OrderItem implements OrderItemInterface
     protected $total = 0;
 
     /**
+     * Item CV Total.
+     *
+     * * @var integer
+     */
+    protected $cvTotal = 0;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -256,6 +263,7 @@ class OrderItem implements OrderItemInterface
      */
     public function calculateTotal()
     {
+        $this->calculateCVTotal();
         $this->determineUnitPrice();
         $this->calculateAdjustmentsTotal();
 
@@ -321,5 +329,32 @@ class OrderItem implements OrderItemInterface
                 }
             }
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCVTotal()
+    {
+        return $this->cvTotal;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function calculateCVTotal() {
+        $product = $this->getProduct();
+
+        $cvTotal = 0;
+        foreach ($product->getAttributes() as $attributeValue) {
+            $attribute = $attributeValue->getAttribute();
+
+            if ($attribute->getName() === 'CV') {
+                $cvTotal = $attributeValue->getValue() * $this->quantity;
+                break;
+            }
+        }
+
+        $this->cvTotal = $cvTotal;
     }
 }

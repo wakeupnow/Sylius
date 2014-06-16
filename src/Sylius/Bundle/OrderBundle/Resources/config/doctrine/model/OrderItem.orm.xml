@@ -36,6 +36,7 @@
         </one-to-many>
 
         <field name="quantity" column="quantity" type="integer" />
+        <field name="cvTotal" column="cv_total" type="integer" />
         <field name="unitPrice" column="unit_price" type="integer" />
         <field name="adjustmentsTotal" column="adjustments_total" type="integer" />
         <field name="total" column="total" type="integer" />

@@ -11,7 +11,7 @@
 
 namespace Sylius\Component\Core\Promotion\Action;
 
-use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Promotion\Action\PromotionActionInterface;
 use Sylius\Component\Promotion\Model\PromotionInterface;
 use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
@@ -48,26 +48,31 @@ class ChangeCVAction implements PromotionActionInterface
     {
         foreach ($subject->getItems() as $item) {
             foreach ($promotion->getRules() as $rule) {
-                $config = $rule->getConfiguration();
+                $config  = $rule->getConfiguration();
+                $product = $item->getProduct();
 
-                if ($config['products']->contains($item->getProduct()->getId()) && $item->getQuantity() >= $config['qty']) {
+                if ($config['products']->contains($product->getId()) && $item->getQuantity() >= $config['qty']) {
+                    $cv = null;
+                    foreach ($product->getAttributes() as $attributeValue) {
+                        $attribute = $attributeValue->getAttribute();
+
+                        if ($attribute->getName() === 'CV') {
+                            $cv = $attributeValue->getValue();
+                            break;
+                        }
+                    }
+
+                    if (null === $cv) {
+                        continue;
+                    }
+
                     $adjustment = $this->repository->createNew();
-
-                    //$adjustment->setAttribute();
-                    $adjustment->setLabel(OrderItemInterface::PROMOTION_ADJUSTMENT);
+                    
+                    $adjustment->setCV($item->getQuantity() * ($configuration['cv'] - $cv));
+                    $adjustment->setLabel(OrderInterface::CV_ADJUSTMENT);
                     $adjustment->setDescription($promotion->getDescription());
 
-                    /*echo '<pre>';
-                    \Doctrine\Common\Util\Debug::dump(get_class_methods($adjustment));
-                    echo '</pre>';
-                    die;*/
-
-                    $item->addAdjustment($adjustment);
-
-                    /*echo '<pre>';
-                    \Doctrine\Common\Util\Debug::dump(get_class_methods($item));
-                    echo '</pre>';
-                    die;*/
+                    $subject->addAdjustment($adjustment);
                 }
             }
         }
@@ -78,9 +83,7 @@ class ChangeCVAction implements PromotionActionInterface
      */
     public function revert(PromotionSubjectInterface $subject, array $configuration, PromotionInterface $promotion)
     {
-        foreach ($subject->getItems() as $item) {
-            $item->removePromotionAdjustments();
-        }
+        $subject->removeCVAdjustments();
     }
 
     /**

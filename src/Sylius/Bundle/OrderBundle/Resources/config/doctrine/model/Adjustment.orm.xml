@@ -38,6 +38,7 @@
         <field name="label" column="label" type="string" />
         <field name="description" column="description" type="string" nullable="true" />
         <field name="amount" column="amount" type="integer" />
+        <field name="cv" column="cv" type="integer" />
         <field name="neutral" column="is_neutral" type="boolean" />
 
         <field name="createdAt" column="created_at" type="datetime">

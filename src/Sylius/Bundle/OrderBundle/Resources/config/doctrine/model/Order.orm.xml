@@ -42,6 +42,9 @@
         <field name="itemsTotal" column="items_total" type="integer" />
         <field name="adjustmentsTotal" column="adjustments_total" type="integer" />
         <field name="total" column="total" type="integer" />
+        <field name="itemsCVTotal" column="items_cv_total" type="integer" />
+        <field name="cvAdjustmentsTotal" column="cv_adjustments_total" type="integer" />
+        <field name="cvTotal" column="cv_total" type="integer" />
 
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>

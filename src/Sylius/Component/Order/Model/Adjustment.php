@@ -61,6 +61,13 @@ class Adjustment implements AdjustmentInterface
     protected $amount = 0;
 
     /**
+     * Adjustment cv.
+     *
+     * @var integer
+     */
+    protected $cv = 0;
+
+    /**
      * Is adjustment neutral?
      * Should it modify the order total?
      *
@@ -182,6 +189,24 @@ class Adjustment implements AdjustmentInterface
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCV()
+    {
+        return $this->cv;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCV($cv)
+    {
+        $this->cv = $cv;
 
         return $this;
     }

@@ -32,6 +32,7 @@ interface OrderInterface extends CartInterface, PromotionSubjectInterface
     const TAX_ADJUSTMENT       = 'tax';
     const SHIPPING_ADJUSTMENT  = 'shipping';
     const PROMOTION_ADJUSTMENT = 'promotion';
+    const CV_ADJUSTMENT        = 'cv';
 
     /**
      * Get user.
@@ -112,6 +113,18 @@ interface OrderInterface extends CartInterface, PromotionSubjectInterface
      * Remove all promotion adjustments.
      */
     public function removePromotionAdjustments();
+
+    /**
+     * Get all CV adjustments.
+     *
+     * @return Collection|AdjustmentInterface[]
+     */
+    public function getCVAdjustments();
+
+    /**
+     * Remove all CV adjustments.
+     */
+    public function removeCVAdjustments();
 
     /**
      * Get shipping total.

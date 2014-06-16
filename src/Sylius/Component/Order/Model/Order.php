@@ -105,6 +105,27 @@ class Order implements OrderInterface
     protected $total = 0;
 
     /**
+     * Item CV Total.
+     *
+     * @var integer
+     */
+    protected $itemsCVTotal = 0;
+
+    /**
+     * CV Adjustments total.
+     *
+     * @var integer
+     */
+    protected $cvAdjustmentsTotal = 0;
+
+    /**
+     * CV total.
+     *
+     * @var integer
+     */
+    protected $cvTotal = 0;
+
+    /**
      * Whether order was confirmed.
      *
      * @var Boolean
@@ -347,6 +368,40 @@ class Order implements OrderInterface
     /**
      * {@inheritdoc}
      */
+    public function calculateItemsCVTotal()
+    {
+        $itemsCVTotal = 0;
+
+        foreach ($this->items as $item) {
+            //$item->calculateCVTotal();
+
+            $itemsCVTotal += $item->getCVTotal();
+        }
+
+        $this->itemsCVTotal = $itemsCVTotal;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function calculateCVAdjustmentsTotal()
+    {
+        $cvAdjustmentsTotal = 0;
+
+        foreach ($this->adjustments as $adjustment) {
+            if (!$adjustment->isNeutral()) {
+                $cvAdjustmentsTotal += $adjustment->getCV();
+            }
+        }
+
+        $this->cvAdjustmentsTotal = $cvAdjustmentsTotal;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getAdjustments()
     {
         return $this->adjustments;
@@ -443,12 +498,63 @@ class Order implements OrderInterface
     {
         $this->calculateItemsTotal();
         $this->calculateAdjustmentsTotal();
+        $this->calculateItemsCVTotal();
+        $this->calculateCVAdjustmentsTotal();
 
         $this->total = $this->itemsTotal + $this->adjustmentsTotal;
+        $this->cvTotal = $this->itemsCVTotal + $this->cvAdjustmentsTotal;
 
         if ($this->total < 0) {
             $this->total = 0;
         }
+
+        if ($this->cvTotal < 0) {
+            $this->cvTotal = 0;
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getItemsCVTotal()
+    {
+        return $this->itemsCVTotal;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setItemsCVTotal($itemsCVTotal)
+    {
+        $this->itemsCVTotal = $itemsCVTotal;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCVAdjustmentsTotal()
+    {
+        return $this->cvAdjustmentsTotal;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCVTotal()
+    {
+        return $this->cvTotal;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCVTotal($cvTotal)
+    {
+        $this->cvTotal = $cvTotal;
 
         return $this;
     }

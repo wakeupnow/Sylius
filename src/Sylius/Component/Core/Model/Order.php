@@ -235,6 +235,28 @@ class Order extends Cart implements OrderInterface
     /**
      * {@inheritdoc}
      */
+    public function getCVAdjustments()
+    {
+        return $this->adjustments->filter(function (AdjustmentInterface $adjustment) {
+            return Order::CV_ADJUSTMENT === $adjustment->getLabel();
+        });
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeCVAdjustments()
+    {
+        foreach ($this->getCVAdjustments() as $adjustment) {
+            $this->removeAdjustment($adjustment);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getShippingTotal()
     {
         $shippingTotal = 0;

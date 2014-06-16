@@ -21,8 +21,8 @@
     <div class="container price-check">
         {% if cart.promotionTotal %}
             <div class="subtotal clearfix">
-                    <div class="pull-left">{{ 'sylius.order.subtotal'|trans }}:</div>
-                    <div class="pull-right">{{ cart.promotionTotal|sylius_price }}</div>
+                <div class="pull-left">{{ 'sylius.order.subtotal'|trans }}:</div>
+                <div class="pull-right">{{ cart.promotionTotal|sylius_price }}</div>
             </div>
         {% endif %}
         <div class="subtotal clearfix">
@@ -38,24 +38,27 @@
             </div>
         </div>
         <div class="subtotal clearfix">
-                <div class="pull-left">{{ 'sylius.order.shipping'|trans }}:</div>
-                <div class="pull-right">{{ cart.shippingTotal|sylius_price }}</div>
+            <div class="pull-left">{{ 'sylius.order.shipping'|trans }}:</div>
+            <div class="pull-right">{{ cart.shippingTotal|sylius_price }}</div>
         </div>
         <div class="subtotal clearfix">
-                <div class="pull-left">{{ 'sylius.order.tax_total'|trans }}:</div>
-                <div class="pull-right total">{{ cart.taxTotal|sylius_price }}</div>
+            <div class="pull-left">{{ 'sylius.order.tax_total'|trans }}:</div>
+            <div class="pull-right total">{{ cart.taxTotal|sylius_price }}</div>
         </div>
         <div class="subtotal clearfix">
-                <div class="pull-left">{{ 'sylius.cart.summary.total'|trans }}:</div>
-                <div class="pull-right total">{{ cart.total|sylius_price }}</div>
+            <div class="pull-left">{{ 'sylius.cart.summary.total'|trans }}:</div>
+            <div class="pull-right total">{{ cart.total|sylius_price }}</div>
         </div>
-
+        <div class="subtotal clearfix">
+            <div class="pull-left">{{ 'sylius.order.cv_total'|trans }}:</div>
+            <div class="pull-right total">{{ cart.cvTotal }}</div>
+        </div>
     </div>
     <div class="container next clearfix">
         <div class="row">
-                <div class="span6 offset6">
-                        <a href="{{ path('sylius_checkout_start') }}" class="button huge">Next</a>
-                </div>
+            <div class="span6 offset6">
+                <a href="{{ path('sylius_checkout_start') }}" class="button huge">Next</a>
+            </div>
         </div>
     </div>
 </div>
