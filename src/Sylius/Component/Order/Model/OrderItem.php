@@ -293,6 +293,8 @@ class OrderItem implements OrderItemInterface
     }
 
     /**
+     * @todo OMG $this->getOrder()->getUser()->getMember()->getType()->getId()
+     *
      * @param null $accountTypeName
      */
     public function determineUnitPrice($accountTypeName = null)
@@ -302,11 +304,14 @@ class OrderItem implements OrderItemInterface
             // MSRP is used by default
             $accountTypeName = 'MSRP';
 
-            /** @var \Sylius\Component\Core\Model\User $user */
-            if (!is_null($user = $this->getOrder()->getUser())) {
-                if (!is_null($member = $user->getMember())) {
-                    if (!is_null($accountType = $member->getType())) {
-                        $accountTypeName = $accountType->getName();
+            if (!is_null($this->getOrder())) {
+
+                /** @var \Sylius\Component\Core\Model\User $user */
+                if (!is_null($user = $this->getOrder()->getUser())) {
+                    if (!is_null($member = $user->getMember())) {
+                        if (!is_null($accountType = $member->getType())) {
+                            $accountTypeName = $accountType->getName();
+                        }
                     }
                 }
             }
