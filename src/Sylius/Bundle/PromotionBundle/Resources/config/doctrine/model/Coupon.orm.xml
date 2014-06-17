@@ -22,7 +22,7 @@
         <field name="usageLimit" column="usage_limit" type="integer" nullable="true" />
         <field name="used" type="integer" />
 
-        <many-to-one field="promotion" target-entity="Sylius\Component\Promotion\Model\PromotionInterface" inversed-by="coupons">
+        <many-to-one field="promotion" target-entity="Sylius\Component\Promotion\Model\Promotion" inversed-by="coupons">
             <join-column name="promotion_id" referenced-column-name="id" nullable="true" />
             <cascade>
                 <cascade-persist />

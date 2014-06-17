@@ -14,7 +14,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="Sylius\Component\Addressing\Model\ZoneMemberProvince">
-        <many-to-one field="province" target-entity="Sylius\Component\Addressing\Model\ProvinceInterface">
+        <many-to-one field="province" target-entity="Sylius\Component\Addressing\Model\Province">
             <join-column name="province_id" referenced-column-name="id" />
             <cascade>
                 <cascade-persist />

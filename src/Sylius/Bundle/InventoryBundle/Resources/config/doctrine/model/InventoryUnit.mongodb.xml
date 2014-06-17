@@ -20,7 +20,7 @@
     <mapped-superclass name="Sylius\Component\Inventory\Model\InventoryUnit">
         <field name="inventoryState" fieldName="inventoryState" type="string" />
 
-        <reference-one fieldName="stockable" target-document="Sylius\Component\Inventory\Model\StockableInterface" />
+        <reference-one fieldName="stockable" target-document="Sylius\Component\Inventory\Model\Stockable" />
 
         <field fieldName="createdAt" name="createdAt" type="date">
             <gedmo:timestampable on="create"/>

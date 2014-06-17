@@ -37,7 +37,7 @@
             <gedmo:versioned />
         </many-to-one>
 
-        <many-to-many field="creditCard" target-entity="Sylius\Component\Payment\Model\CreditCardInterface">
+        <many-to-many field="creditCard" target-entity="Sylius\Component\Payment\Model\CreditCard">
             <join-table name="sylius_payment_credit_card">
                 <join-columns>
                     <join-column name="payment_id" referenced-column-name="id" unique="true" />
@@ -51,7 +51,7 @@
             </cascade>
         </many-to-many>
 
-        <many-to-many field="gateway" target-entity="Sylius\Component\Payment\Model\PaymentGatewayInterface">
+        <many-to-many field="gateway" target-entity="Sylius\Component\Payment\Model\PaymentGateway">
             <join-table name="sylius_payment_gateway">
                 <join-columns>
                     <join-column name="payment_id" referenced-column-name="id" unique="true" />
@@ -65,7 +65,7 @@
             </cascade>
         </many-to-many>
 
-        <many-to-one field="method" target-entity="Sylius\Component\Payment\Model\PaymentMethodInterface">
+        <many-to-one field="method" target-entity="Sylius\Component\Payment\Model\PaymentMethod">
             <join-column name="payment_method_id" referenced-column-name="id" nullable="true" on-delete="SET NULL" />
             <cascade>
                 <cascade-persist />

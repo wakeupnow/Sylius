@@ -21,7 +21,7 @@
 
         <field name="name" column="name" type="string" />
 
-        <many-to-many field="attributes" target-entity="Sylius\Component\Product\Model\AttributeInterface">
+        <many-to-many field="attributes" target-entity="Sylius\Component\Product\Model\Attribute">
             <join-table name="sylius_product_prototype_attribute">
                 <join-columns>
                     <join-column name="prototype_id" referenced-column-name="id" nullable="false" unique="false" />
@@ -35,7 +35,7 @@
             </cascade>
         </many-to-many>
 
-        <many-to-many field="options" target-entity="Sylius\Component\Product\Model\OptionInterface">
+        <many-to-many field="options" target-entity="Sylius\Component\Product\Model\Option">
             <join-table name="sylius_product_prototype_option">
                 <join-columns>
                     <join-column name="prototype_id" referenced-column-name="id" nullable="false" unique="false" />

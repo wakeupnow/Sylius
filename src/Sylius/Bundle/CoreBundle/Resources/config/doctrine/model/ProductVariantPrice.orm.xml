@@ -21,7 +21,7 @@
             <generator strategy="AUTO" />
         </id>
 
-        <many-to-one field="type" target-entity="Sylius\Component\Core\Model\PriceTypeInterface">
+        <many-to-one field="type" target-entity="Sylius\Component\Core\Model\PriceType">
             <join-column name="type_id" referenced-column-name="id" nullable="false" />
             <cascade>
                 <cascade-persist />
@@ -30,7 +30,7 @@
 
         <field name="amount" column="amount" type="float" nullable="false" />
 
-        <many-to-one field="variant" target-entity="Sylius\Component\Product\Model\VariantInterface" inversed-by="prices">
+        <many-to-one field="variant" target-entity="Sylius\Component\Product\Model\Variant" inversed-by="prices">
             <join-column name="variant_id" referenced-column-name="id" nullable="false" />
             <cascade>
                 <cascade-persist />

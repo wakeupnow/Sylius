@@ -19,7 +19,7 @@
             <generator strategy="AUTO" />
         </id>
 
-        <many-to-one field="method" target-entity="Sylius\Component\Shipping\Model\ShippingMethodInterface">
+        <many-to-one field="method" target-entity="Sylius\Component\Shipping\Model\ShippingMethod">
             <join-column name="method_id" referenced-column-name="id" nullable="true" />
             <cascade>
                 <cascade-persist />
@@ -35,7 +35,7 @@
 
         <field name="tracking" column="tracking" type="string" nullable="true" />
 
-        <one-to-many field="items" target-entity="Sylius\Component\Shipping\Model\ShipmentItemInterface" mapped-by="shipment" orphan-removal="true">
+        <one-to-many field="items" target-entity="Sylius\Component\Shipping\Model\ShipmentItem" mapped-by="shipment" orphan-removal="true">
             <cascade>
                 <cascade-all/>
             </cascade>

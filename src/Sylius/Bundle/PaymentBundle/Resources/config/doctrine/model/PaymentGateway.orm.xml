@@ -32,7 +32,7 @@
             <gedmo:timestampable on="update"/>
         </field>
 
-        <many-to-one field="paymentMethod" target-entity="Sylius\Component\Payment\Model\PaymentMethodInterface">
+        <many-to-one field="paymentMethod" target-entity="Sylius\Component\Payment\Model\PaymentMethod">
             <join-column name="payment_method_id" referenced-column-name="id" nullable="true" on-delete="SET NULL" />
             <cascade>
                 <cascade-persist />

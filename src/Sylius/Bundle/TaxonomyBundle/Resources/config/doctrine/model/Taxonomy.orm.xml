@@ -23,7 +23,7 @@
 
         <field name="name" column="name" type="string" />
 
-        <many-to-one field="root" target-entity="Sylius\Component\Taxonomy\Model\TaxonInterface">
+        <many-to-one field="root" target-entity="Sylius\Component\Taxonomy\Model\Taxon">
             <join-column name="root_id" referenced-column-name="id" nullable="true" on-delete="SET NULL" />
             <cascade>
                 <cascade-all/>

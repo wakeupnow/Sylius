@@ -22,14 +22,14 @@
         <field name="name" column="name" type="string" />
         <field name="configuration" column="configuration" type="array" />
 
-        <many-to-one field="category" target-entity="Sylius\Component\Shipping\Model\ShippingCategoryInterface">
+        <many-to-one field="category" target-entity="Sylius\Component\Shipping\Model\ShippingCategory">
             <join-column name="category_id" referenced-column-name="id" nullable="true" />
             <cascade>
                 <cascade-persist />
             </cascade>
         </many-to-one>
 
-        <one-to-many field="rules" target-entity="Sylius\Component\Shipping\Model\RuleInterface" mapped-by="method">
+        <one-to-many field="rules" target-entity="Sylius\Component\Shipping\Model\Rule" mapped-by="method">
             <cascade>
                 <cascade-all />
             </cascade>

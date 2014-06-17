@@ -21,7 +21,7 @@
         <field name="type" column="type" type="string" />
         <field name="configuration" column="configuration" type="array" />
 
-        <many-to-one field="method" target-entity="Sylius\Component\Shipping\Model\ShippingMethodInterface" inversed-by="rules">
+        <many-to-one field="method" target-entity="Sylius\Component\Shipping\Model\ShippingMethod" inversed-by="rules">
             <join-column name="method_id" referenced-column-name="id" nullable="false" />
             <cascade>
                 <cascade-persist />

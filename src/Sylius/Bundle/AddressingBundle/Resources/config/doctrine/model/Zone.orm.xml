@@ -21,7 +21,7 @@
         <field name="name" column="name" type="string" />
         <field name="type" column="type" type="string" length="8" />
 
-        <one-to-many field="members" target-entity="Sylius\Component\Addressing\Model\ZoneMemberInterface" mapped-by="belongsTo">
+        <one-to-many field="members" target-entity="Sylius\Component\Addressing\Model\ZoneMember" mapped-by="belongsTo">
             <cascade>
                 <cascade-all/>
             </cascade>
