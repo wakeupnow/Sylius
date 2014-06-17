@@ -29,6 +29,19 @@
                 <cascade-all/>
             </cascade>
         </one-to-many>
+
+        <many-to-one field="order" target-entity="Sylius\Component\Order\Model\Order" inversed-by="items">
+            <join-column name="order_id" referenced-column-name="id" nullable="false" />
+            <cascade>
+                <cascade-persist />
+            </cascade>
+        </many-to-one>
+
+        <one-to-many field="adjustments" target-entity="Sylius\Component\Order\Model\Adjustment" mapped-by="orderItem" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
     </mapped-superclass>
 
 </doctrine-mapping>

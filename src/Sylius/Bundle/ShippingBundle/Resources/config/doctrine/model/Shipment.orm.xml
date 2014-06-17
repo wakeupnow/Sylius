@@ -19,27 +19,7 @@
             <generator strategy="AUTO" />
         </id>
 
-        <many-to-one field="method" target-entity="Sylius\Component\Shipping\Model\ShippingMethod">
-            <join-column name="method_id" referenced-column-name="id" nullable="true" />
-            <cascade>
-                <cascade-persist />
-            </cascade>
-        </many-to-one>
-
-        <many-to-one field="state" target-entity="Sylius\Component\Shipping\Model\ShipmentState" inversed-by="shipments">
-            <join-column name="state_id" referenced-column-name="id" nullable="true" />
-            <cascade>
-                <cascade-persist />
-            </cascade>
-        </many-to-one>
-
         <field name="tracking" column="tracking" type="string" nullable="true" />
-
-        <one-to-many field="items" target-entity="Sylius\Component\Shipping\Model\ShipmentItem" mapped-by="shipment" orphan-removal="true">
-            <cascade>
-                <cascade-all/>
-            </cascade>
-        </one-to-many>
 
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>

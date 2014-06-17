@@ -17,7 +17,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Sylius\Component\Taxonomy\Model\Taxon">
+    <mapped-superclass name="Sylius\Component\Taxonomy\Model\Taxon">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
@@ -78,6 +78,6 @@
 
         <gedmo:soft-deleteable field-name="deletedAt" />
         <gedmo:tree type="nested" />
-    </entity>
+    </mapped-superclass>
 
 </doctrine-mapping>
