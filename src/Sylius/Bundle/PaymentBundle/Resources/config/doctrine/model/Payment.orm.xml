@@ -14,7 +14,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
 
-    <mapped-superclass name="Sylius\Component\Payment\Model\Payment" table="sylius_payment">
+    <entity name="Sylius\Component\Payment\Model\Payment" table="sylius_payment">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
@@ -80,6 +80,6 @@
         </field>
         
         <gedmo:loggable />
-    </mapped-superclass>
+    </entity>
 
 </doctrine-mapping>

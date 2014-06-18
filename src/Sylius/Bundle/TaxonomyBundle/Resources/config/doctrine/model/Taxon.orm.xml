@@ -36,30 +36,6 @@
         </field>
         <field name="description" column="description" type="text" nullable="true" />
 
-        <many-to-one field="taxonomy" target-entity="Sylius\Component\Taxonomy\Model\Taxonomy">
-            <join-column name="taxonomy_id" referenced-column-name="id" nullable="true" on-delete="SET NULL" />
-            <cascade>
-                <cascade-persist />
-            </cascade>
-        </many-to-one>
-
-        <many-to-one field="parent" target-entity="Sylius\Component\Taxonomy\Model\Taxon" inversed-by="children">
-            <join-column name="parent_id" referenced-column-name="id" nullable="true" on-delete="CASCADE" />
-            <cascade>
-                <cascade-persist />
-            </cascade>
-            <gedmo:tree-parent />
-        </many-to-one>
-
-        <one-to-many field="children" target-entity="Sylius\Component\Taxonomy\Model\Taxon" mapped-by="parent">
-            <cascade>
-                <cascade-all />
-            </cascade>
-            <order-by>
-                <order-by-field name="left" direction="ASC" />
-            </order-by>
-        </one-to-many>
-
         <order-by>
             <order-by-field name="left" direction="ASC" />
         </order-by>

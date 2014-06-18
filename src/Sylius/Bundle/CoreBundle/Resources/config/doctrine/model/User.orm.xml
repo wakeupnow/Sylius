@@ -17,7 +17,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Sylius\Component\Core\Model\User" table="sys_user">
+    <entity name="Sylius\Component\Core\Model\User" table="sys_user">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
@@ -108,6 +108,6 @@
         <field name="deletedAt" column="deleted_at" type="datetime" nullable="true" />
 
         <gedmo:soft-deleteable field-name="deletedAt" />
-    </mapped-superclass>
+    </entity>
 
 </doctrine-mapping>

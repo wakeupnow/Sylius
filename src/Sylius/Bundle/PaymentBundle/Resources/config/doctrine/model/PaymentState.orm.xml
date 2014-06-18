@@ -13,7 +13,7 @@
 
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
 
-    <mapped-superclass name="Sylius\Component\Payment\Model\PaymentState" table="sylius_payment_state">
+    <entity name="Sylius\Component\Payment\Model\PaymentState" table="sylius_payment_state">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
@@ -26,6 +26,6 @@
             </cascade>
         </one-to-many>
 
-    </mapped-superclass>
+    </entity>
 
 </doctrine-mapping>

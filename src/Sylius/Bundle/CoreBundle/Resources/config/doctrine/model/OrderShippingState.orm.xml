@@ -13,7 +13,7 @@
 
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
 
-    <mapped-superclass name="Sylius\Component\Core\Model\OrderShippingState" table="sylius_order_shipping_state">
+    <entity name="Sylius\Component\Core\Model\OrderShippingState" table="sylius_order_shipping_state">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
@@ -26,6 +26,6 @@
             </cascade>
         </one-to-many>
 
-    </mapped-superclass>
+    </entity>
 
 </doctrine-mapping>

@@ -5,11 +5,11 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Sylius\Component\Core\Model\PriceType" table="sylius_price_type">
+    <entity name="Sylius\Component\Core\Model\PriceType" table="sylius_price_type">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
         <field name="name" column="name" type="string" />
-    </mapped-superclass>
+    </entity>
 
 </doctrine-mapping>

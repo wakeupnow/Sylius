@@ -5,7 +5,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Sylius\Component\Core\Model\Order" table="sylius_order">
+    <entity name="Sylius\Component\Core\Model\Order" table="sylius_order">
         <many-to-one field="shippingAddress" target-entity="Sylius\Component\Addressing\Model\Address">
             <cascade>
                 <cascade-persist/>
@@ -81,6 +81,6 @@
                 <cascade-persist />
             </cascade>
         </many-to-many>
-    </mapped-superclass>
+    </entity>
 
 </doctrine-mapping>
