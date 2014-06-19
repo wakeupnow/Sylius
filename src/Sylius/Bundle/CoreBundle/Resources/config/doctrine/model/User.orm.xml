@@ -36,13 +36,6 @@
             </cascade>
         </one-to-many>
 
-        <one-to-one field="member" target-entity="Wun\Shared\DomainModelsBundle\Entity\Member">
-            <join-column name="member_id" nullable="true" />
-            <cascade>
-                <cascade-persist />
-            </cascade>
-        </one-to-one>
-
         <one-to-one field="billingAddress" target-entity="Sylius\Component\Addressing\Model\AddressInterface">
             <join-column name="billing_address_id" />
             <cascade>
