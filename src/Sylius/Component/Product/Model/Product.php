@@ -100,7 +100,7 @@ class Product implements ProductInterface
      * @var Collection|BaseAttributeValueInterface[]
      *
      * @Serializer\Expose
-     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\Attribute>")
+     * @Serializer\Type("ArrayCollection<Sylius\Component\Product\Model\AttributeValue>")
      */
     protected $attributes;
 
